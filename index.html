@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Condidi</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/site.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid fh">
+    <main class="row fh">
+        <nav class="col-md-2 bg-black sidebar d-none d-md-block">
+            <div class="sidebar-sticky">
+                <span class="navbar-brand">CNDD</span>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                <span class="side-icon-background">
+                <span data-feather="home" class="side-icon"></span>
+                <span class="sr-only">(current)</span>
+                </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                <span class="side-icon-background">
+                <span data-feather="calendar" class="side-icon"></span>
+                  </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                <span class="side-icon-background">
+                <span data-feather="settings" class="side-icon"></span>
+                </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" id="content" class="col-md-10 ml-sm-auto col-lg-10 fh">
+            <!-- login panel -->
+            <div class="row fh" id="pageLogin">
+                <div class="col-6 bg-black">
+                    &nbsp;
+                </div>
+                <div class="col-6" id="loginPanel">
+                    <div class="logo">
+                        CNDD
+                    </div>
+                    <p>
+                        Welcome Back!
+                    </p>
+                    <p>
+                        Sign in to continue
+                    </p>
+                    <button type="button" class="btn btn-dark" id="loginConnectWalletButton">Connect with Jolocom
+                    </button>
+                </div>
+            </div>
+            <!-- admin event view -->
+            <div class="fh round-left d-none" id="pageAdminEvents">
+                <div class="row p-l-2">
+                    <div class="col-12">
+                        <div class="center">
+                            <div class="rectangle">
+                                <button type="button" class="btn btn-dark" style="width: 10em">Events</button>
+                                <button type="button" class="btn btn-light" style="width: 10em"
+                                        id="AdminParticipantsButton">Participants
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-light oval" style="float:left"
+                                data-toggle="tooltip" title="delete selected"><span
+                                data-feather="trash-2"></span>
+                        </button>
+                        <button type="button" class="btn btn-light oval" style="float: right"><span
+                                data-feather="share"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-12">
+                            <table class="table" style="margin-left: 10px; margin-right:10px">
+                                <thead>
+                                <tr>
+                                    <th scope="col"><input type="checkbox" id="checkEvent"></th>
+                                    <th scope="col">Event Name</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col"></th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="adminEventTable">
+                                <tr>
+                                    <td><input type="checkbox" id="checkEvent1" class="eventCheck"></td>
+                                    <td>VIVO 2020</td>
+                                    <td>2020/06/16 - 2020/06/18</td>
+                                    <td>11th Annual International VIVO Conference 2020</td>
+                                    <td>2020</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="checkEvent2" class="eventCheck"></td>
+                                    <td>VIVO 2019</td>
+                                    <td>2019/09/04 - 2019/09/06</td>
+                                    <td>10th Annual International VIVO Conference 2019</td>
+                                    <td>2019</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="checkEvent3" class="eventCheck"></td>
+                                    <td>VIVO 2018</td>
+                                    <td>2018/06/06 - 2018/06/08</td>
+                                    <td>9th Annual International VIVO Conference 2019</td>
+                                    <td>2018</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" id="checkEvent4" class="eventCheck"></td>
+                                    <td>VIVO 2017</td>
+                                    <td>2017/08/04 - 2017/08/06</td>
+                                    <td>8th Annual International VIVO Conference 2019</td>
+                                    <td>2017</td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- admin participant view -->
+            <div class="fh round-left d-none" id="pageAdminParticipants">
+                <div class="row p-l-2">
+                    <div class="col-12">
+                        <div class="center">
+                            <div class="rectangle">
+                                <button type="button" class="btn btn-light" style="width: 10em"
+                                        id="AdminEventsButton">Events
+                                </button>
+                                <button type="button" class="btn btn-dark" style="width: 10em">Participants</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-l-2">
+                    <div class="col-12">
+                        <button type="button" class="btn btn-light oval" style="float:left"
+                        data-toggle="tooltip" title="delete selected"><span
+                                data-feather="trash-2"></span>
+                        </button>
+                        <button type="button" class="btn btn-light oval" style="float:left"><span
+                                data-feather="mail"></span>
+                        </button>
+                        <button type="button" class="btn btn-light oval" style="float:left"><span
+                                data-feather="refresh-cw"></span>
+                        </button>
+                        <button type="button" class="btn btn-light oval" style="float: right"><span
+                                data-feather="share"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="row p-l-2">
+                    <div class="col-12">
+                        <table class="table" style="margin-left: 10px; margin-right:20px">
+                            <thead>
+                            <tr>
+                                <th scope="col"><input type="checkbox" id="checkAllParticipants"></th>
+                                <th scope="col">Participant</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Article</th>
+                                <th scope="col">Application Status</th>
+                                <th scope="col">Payment status</th>
+                                <th scope="col">Event</th>
+                                <th scope="col">Participation</th>
+                            </tr>
+                            </thead>
+                            <tbody id="adminParticipantTable">
+                            <tr>
+                                <td><input type="checkbox" id="checkParticipant1" class="participantCheck"></td>
+                                <td>Eric G. Summer</td>
+                                <td>Mr.</td>
+                                <td>On the development of ...</td>
+                                <td>in Review</td>
+                                <td>waiting for payment</td>
+                                <td>VIVO 2020</td>
+                                <td>attendend</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" id="checkParticipant2" class="participantCheck"></td>
+                                <td>Roswitha F. Winter</td>
+                                <td>Prof. Dr.</td>
+                                <td>A short summary of...</td>
+                                <td>invited</td>
+                                <td>paid</td>
+                                <td>VIVO 2020</td>
+                                <td>keynote speaker</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </main>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script src="js/feather.min.js"></script>
+<script>
+      feather.replace()
+</script>
+<script src="js/site.js" crossorigin="anonymous"></script>
+</body>
+</html>
