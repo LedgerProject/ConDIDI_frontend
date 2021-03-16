@@ -1,6 +1,58 @@
 import React, { Component } from 'react';
 import { Columns } from '../media/files/EventsTable'; 
-import { DataGrid } from '@material-ui/data-grid'; 
+import DataTable from 'react-data-table-component'; 
+import styled from 'styled-components'; 
+import { data } from '../config'; 
+
+const StyledTable = styled(DataTable)`
+    height: 60%;
+    margin: 0px 60px 0px 30px;
+    padding: 10px 10px 10px 10px;
+    
+`
+
+const Wrapper = styled.section`
+    width: 90%;
+    height: 100%;
+    position: relative;
+    background-color: #f7f7f7;
+    border-radius: 25px; 
+    margin: 0px -30px 0px 0px;
+    padding-left: 2em; 
+`;
+
+const TableWrapper = styled.section`
+    width: 85%;  
+    position: relative;
+    background-color: #f7f7f7;
+    border-radius: 25px; 
+    padding: 2em; 
+`;
+
+const conditionalRowStyles = [
+    {
+        when: row => row.type = 'Meetup', 
+        style: {
+            backgroundColor: 'green', 
+            color: 'white', 
+            '&:hover': {
+                cursor: 'pointer'
+            }, 
+        }, 
+    }, 
+    {
+        when: row => row.type = 'Festival', 
+        style: {
+            backgroundColor: 'yellow', 
+            color: 'white', 
+        }, 
+    }, 
+]; 
+
+const handleChange  = (state) => {
+    console.log('Selected rows: ', state.selectedRows)
+}
+
 
 class MyEvents extends Component {
 
@@ -12,6 +64,7 @@ class MyEvents extends Component {
             columns: Columns, 
             rows: [], 
             rowsLength: '', 
+            token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc'
         }
 
         this.getEvents = this.getEvents.bind(this); 
@@ -26,13 +79,13 @@ class MyEvents extends Component {
 
         try {
 
-            await fetch('http://localhost:8080/api/list_my_events', {
+            await fetch(data.host+':'+data.port+data.path+'/list_my_events', {
                 method: 'POST', 
                 headers: {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc', 
+                    token: this.state.token, 
                 })
             })
             .then((response) => { 
@@ -59,7 +112,6 @@ class MyEvents extends Component {
         Object.keys(json).forEach(function(key) {
             arr.push(json[key]); 
         }); 
-        console.log(arr)
         this.setState({
             rows: arr
         })
@@ -71,13 +123,21 @@ class MyEvents extends Component {
     render(){
         return(
 
-            <div className="standard">
+            <Wrapper>
+                <TableWrapper>
+                    <h2>My events</h2>
+                    <StyledTable 
+                        title="My Events"
+                        columns={this.state.columns}
+                        data={this.state.rows}
+                        conditionalCellStyles={conditionalRowStyles}
+                        Clicked
+                        pagination
+                        Selected={handleChange}
+                    /> 
 
-                <h2> My Events: </h2>
-                <DataGrid rows={this.state.rows} columns={this.state.columns} pageSize={30} checkboxSelection />
-
-            </div>
-
+                </TableWrapper>
+            </Wrapper>
         )
     }
 }    

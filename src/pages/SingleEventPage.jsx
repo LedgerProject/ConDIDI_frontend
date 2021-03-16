@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 import { Grid } from "@material-ui/core"
-import { SideThing, SingleEvent } from '../component/index'
+import { SingleEventDetails, SingleEvent } from '../component/index'
 
 
 
@@ -18,7 +18,7 @@ class SingleEventPage extends Component {
                         <SingleEvent /> 
                     </Grid>
                     <Grid item xs>
-                        <SideThing/>
+                        <SingleEventDetails/>
                     </Grid>
                 </Grid>
             </div>           

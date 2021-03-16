@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Button} from '@material-ui/core'; 
+import {Button} from '@material-ui/core';
+import { data } from '../config';  
 
 class APItest extends Component {
 
@@ -25,7 +26,7 @@ class APItest extends Component {
 
         try {
 
-            await fetch('http://localhost:8080/api/create_user', {
+            await fetch(data.host+':'+data.port+data.path+'/create_user', {
                 method: 'POST', 
                 headers: {
                     'Content-type': 'application/json'

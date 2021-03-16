@@ -39,7 +39,6 @@ const Label = styled.p`
     padding: 0.5em;   
 `;
 
-
 const GreenButton = styled(Button)`
     width: 350px;
     height: 58px;
@@ -69,18 +68,6 @@ const GreyButton = styled(Button)`
         
     }
     
-`
-
-const TinyButton = styled(Button)`
-    border-radius: 12px;
-    background-color: #1e1f20;
-    color: #f7f7f7; 
-
-    &:hover {
-        color: #1e1f20; 
-        background-color: #f7f7f7; 
-         
-    }
 `
 
 const StyledTextField = styled(TextField)`
@@ -179,11 +166,6 @@ class LogIn extends Component {
                 <Text>
                     Sign in to continue or
                 </Text>
-                <TinyButton
-                    onClick={this.handleSignUpOpen}
-                > 
-                    Sign up here
-                </TinyButton>
 
                 <Label>Email</Label>
 

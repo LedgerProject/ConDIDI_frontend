@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { data } from '../config';  
 
 
 class CreateEvent extends Component {
@@ -53,7 +54,7 @@ class CreateEvent extends Component {
 
         try {
 
-            await fetch('http://localhost:8080/api/add_event', {
+            await fetch(data.host+':'+data.port+data.path+'/add_event', {
                 method: 'POST', 
                 headers: {
                     'Content-type': 'application/json'
