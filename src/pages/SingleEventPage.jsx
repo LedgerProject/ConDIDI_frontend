@@ -73,7 +73,7 @@ class SingleEventPage extends Component {
             <div className="single-page">
                 <Grid container spacing={2}>
                     <Grid item xs>
-                        <SingleEvent token={this.state.token} id={this.state.id}/> 
+                        <SingleEvent token={this.state.token} id={this.state.id} eventlist={this.state.eventlist}/> 
                     </Grid>
                     <Grid item xs>
                         <SingleEventDetails token={this.state.token} id={this.state.id}/>

@@ -15,55 +15,39 @@ class SingleEvent extends Component {
 
         this.state = {
             token: '', 
-            subject: '', 
             eventid: '', 
+            eventlist: '', 
         }
 
-        this.getToken = this.getToken.bind(this); 
-        this.getData = this.getData.bind(this); 
+        this.getProps = this.getProps.bind(this); 
     }
 
     componentDidMount = async () => {
         
-        this.getToken(); 
-        this.getData(); 
+        this.getProps(); 
     }
 
-    getToken = async () => {
+    getProps = async () => {
         
         this.setState({
             token: await this.props.token, 
+            eventlist: await this.props.eventlist, 
+            eventid: await this.props.eventid
         })
-    }
 
+        console.log('token: ')
+        console.log(this.state.token)
 
-    getData = async () => {
+        console.log('eventlist: ')
+        console.log(this.state.eventlist)
 
-        try {
-
-            await fetch(data.host+':'+data.port+data.path+'/list_my_events', {
-                method: 'POST', 
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    token: this.state.token, 
-                })
-            })
-            .then((response) => { 
-                return response.json() 
-            })
-            .then((json) => { 
-                this.setEvents(json); 
-                return console.log(json); 
-            });
-        } catch (error) {
-            console.log(error); 
-        }
-
+        console.log('eventid')
+        console.log(this.state.eventid)
     }
 
     render() {
+
+        const {eventlist, eventid, subject} = this.state; 
 
         return(
             <div className="single-event-page">
@@ -79,8 +63,17 @@ class SingleEvent extends Component {
 
                 */}
 
-                <Image name="event-image" width="635" height="330"/> 
-                <h1 className="event-title">ICA3PP Online</h1>
+                <Image 
+                    name="event-image" 
+                    width="635" 
+                    height="330"
+                /> 
+
+                <h1 
+                    className="event-title"
+                >
+                    Ueberschrift
+                </h1>
 
                 <h2 
                     className="event-description-title"
@@ -97,7 +90,8 @@ class SingleEvent extends Component {
                 {tagList.map((tag) => {
                     <Tag label={tag} /> 
                 })}
-                    */}
+                */}
+
             </div>
         )
     }

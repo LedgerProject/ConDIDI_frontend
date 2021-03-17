@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       isLoggedIn: false, 
-      token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc', 
+      token: '', 
     }
 
     this.init = this.init.bind(this); 
@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    //this.init();
+    this.init();
   }
  
   init = async () => {
@@ -37,7 +37,6 @@ class App extends Component {
   getToken = () => {
     const tokenString = localStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
-    console.log("token: " + userToken?.token);
     return userToken?.token
   }
 
@@ -46,7 +45,6 @@ class App extends Component {
       token: userToken, 
       isLoggedIn: true, 
     })
-    console.log("This is app.js and this is my token state: " + this.state.token); 
     sessionStorage.setItem('token', JSON.stringify(userToken));
   }
 
@@ -60,8 +58,6 @@ class App extends Component {
   render() {
 
     const token = this.getToken(); 
-
-    console.log("token? : " + token); 
 
     if(!this.state.isLoggedIn) {
       return <Login setToken={this.setToken} /> 

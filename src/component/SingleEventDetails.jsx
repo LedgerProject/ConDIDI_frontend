@@ -14,22 +14,33 @@ class SingleEventDetails extends Component {
         super(props); 
 
         this.state = {
-            token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc', 
-            eventid: '27', 
+            token: '', 
+            eventid: '', 
             participants: [], 
         }
 
+        this.getToken = this.getToken.bind(this); 
         this.getParticipants = this.getParticipants.bind(this); 
-
+        this.setParticipants = this.setParticipants.bind(this); 
 
     }
 
     componentDidMount = async () => {
-        console.log('SingleEventsPage did mount')
+        this.getToken(); 
+        this.getParticipants(); 
+        this.getEventId(); 
+    }
+
+    getEventId = async() => {
+        this.setState({
+            eventid: await this.props.eventid
+        })
+    }
+
+    getToken = async() => {
         this.setState({
             token: await this.props.token, 
         })
-        this.getParticipants(); 
     }
 
     getParticipants = async() => {
@@ -47,17 +58,23 @@ class SingleEventDetails extends Component {
                 })
             })
             .then((response) => { 
-                console.log(response); 
                 return response.json() 
             })
             .then((json) => { 
-                return console.log(json.participants); 
+                this.singleEventParticipants(json); 
+                return console.log(json); 
             });
 
         } catch (error) {
             console.log(error); 
         }
 
+    }
+
+    setParticipants(json)  {
+        this.setState({
+            participants: this.json.participants, 
+        })
     }
 
     render() {
@@ -73,8 +90,7 @@ class SingleEventDetails extends Component {
                 <h2>Participants</h2>
 
                 {this.state.participants.map((id) => 
-                    //The following potentially needs to change based on the participant list.  
-                    <Person name={id.personName} status={id.status} /> 
+                    <Person name={id.personName} /> 
                 )}
 
                 <Button className="side-thing-element">
