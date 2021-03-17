@@ -224,24 +224,6 @@ $green: #82c43c;
 
     .single-page {
 
-        background-color: $purewhite; 
-        color: $greyFour; 
-        margin: 0px -30px 0px 0px;
-        padding: 40px 0px 0px 75px; 
-        border-radius: 25px;
-
-        .event-button {
-
-            width: 100px; 
-            height: 60px;
-            background-color: $white;
-            color: $greyOne
-        }
-
-        .event-image {
-            
-            border-radius: 25px;
-        }
 
         .event-description-title {
             
@@ -297,4 +279,3 @@ $green: #82c43c;
         text-align: center;
     }
 }
-

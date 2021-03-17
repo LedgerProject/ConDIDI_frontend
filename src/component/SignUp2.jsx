@@ -17,7 +17,7 @@ class SignUp2 extends Component {
         this.handleSignup = this.handleSignup.bind(this); 
     }
 
-    handleInputChange(event) {
+    handleInputChange = (event) => {
 
         const target = event.target; 
         const name = target.name; 

@@ -70,17 +70,22 @@ class MyEvents extends Component {
         this.getEvents = this.getEvents.bind(this); 
         this.getToken = this.getToken.bind(this); 
         this.makeRows = this.makeRows.bind(this); 
+        this.loadData = this.loadData.bind(this); 
     }
 
     componentDidMount() {
-        this.getToken(); 
-        this.getEvents(); 
+        this.loadData(); 
+    }
+
+    loadData = async() => {
+        await this.getToken();
+        await this.getEvents();
     }
 
     getToken = async() =>  {
 
         this.setState({
-            token: await this.props.token, 
+            token: JSON.parse(localStorage.getItem('token')), 
         })
     }
 

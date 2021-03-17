@@ -1,12 +1,6 @@
 import React, { Component } from 'react'; 
 import Image from '../component/Image'; 
-import { Button, Accordion, AccordionDetails, AccordionSummary, styled} from "@material-ui/core"; 
-import { ArrowBackIos, ArrowForwardIos } from '@material-ui/icons'; 
-import { data } from '../config'; 
 
-const BackButton = styled(Button) ({
-    width: '100px'
-})
 
 class SingleEvent extends Component {
 
@@ -20,34 +14,39 @@ class SingleEvent extends Component {
         }
 
         this.getProps = this.getProps.bind(this); 
+        this.getToken = this.getToken.bind(this); 
+        console.log('window location')
+        console.log(window.location.pathname.slice(7));
     }
 
     componentDidMount = async () => {
         
         this.getProps(); 
+        this.getToken(); 
     }
 
     getProps = async () => {
+
+        const id = window.location.pathname.slice(7)
         
         this.setState({
-            token: await this.props.token, 
             eventlist: await this.props.eventlist, 
-            eventid: await this.props.eventid
+            eventid: id, 
         })
 
-        console.log('token: ')
-        console.log(this.state.token)
-
-        console.log('eventlist: ')
-        console.log(this.state.eventlist)
-
-        console.log('eventid')
-        console.log(this.state.eventid)
+        this.getToken(); 
     }
 
-    render() {
+    getToken = async () => {
 
-        const {eventlist, eventid, subject} = this.state; 
+        this.setState({
+            token: await this.props.token, 
+        })
+
+        console.log(this.state.token)
+    } 
+
+    render() {
 
         return(
             <div className="single-event-page">
@@ -84,7 +83,8 @@ class SingleEvent extends Component {
                 <p 
                     className="event-description"
                 >
-                    Following the traditions of the previous successful ICA3PP conferences held in Hangzhou, Brisbane, Singapore, Melbourne, Hong Kong and Beijing, the objective of ICA3PP 2008 is to bring together researchers and practitioners from academia, industry and governments to advance the theories and technologies in parallel and distributed computing. ICA3PP 2008 will be held on the island of Cyprus, with a focus on two broad areas of parallel and distributed computing, i.e., architectures, algorithms and networks, and systems and applications.</p>
+                    Following the traditions of the previous successful ICA3PP conferences held in Hangzhou, Brisbane, Singapore, Melbourne, Hong Kong and Beijing, the objective of ICA3PP 2008 is to bring together researchers and practitioners from academia, industry and governments to advance the theories and technologies in parallel and distributed computing. ICA3PP 2008 will be held on the island of Cyprus, with a focus on two broad areas of parallel and distributed computing, i.e., architectures, algorithms and networks, and systems and applications.
+                </p>
                 
                 {/**
                 {tagList.map((tag) => {

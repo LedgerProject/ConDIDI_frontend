@@ -8,10 +8,11 @@ class CreateEvent extends Component {
         super(props); 
 
         this.state = {
-            token: '', 
-            eventName: '',
-            type: '',
+            token: '',
             subject: '',
+            eventName: '',
+            presenter: '',
+            type: '',
             venueInformation: '',
             address: '',
             url: '',
@@ -21,7 +22,7 @@ class CreateEvent extends Component {
             submissionDeadline: '',
             registrationDeadline: '',
             date: '',
-            organiserUserId: '',  
+            organiserUserId: '',
         }
 
         this.handleSubmit = this.handleSubmit.bind(this); 
@@ -32,47 +33,49 @@ class CreateEvent extends Component {
 
     makeJson = () => {
         return ({
-                    "name": this.state.eventName, 
-                    "type": this.state.type,
-                    "subject": this.state.subject,
-                    "venueInformation": this.state.venueInformation,
-                    "address": this.state.address,
-                    "url": this.state.url,
-                    "organiserInstitution": this.state.organiserInstitution,
-                    "contactPersonName": this.state.contactPersonName,
-                    "contactPersonEmail": this.state.contactPersonEmail,
-                    "submissionDeadline": this.state.submissionDeadline,
-                    "registrationDeadline": this.state.registrationDeadline,
-                    "date": this.state.date,
-                    "organiserUserId": this.state.organiserUserId
-                    })
-        }    
+
+            "name": this.state.eventName,
+            "type": this.state.type,
+            "presenter": this.state.presenter,
+            "subject": this.state.subject,
+            "venue information": this.state.venueInformation,
+            "address": this.state.address,
+            "url": this.state.url,
+            "organiser institution": this.state.organiserInstitution,
+            "contact person name": this.state.contactPersonName,
+            "contact person email": this.state.contactPersonEmail,
+            "submission deadline": this.state.submissionDeadline,
+            "registration deadline": this.state.registrationDeadline,
+            "date": this.state.date,
+            "organiser user id": this.state.organiserUserId
+         })
+    }    
 
     sendEventData = async() => {
 
         const eventDict = this.makeJson(); 
 
         try {
-
-            await fetch(data.host+':'+data.port+data.path+'/add_event', {
-                method: 'POST', 
+ 
+            await fetch(data.host + ':' + data.port + data.path + '/add_event', {
+                method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    token: "Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc", 
-                    eventdict: eventDict,                      
+                    token: JSON.parse(localStorage.getItem('token')),
+                    eventdict: eventDict,
                 })
             })
-            .then((response) => { 
-                return response.json() 
-            })
-            .then((json) => { 
-                return console.log(json); 
-            });
-
+                .then((response) => {
+                    return response.json()
+                })
+                .then((json) => {
+                    return console.log(json);
+                });
+ 
         } catch (error) {
-            console.log(error); 
+            console.log(error);
         }
 
     }
@@ -93,149 +96,170 @@ class CreateEvent extends Component {
     }
 
     render(){
+
         return(
 
             <div className="standard">
                 <p>Create a new event here.  </p>
-                <span/> 
-                <form onSubmit={this.handleSubmit}> 
+                <span />
+                <form onSubmit={this.handleSubmit}>
                     <label>
-                        Event Name: 
-                        <input 
+                        Event Name:
+                        <input
                             name="eventName"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
-
-                    <br/> 
-
-                    <label>
-                        Event Type: 
-                        <input 
-                            name="type"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
-
-                    <br/> 
-
-                    <label>
-                        Venue Information: 
-                        <input 
-                            name="venueInformation"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
-
-                    <br/> 
-
-                    <label>
-                        Event Address: 
-                        <input 
-                            name="address"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
-
-                    <br/> 
-
-                    <label>
-                        Event URL: 
-                        <input 
-                            name="url"
-                            type="text" 
-                            onChange={this.handleChange} /> 
+                            type="text"
+                            onChange={this.handleChange} />
                     </label>
-                    
-                    <br/> 
+
+                    <br />
 
                     <label>
-                        Organiser Institution: 
-                        <input 
+                        Subject:
+                        <input
+                            name="subject"
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Event Type:
+                        <input
+                            name="type"
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Presenter:
+                        <input
+                            name="presenter"
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Venue Information:
+                        <input
+                            name="venueInformation"
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Event Address:
+                        <input
+                            name="address"
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Event URL:
+                        <input
+                            name="url"
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
+
+                    <br />
+
+                    <label>
+                        Organiser Institution:
+                        <input
                             name="organiserInstitution"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
 
-                    <br/> 
+                    <br />
 
                     <label>
-                        Contact Person Name: 
-                        <input 
+                        Contact Person Name:
+                        <input
                             name="contactPersonName"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
 
-                    <br/> 
+                    <br />
 
                     <label>
-                        Contact Person Email: 
-                        <input 
+                        Contact Person Email:
+                        <input
                             name="contactPersonEmail"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
 
-                    <br/> 
+                    <br />
 
                     <label>
-                        Submission Deadline: 
-                        <input 
+                        Submission Deadline:
+                        <input
                             name="submissionDeadline"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
 
-                    <br/> 
+                    <br />
 
                     <label>
-                        Registration Deadline: 
-                        <input 
+                        Registration Deadline:
+                        <input
                             name="registrationDeadline"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
 
-                    <br/> 
+                    <br />
 
                     <label>
-                        Date: 
-                        <input 
+                        Date:
+                        <input
                             name="date"
-                            type="text" 
-                            onChange={this.handleChange} /> 
-                    </label> 
+                            type="text"
+                            onChange={this.handleChange} />
+                    </label>
 
 
-                    <input type="submit" value="Submit" /> 
-                    
+                    <input type="submit" value="Submit" />
+
                 </form>
 
-                <br /> 
+                <br />
 
-                Here is the state information: 
+                Here is the state information:
 
                 Event Name: {this.state.eventName}
-                <br /> 
+                <br />
                 Event Type: {this.state.eventType}
-                <br /> 
+                <br />
                 Venue Information: {this.state.venueInformation}
-                <br /> 
+                <br />
                 Event Address: {this.state.address}
-                <br /> 
+                <br />
                 Event URL: {this.state.url}
-                <br /> 
+                <br />
                 Organiser Institution: {this.state.organiserInstitution}
-                <br /> 
+                <br />
                 Contact Person Name: {this.state.contactPersonName}
-                <br /> 
+                <br />
                 Contact Person Email: {this.state.contactPersonEmail}
-                <br /> 
+                <br />
                 Submission Deadline: {this.state.submissionDeadline}
-                <br /> 
+                <br />
                 Registration Deadline: {this.state.registrationDeadline}
-                <br /> 
+                <br />
                 Date: {this.state.date}
             </div>
 

@@ -27,7 +27,7 @@ class Admin extends Component {
     showParticipants = () => { 
         this.setState({ 
             showEvents: false, 
-            showParticipants: true
+            showParticipants: true, 
         })
     }
 

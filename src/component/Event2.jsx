@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import { Grid, Card, CardMedia, Box, CardHeader, IconButton, CardActions, CardContent, CardActionArea } from '@material-ui/core'; 
+import { Card, CardMedia, CardHeader, IconButton, CardActions, CardContent, CardActionArea } from '@material-ui/core'; 
 import { IconAvatar } from '../media'; 
 import styled from 'styled-components'; 
 
@@ -48,7 +48,7 @@ class Event2 extends Component {
     render() {
 
 
-        const { date, subject, title, subheader, key, image, id} = this.props; 
+        const { title, subheader, image, id} = this.props; 
 
         return(
             <div>

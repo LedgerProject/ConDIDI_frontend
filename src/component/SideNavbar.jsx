@@ -67,7 +67,7 @@ class SideNavbar extends Component {
               <div className='sidebar-content'>
                 <Menu iconShape="rounded">
                   <MenuItem icon={<Home     />}>
-                    <Link to="/home" /> 
+                    <Link to="/" /> 
                   </MenuItem>
                   <MenuItem icon={<DateRangeOutlined />}>
                     <Link to="/calendar" /> 
@@ -92,7 +92,7 @@ class SideNavbar extends Component {
             </SidebarContent>
 
             <SidebarFooter>
-              {this.state.isLoggedIn && <Logout isLoggedIn={this.state.isLoggedIn} token={this.state.token} handleLogout={this.handleLogout} /> } 
+              {this.props.token && <Logout isLoggedIn={this.state.isLoggedIn} token={this.state.token} handleLogout={this.handleLogout} /> } 
             </SidebarFooter>
 
           </ProSidebar>

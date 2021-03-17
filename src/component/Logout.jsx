@@ -62,15 +62,6 @@ class Logout extends Component {
 
         this.props.handleLogout(); 
 
-        {/* 
-            Needed later! If server does not respond, logout anyway. 
-            
-        setTimeout(() => {
-            this.props.handleLogout(): 
-        }, 3000)
-
-        */}
-
         this.setState({
             isLoggedIn: false, 
         })

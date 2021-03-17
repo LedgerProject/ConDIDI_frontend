@@ -37,29 +37,28 @@ class App extends Component {
   getToken = () => {
     const tokenString = localStorage.getItem('token');
     const userToken = JSON.parse(tokenString);
-    return userToken?.token
+    return userToken; 
   }
 
   setToken(userToken) {
     this.setState({
       token: userToken, 
       isLoggedIn: true, 
-    })
-    sessionStorage.setItem('token', JSON.stringify(userToken));
+    }); 
+    localStorage.setItem('token', JSON.stringify(userToken));
   }
 
   logout() {
     this.setState({
       isLoggedIn: false, 
       token: '', 
-    })
+    }); 
+    localStorage.removeItem('token');
   }
 
   render() {
 
-    const token = this.getToken(); 
-
-    if(!this.state.isLoggedIn) {
+    if(!this.state.token) {
       return <Login setToken={this.setToken} /> 
     } else {
       return (
@@ -71,14 +70,7 @@ class App extends Component {
               logout={this.logout}
             /> 
             <Switch>
-              <Route exact path="/" 
-                render={() => 
-                  <Login 
-                    setToken={this.setToken}
-                  />
-                }
-              />
-              <Route exact path="/home"  
+              <Route exact path="/"  
                 render={() => 
                   <Home 
                     token={this.state.token}

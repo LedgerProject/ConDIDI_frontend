@@ -5,7 +5,6 @@ import { data } from '../config';
 import Image from './Image'; 
 
 import { Person } from './index'; 
-import { singleEventParticipants } from '../media/files/singleEventParticipants'; 
 
 
 class SingleEventDetails extends Component {
