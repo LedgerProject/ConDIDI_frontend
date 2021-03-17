@@ -4,9 +4,13 @@ import PowerSettingsNewRoundedIcon from '@material-ui/icons/PowerSettingsNewRoun
 import styled from 'styled-components'; 
 import { data } from '../config';  
 
+
 const StyledButton = styled(Button)`
-    color: white; 
-    
+    border-radius: 12px;
+    background-color: #f7f7f7;
+    color: #1e1f20; 
+    margin: 2em; 
+    padding-left: 20px; 
 `
 
 
@@ -75,7 +79,7 @@ class Logout extends Component {
 
     render() {
       return(
-        <StyledButton onClick={this.logout} startIcon={<PowerSettingsNewRoundedIcon/> }>
+        <StyledButton variant='contained' onClick={this.logout} startIcon={<PowerSettingsNewRoundedIcon/> }>
             Logout
         </StyledButton>
       )

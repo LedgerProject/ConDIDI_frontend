@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'; 
-import {TextField, Button } from '@material-ui/core'; 
+import { Button } from '@material-ui/core'; 
 import { data } from '../config'; 
 
 const Title = styled.h1`
@@ -29,7 +29,6 @@ const GreenButton = styled(Button)`
     border-radius: 12px;
     background-color: #82c43c;
     color: #f7f7f7; 
-    border-color: #82c43c;
 
     &:hover {
         color: #82c43c; 

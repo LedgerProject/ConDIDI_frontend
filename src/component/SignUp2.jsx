@@ -6,14 +6,29 @@ class SignUp2 extends Component {
     constructor(props) {
         super(props); 
 
+        this.state = {
+
+            n: '', 
+            e: '', 
+            pw: '', 
+
+        }
+
         this.handleSignup = this.handleSignup.bind(this); 
     }
 
-    handleSignup = async() => {
+    handleInputChange(event) {
 
-        const n = 'testuser'; 
-        const e = 'test@condidi.invalid'; 
-        const pw = '12345'; 
+        const target = event.target; 
+        const name = target.name; 
+        const value = target.value; 
+
+        this.setState({
+            [name]: value, 
+        }); 
+    } 
+
+    handleSignup = async() => {
 
         try {
 
@@ -23,9 +38,9 @@ class SignUp2 extends Component {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name: n, 
-                    email: e, 
-                    password: pw
+                    name: this.state.n, 
+                    email: this.state.e, 
+                    password: this.state.pw
                 })
             })
             .then((response) => { 
@@ -46,26 +61,38 @@ class SignUp2 extends Component {
         return(
 
             <div>
-            <h2>Sign up</h2>
+                <h2>Sign up</h2>
 
-            <form onSubmit={this.handleSignup}>
-                <label>
-                    Name
-                    <input type="text"/> 
-                </label>
-                <br /> 
-                <label>
-                    Email
-                    <input type="text"/> 
-                </label>
-                <br /> 
-                <label>
-                    Password
-                    <input type="password"/> 
-                </label>
-                <br /> 
-                <input type="submit" value="submit"/>
-            </form>
+                <form onSubmit={this.handleSignup}>
+                    <label>
+                        Name
+                        <input 
+                            type="text"
+                            name="n"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </label>
+                    <br /> 
+                    <label>
+                        Email
+                        <input 
+                            type="text"
+                            name="e"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </label>
+                    <br /> 
+                    <label>
+                        Password
+                        <input 
+                            type="password"
+                            name="pw"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </label>
+                    <br /> 
+                    <input type="submit" value="submit"/>
+                </form>
             </div>
         )
     }

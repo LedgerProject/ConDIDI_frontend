@@ -1,5 +1,6 @@
 import SideNavbar from './SideNavbar';
 import Event from './Event'; 
+import Event2 from './Event2'; 
 import Image from './Image'; 
 import SearchBar from './SearchBar'; 
 import LinkList from './LinkList'; 
@@ -19,4 +20,4 @@ import Logout from './Logout';
 
 export { SideNavbar, Event, Image, SearchBar, LinkList, AdminEvents, 
     AdminParticipants, SingleEventDetails, Person, SingleEvent, 
-    SignUp, LogIn, NewComponent, Logout, LogIn2, SignUp2}
+    SignUp, LogIn, NewComponent, Logout, LogIn2, SignUp2, Event2}

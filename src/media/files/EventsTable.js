@@ -36,7 +36,7 @@ export const Columns = [
         sortable: true,
     },
     {
-        name: 'View',
+        name: 'Edit',
         selector: 'edit',
         sortable: true,
     },

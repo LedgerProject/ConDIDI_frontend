@@ -24,8 +24,11 @@ class SingleEventDetails extends Component {
 
     }
 
-    componentDidMount() {
-        console.log('Component did mount')
+    componentDidMount = async () => {
+        console.log('SingleEventsPage did mount')
+        this.setState({
+            token: await this.props.token, 
+        })
         this.getParticipants(); 
     }
 
@@ -75,7 +78,7 @@ class SingleEventDetails extends Component {
                 )}
 
                 <Button className="side-thing-element">
-                    Submit application
+                    Add Participant
                 </Button>
 
             </div>

@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       isLoggedIn: false, 
-      token: '', 
+      token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc', 
     }
 
     this.init = this.init.bind(this); 
@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    this.init();
+    //this.init();
   }
  
   init = async () => {
@@ -69,22 +69,73 @@ class App extends Component {
       return (
         <div className="app">
           <Router>
-            <SideNavbar isLoggedIn={this.state.isLoggedIn} token={this.state.token}/> 
+            <SideNavbar 
+              isLoggedIn={this.state.isLoggedIn} 
+              token={this.state.token}
+              logout={this.logout}
+            /> 
             <Switch>
-              <Route path="/" exact 
+              <Route exact path="/" 
                 render={() => 
                   <Login 
                     setToken={this.setToken}
                   />
                 }
               />
-              <Route path="/home" exact component={Home} />
-              <Route path="/calendar" exact component={Calendar} />
-              <Route path="/admin" exact component={Admin} />
-              <Route path="/event/:id" component={SingleEventPage} />
-              <Route path="/admin/my_events" component={MyEvents} />
-              <Route path="/admin/create_event" component={CreateEvent} />
-              <Route path="/playground" component={NewComponent} /> 
+              <Route exact path="/home"  
+                render={() => 
+                  <Home 
+                    token={this.state.token}
+                  />
+                }
+              />
+              <Route exact path="/calendar"
+                render={() => 
+                  <Calendar 
+                    token={this.state.token}
+                  />
+                }
+              />
+              <Route exact path="/admin" 
+                render={() => 
+                  <Admin 
+                    token={this.state.token}
+                  />
+                }
+              />
+              <Route 
+                exact 
+                path="/event/:id" 
+                location={this.props.location}
+                key={this.props.key}
+                render={(props) => 
+                  <SingleEventPage 
+                    {...props}
+                    token={this.state.token}
+                  />
+                }
+              />
+              <Route exact path="/admin/my_events" 
+                render={() => 
+                  <MyEvents 
+                    token={this.state.token}
+                  />
+                }
+              />
+              <Route exact path="/admin/create_event" 
+                render={() => 
+                  <CreateEvent 
+                    token={this.state.token}
+                  />
+                }
+              />
+              <Route exact path="/playground" 
+                render={() => 
+                  <NewComponent 
+                    token={this.state.token}
+                  />
+                }
+              /> 
             </Switch>
           </Router>
         </div>

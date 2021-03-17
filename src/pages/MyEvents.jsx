@@ -64,15 +64,24 @@ class MyEvents extends Component {
             columns: Columns, 
             rows: [], 
             rowsLength: '', 
-            token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc'
+            token: ''
         }
 
         this.getEvents = this.getEvents.bind(this); 
+        this.getToken = this.getToken.bind(this); 
         this.makeRows = this.makeRows.bind(this); 
     }
 
     componentDidMount() {
+        this.getToken(); 
         this.getEvents(); 
+    }
+
+    getToken = async() =>  {
+
+        this.setState({
+            token: await this.props.token, 
+        })
     }
 
     getEvents = async() => {
@@ -93,7 +102,7 @@ class MyEvents extends Component {
             })
             .then((json) => { 
 
-                json.eventlist.forEach ( (obj) => {obj.id = obj.eventid})
+                json.eventlist.forEach( (obj) => {obj.id = obj.eventid})
 
                 this.makeRows(json.eventlist); 
                 
