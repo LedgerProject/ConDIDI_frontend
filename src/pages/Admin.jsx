@@ -8,26 +8,26 @@ class Admin extends Component {
 
     constructor(props) {
         super(props); 
+
         this.state = {
-            showParticipants: false, 
-            showEvents: true
+            token: '', 
         }
 
-        this.showEvents = this.showEvents.bind(this)
-        this.showParticipants = this.showParticipants.bind(this); 
+        this.loadData = this.loadData.bind(this); 
+        this.getToken = this.getToken.bind(this); 
     }
 
-    showEvents = () => { 
-        this.setState({ 
-            showEvents: true, 
-            showParticipants: false
-        })
+    componentDidMount() {
+        this.loadData();
     }
 
-    showParticipants = () => { 
-        this.setState({ 
-            showEvents: false, 
-            showParticipants: true, 
+    loadData = async() => {
+        await this.getToken();
+    }
+
+    getToken = async() => {
+        this.setState({
+            token: JSON.parse(localStorage.getItem('token')),
         })
     }
 
@@ -37,19 +37,9 @@ class Admin extends Component {
         return(
             <div className="standard">
                 <h1>This is the admin area. </h1>
-                <div className='slider'>
-                    <ButtonGroup 
-                        className='button-Group'
-                        disableElevation
-                        variant='outlined'
-                    >
-                        <Button className='button' onClick={this.showEvents}>Events</Button>
-                        <Button className='button' onClick={this.showParticipants}>Participants</Button>
-                        
-                    </ButtonGroup>
-                </div>
-                {this.state.showEvents && <AdminEvents /> }
-                {this.state.showParticipants && <AdminParticipants /> }
+                <button>
+                    Check Participant in
+                </button>
             </div>
             
         )

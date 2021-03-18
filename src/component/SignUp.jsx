@@ -1,77 +1,103 @@
-import React from 'react'; 
-import { useFormik } from "formik"; 
-import * as Yup from 'yup'; 
+import React, { Component } from 'react';
+import { data } from '../config';  
+
+class SignUp extends Component {
+
+    constructor(props) {
+        super(props); 
+
+        this.state = {
+
+            n: '', 
+            e: '', 
+            pw: '', 
+
+        }
+
+        this.handleSignup = this.handleSignup.bind(this); 
+    }
+
+    handleInputChange = (event) => {
+
+        const target = event.target; 
+        const name = target.name; 
+        const value = target.value; 
+
+        this.setState({
+            [name]: value, 
+        }); 
+    } 
+
+    handleSignup = async() => {
+
+        try {
+
+            await fetch(data.host+':'+data.port+data.path+'/create_user', {
+                method: 'POST', 
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: this.state.n, 
+                    email: this.state.e, 
+                    password: this.state.pw
+                })
+            })
+            .then((response) => { 
+                return response.json() 
+            }) 
+            .then((json) => { 
+                return console.log(JSON.stringify(json)); 
+            });
+
+        } catch (error) {
+            console.log(error); 
+        }
+
+    }
 
 
-const SignUp = () => {
+    render(){
+        return(
 
-    const formik = useFormik({
-        initialValues: {
-          name: '', 
-          email: '', 
-          password: '', 
-        }, 
+            <div>
+                <h2>Sign up</h2>
 
-        validationSchema: Yup.object({
-          name: Yup.string()
-            .min(2, 'Too short!')
-            .max(15, 'Too long!')
-            .required('Required'), 
-          email: Yup.string().email('Invalid email').required('Required'), 
-          password: Yup.string()
-            .min(5, 'Too short!')
-            .max(20, 'Too long!')
-        }),
+                <form onSubmit={this.handleSignup}>
+                    <label>
+                        Name
+                        <input 
+                            type="text"
+                            name="n"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </label>
+                    <br /> 
+                    <label>
+                        Email
+                        <input 
+                            type="text"
+                            name="e"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </label>
+                    <br /> 
+                    <label>
+                        Password
+                        <input 
+                            type="password"
+                            name="pw"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </label>
+                    <br /> 
+                    <input type="submit" value="submit"/>
+                </form>
+            </div>
+        )
+    }
 
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 1)); 
-            console.log(JSON.stringify(values)); 
 
-            const requestOptions = {
-              method: 'POST', 
-              headers: {'Content type': 'application/json'},
-              body: JSON.stringify({title: 'React POost Request Example'})
-            }; 
-            fetch('https://jsonplaceholder.typicode.com/todos/1', requestOptions)
-              .then(response => response.json())
-              .then(json => console.log(json))
-        }, 
-    }); 
-
-    return (
-        <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="name">name</label>
-            <input
-                id="name"
-                name="name"
-                type="name"
-                onChange={formik.handleChange}
-                value={formik.values.name}
-            />
-            <label htmlFor="email">Email Address</label>
-            <input
-                id="email"
-                name="email"
-                type="email"
-                onChange={formik.handleChange}
-                value={formik.values.email}
-            />
-            {formik.errors.email ? <div>{formik.errors.email}</div> : null}
-            <label htmlFor="password">Password</label>
-            <input
-                id="password"
-                name="password"
-                type="password"
-                onChange={formik.handleChange}
-                value={formik.values.password}
-            />
-            {formik.errors.password ? <div>{formik.errors.password}</div> : null}
-
-            <button type="submit">Create User</button>
-
-        </form>
-      
-    );
-} 
+}
 
 export default SignUp; 

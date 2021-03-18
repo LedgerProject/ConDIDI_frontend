@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GridList, GridListTile } from '@material-ui/core';
-import { SearchBar, LinkList, Event2 }  from '../component/index'; 
+import { SearchBar, LinkList, Event }  from '../component/index'; 
 import Code from '../media/images/code.jpg'; 
 import styled from 'styled-components'; 
 import { data } from '../config'; 
@@ -84,12 +84,16 @@ class Calendar extends Component {
 
     }
 
+    filter = (keyword) => {
+        const result = this.state.eventlist.filter(event => event.name.includes(keyword));
+        this.setState({eventlist: result})
+    }
 
     render() {
 
         return (
             <Wrapper> 
-                <SearchBar /> 
+                <SearchBar filter={this.filter}/> 
                 <Title>
                     Events
                 </Title>
@@ -100,7 +104,7 @@ class Calendar extends Component {
                         {this.state.eventlist.map((event) => {
                             return (
                                 <GridListTile>
-                                    <Event2
+                                    <Event
                                         key={event.eventid}
                                         id={event.eventid}
                                         date={event.date}
