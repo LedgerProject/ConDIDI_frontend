@@ -64,6 +64,7 @@ class CreateEvent extends Component {
             registrationDeadline: '',
             date: '',
             organiserUserId: '',
+            message: ''
         }
 
         this.handleSubmit = this.handleSubmit.bind(this); 
@@ -118,7 +119,7 @@ class CreateEvent extends Component {
         } catch (error) {
             console.log(error);
         }
-
+        this.setState({message: 'Event submitted'})
     }
 
     handleChange(event) {
@@ -129,6 +130,7 @@ class CreateEvent extends Component {
         this.setState({
             [name]: value, 
         }); 
+        this.setState({message: ''})
     }
 
     handleSubmit(event) {
@@ -370,9 +372,8 @@ class CreateEvent extends Component {
                         
 
                     </form>
-
+                {this.state.message}
                 </FormWrapper>
-
                 
             </Wrapper>
 
