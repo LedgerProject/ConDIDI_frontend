@@ -67,6 +67,7 @@ class SingleEventPage extends Component {
         this.setEventSubject = this.setEventSubject.bind(this); 
         this.getToken = this.getToken.bind(this); 
         this.loadData = this.loadData.bind(this); 
+        this.addParticipant = this.addParticipant.bind(this); 
     }
 
     componentDidMount() {
@@ -174,7 +175,41 @@ class SingleEventPage extends Component {
         } catch (e) {
             console.log(e); 
         }
-    }; 
+    }
+
+    addParticipant = async () => {
+
+        try {
+
+            await fetch(data.host+':'+data.port+data.path+'/add_participant', {
+                method: 'POST', 
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: this.state.token, 
+                    participantdict: this.state.name, 
+                    eventid: this.state.pageid, 
+                })
+            })
+            .then((response) => { 
+                return response.json() 
+            })
+            .then((json) => { 
+                return console.log(json); 
+            });
+        } catch (error) {
+            console.log(error); 
+        }
+
+    }
+
+    handleChange = (event) => {
+        this.setState({
+            name: event.target.name, 
+        })
+    }
+
 
     render() {
 
@@ -211,9 +246,14 @@ class SingleEventPage extends Component {
                                 <Person name={id.personName} personId={'1'} eventid={'1'} /> 
                             )}
 
-                            <StyledButton>
-                                Add Participant
-                            </StyledButton>
+                            <form onSubmit={this.addParticipant}>
+                                <label>
+                                    <input type="text" name="name" onChange={this.handleChange}/>
+                                </label>
+                                <StyledButton type="submit">
+                                    Add Participant
+                                </StyledButton>
+                            </form>
 
                         </ParticipantDetails>
                     </Grid>

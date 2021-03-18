@@ -1,5 +1,5 @@
 export const Columns = [
-
+ 
     {
         name: 'Event Name',
         selector: 'name',
@@ -22,12 +22,12 @@ export const Columns = [
     },
     {
         name: 'Venue Information',
-        selector: 'venueInformation',
+        selector: 'venue information',
         sortable: true,
     },
     {
         name: 'Registration Deadline',
-        selector: 'registrationDeadline',
+        selector: 'registration deadline',
         sortable: true,
     },
     {

@@ -44,8 +44,8 @@ class LogIn2 extends Component {
 
         this.state = {
             token: '', 
-            e: 'test@condidi.invalid', 
-            pw: '12345', 
+            e: '', 
+            pw: '', 
         }
 
         this.handleLogin = this.handleLogin.bind(this); 
@@ -78,6 +78,8 @@ class LogIn2 extends Component {
             console.log(error); 
         }
 
+        window.location.reload();
+
     }
 
     handleToken(userToken) {
@@ -88,6 +90,17 @@ class LogIn2 extends Component {
         this.props.setToken(this.state.token); 
     }
 
+    handleInputChange = (event) => {
+ 
+        const target = event.target; 
+        const name = target.name; 
+        const value = target.value; 
+ 
+        this.setState({
+            [name]: value, 
+        }); 
+    } 
+
     render(){
         return(
 
@@ -97,6 +110,26 @@ class LogIn2 extends Component {
                 <Text>
                     Sign in to continue or
                 </Text>
+
+                <label>
+                    Email
+                    <input 
+                        type="text"
+                        name="e"
+                        onChange={this.handleInputChange}
+                    /> 
+                </label>
+                <br /> 
+                <label>
+                    Password
+                    <input 
+                        type="password"
+                        name="pw"
+                        onChange={this.handleInputChange}
+                    /> 
+                </label>
+                <br />
+                    
                 <GreenButton onClick={this.handleLogin}> 
                     Log In here
                 </GreenButton>
