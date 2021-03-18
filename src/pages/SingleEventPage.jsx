@@ -71,8 +71,6 @@ class SingleEventPage extends Component {
         this.getParticipantData = this.getParticipantData.bind(this); 
         this.setStateDataEvent = this.setStateDataEvent.bind(this); 
         this.setStateDataParticipant = this.setStateDataParticipant.bind(this); 
-        this.setEventName = this.setEventName.bind(this); 
-        this.setEventSubject = this.setEventSubject.bind(this); 
         this.getToken = this.getToken.bind(this); 
         this.loadData = this.loadData.bind(this); 
         this.addParticipant = this.addParticipant.bind(this); 
@@ -91,7 +89,7 @@ class SingleEventPage extends Component {
     getToken = async () => {
         this.setState({
             token: JSON.parse(localStorage.getItem('token')),
-            id: this.props.match.params.id,
+            pageid: window.location.pathname.slice(16),
         })
     }
 
@@ -99,13 +97,14 @@ class SingleEventPage extends Component {
 
         try {
 
-            await fetch(data.host + ':' + data.port + data.path + '/list_my_events', {
+            await fetch(data.host + ':' + data.port + data.path + '/get_event', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
                     token: this.state.token,
+                    eventid: this.state.pageid, 
                 })
             })
                 .then((response) => {
@@ -125,39 +124,16 @@ class SingleEventPage extends Component {
 
         try {
             this.setState({
-                eventlist: await json.eventlist,
-                pageid: window.location.pathname.slice(7),
-                name: this.state.event
+                eventdict: await json.eventdict,
+                name: json.eventdict.name, 
+                eventid: json.eventdict.eventid, 
+                eventtype: json.eventdict.type, 
+                date: json.eventdict.date, 
             })
-            this.setEventName(json.eventlist[this.state.pageid-1].name);
-            this.setEventSubject(json.eventlist[this.state.pageid-1].subject);
-
         } catch (error) {
             console.log(error)
         }
 
-    }
-
-    setEventSubject = (eventSubject) => {
-        try {
-            this.setState({
-                subject: eventSubject,
-            })
-        } catch (e) {
-            console.log(e)
-        }
-
-    }
-
-    setEventName = (eventName) => {
-
-        try {
-            this.setState({
-                name: eventName,
-            });
-        } catch (e) {
-            console.log(e);
-        }
     }
 
     getParticipantData = async (eID) => {
@@ -192,6 +168,8 @@ class SingleEventPage extends Component {
         this.setState({
             participantslist: await json.participants
         })
+        console.log('participantslist: ')
+        console.log(this.state.participantslist)
         
     }
 
@@ -226,9 +204,7 @@ class SingleEventPage extends Component {
         this.setState({
             name: event.target.name, 
         })
-
     }
-
 
     render() {
         return (
@@ -250,7 +226,8 @@ class SingleEventPage extends Component {
 
                             <Header>Event Description</Header>
 
-                            <Description>{this.state.subject}</Description>
+                            <Description>{this.state.type}</Description>
+                            <p>{this.state.date}</p>
                         </div>
                     </Grid>
                     <Grid item xs>
