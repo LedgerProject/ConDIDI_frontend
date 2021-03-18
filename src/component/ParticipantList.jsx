@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Columns } from '../media/files/EventsTable'; 
+import { Columns } from '../media/files/ParticipantsTable'; 
 import DataTable from 'react-data-table-component'; 
 import styled from 'styled-components'; 
 import { data } from '../config'; 
+import { CreateParticipant } from './index'; 
 
 const StyledTable = styled(DataTable)`
     height: 60%;
@@ -54,7 +55,7 @@ const handleChange  = (state) => {
 }
 
 
-class MyEvents extends Component {
+class ParticipantList extends Component {
 
     constructor(props) {
         super(props); 
@@ -67,7 +68,7 @@ class MyEvents extends Component {
             token: ''
         }
 
-        this.getEvents = this.getEvents.bind(this); 
+        this.getParticipants = this.getParticipants.bind(this); 
         this.getToken = this.getToken.bind(this); 
         this.makeRows = this.makeRows.bind(this); 
         this.loadData = this.loadData.bind(this); 
@@ -79,7 +80,7 @@ class MyEvents extends Component {
 
     loadData = async() => {
         await this.getToken();
-        await this.getEvents();
+        await this.getParticipants();
     }
 
     getToken = async() =>  {
@@ -89,29 +90,30 @@ class MyEvents extends Component {
         })
     }
 
-    getEvents = async() => {
-
+    getParticipants = async() => {
+        console.log("id: "+this.props.eventid)
         try {
 
-            await fetch(data.host+':'+data.port+data.path+'/list_my_events', {
+            await fetch(data.host+':'+data.port+data.path+'/list_participants', {
                 method: 'POST', 
                 headers: {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    token: this.state.token, 
+                    token: this.state.token,
+                    eventid: this.props.eventid 
                 })
             })
             .then((response) => { 
                 return response.json() 
             })
             .then((json) => { 
+                console.log(json)
+                json.participants.forEach( (obj) => {obj.id = obj.eventid})
 
-                json.eventlist.forEach( (obj) => {obj.id = obj.eventid})
-
-                this.makeRows(json.eventlist); 
+                this.makeRows(json.participants); 
                 
-                return console.log(json.eventlist); 
+                return console.log(json.participants); 
             });
 
         } catch (error) {
@@ -139,13 +141,11 @@ class MyEvents extends Component {
 
             <Wrapper>
                 <TableWrapper>
-                    <h2>My events</h2>
+                    <CreateParticipant eventid={this.props.eventid }/>
                     <StyledTable 
-                        title="My Events"
+                        title="Add Participants to Event"
                         columns={this.state.columns}
                         data={this.state.rows}
-                        conditionalCellStyles={conditionalRowStyles}
-                        Clicked
                         pagination
                         Selected={this.handleChange}
                     /> 
@@ -156,4 +156,4 @@ class MyEvents extends Component {
     }
 }    
 
-export default MyEvents; 
+export default ParticipantList; 

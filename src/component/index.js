@@ -15,9 +15,10 @@ import SignUp2 from './SignUp2';
 import LogIn2 from './LogIn2';
 import NewComponent from './NewComponent'; 
 import Logout from './Logout'; 
-
+import ParticipantList from './ParticipantList'
+import CreateParticipant from './CreateParticipant'
 
 
 export { SideNavbar, Event, Image, SearchBar, LinkList, AdminEvents, 
     AdminParticipants, SingleEventDetails, Person, SingleEvent, 
-    SignUp, LogIn, NewComponent, Logout, LogIn2, SignUp2, Event2}
+    SignUp, LogIn, NewComponent, Logout, LogIn2, SignUp2, Event2, ParticipantList, CreateParticipant}

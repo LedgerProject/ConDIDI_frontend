@@ -1,44 +1,55 @@
 export const Columns = [
 
     {
-        field: 'participant', 
+        field: 'name', 
         headerName: 'Participant', 
         width: 180
     },
     {
-        field: 'title', 
-        headerName: 'Title', 
+        field: 'email', 
+        headerName: 'E-Mail', 
         width: 100
     },
     {
-        field: 'article', 
-        headerName: 'Article', 
+        field: 'did', 
+        headerName: 'DiD', 
         width: 150 
     }, 
     {
-        field: 'applicationStatus', 
-        headerName: 'Application Status', 
-        width: 180 
-    }, 
-    {
-        field: 'paymentStatus', 
+        field: 'payment status', 
         headerName: 'Payment Status', 
         width: 180 
     }, 
     {
-        field: 'participation', 
-        headerName: 'Participation', 
-        width: 150
+        field: 'attendence status', 
+        headerName: 'Attendence Status', 
+        width: 180 
     }, 
     {
-      field: 'participantTitle',
-      headerName: 'Participant Title',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 230,
-      valueGetter: (params) =>
-        `${params.getValue('participant') || ''} ${params.getValue('title') || ''}`,
-    },
+        field: 'signup status', 
+        headerName: 'SignUp Status', 
+        width: 180 
+    }, 
+    {
+        field: 'signup date', 
+        headerName: 'Signup Date', 
+        width: 180 
+    }, 
+    {
+        field: 'ticket id', 
+        headerName: 'Ticket ID', 
+        width: 180 
+    }, 
+    {
+        field: 'credential id', 
+        headerName: 'Ticket ID', 
+        width: 180 
+    }, 
+    {
+        field: 'ticked issued', 
+        headerName: 'Ticket issued', 
+        width: 180 
+    }, 
   ];
   
 export const Rows = [
