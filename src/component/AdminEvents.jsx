@@ -11,18 +11,32 @@ class AdminEvents extends Component {
         super(props); 
 
         this.state = {
+            token: '', 
             success: 'no', 
             columns: Columns, 
             rows: [], 
             rowsLength: '', 
         }
 
+        this.loadData = this.loadData.bind(this); 
+        this.getToken = this.getToken.bind(this); 
         this.getEvents = this.getEvents.bind(this); 
-        this.makeRows = this.makeRows.bind(this); 
+        this.makeRows = this.makeRows.bind(this);  
     }
 
     componentDidMount() {
-        this.getEvents(); 
+        this.loadData()
+    }
+
+    loadData = async () => {
+        await this.getToken();
+        await this.getEvents(); 
+    }
+
+    getToken = async () => {
+        this.setState({
+            token: JSON.parse(localStorage.getItem('token')),
+        })
     }
 
     getEvents = async() => {
@@ -35,7 +49,7 @@ class AdminEvents extends Component {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    token: 'Oasdx1QpuDAR1NEj3pFlus_goiDonZaPvshB4UMS-4zgPjmc', 
+                    token: this.state.token, 
                 })
             })
             .then((response) => { 

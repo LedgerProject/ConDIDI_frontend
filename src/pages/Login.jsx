@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'; 
 import blackChairs from '../media/images/blackChairs.jpg'; 
-import {LogIn2, SignUp2} from '../component/index'; 
+import {LogIn, SignUp} from '../component/index'; 
 
 const Wrapper = styled.section`
     width: 100%;
@@ -70,7 +70,7 @@ class Login extends Component {
                 <StyledImage src={blackChairs}/> 
                 <WhiteBox>
                     {this.state.showLogin && 
-                        <LogIn2 
+                        <LogIn 
                             token={this.state.token} 
                             isLoggedIn={this.state.isLoggedIn}
                             setToken={this.setToken}
@@ -78,7 +78,7 @@ class Login extends Component {
                     }
                     <br /> 
                     {this.state.showSignup &&
-                        <SignUp2 /> 
+                        <SignUp /> 
                     }
                     <br/> 
                     <button onClick={this.toggle}>
