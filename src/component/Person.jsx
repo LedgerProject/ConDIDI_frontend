@@ -1,25 +1,30 @@
 import React, { Component } from 'react'; 
 import {PersonOutlineOutlined, HighlightOffOutlined, AddOutlined } from "@material-ui/icons"; 
-import { Grid, IconButton, styled } from '@material-ui/core';
+import { Grid, IconButton } from '@material-ui/core';
 import { data } from '../config'; 
+import styled from 'styled-components'; 
 
-const RemoveIcon = styled(HighlightOffOutlined)({
-    color: 'red', 
-    height: 28, 
-    padding: '0 30px'
-});
+const RemoveIcon = styled(HighlightOffOutlined)`
+    color: red;  
+    height: 28px; 
+`
 
-const UpdateIcon = styled(AddOutlined)({
-    color: 'white', 
-    height: 28, 
-    padding: '0 30px'
-});
+const UpdateIcon = styled(AddOutlined)`
+    color: #1c1a1a; 
+    height: 28px;  
+`
 
-const PersonIcon = styled(PersonOutlineOutlined)({
-    color: 'white', 
-    height: 28, 
-    padding: '0 30px'
-}); 
+
+const PersonIcon = styled(PersonOutlineOutlined)`
+    color: #1c1a1a; 
+    height: 28px; 
+`
+
+const StyledPerson = styled.section`
+    color: #1c1a1a; 
+    margin: 0px -30px 0px 10px; 
+
+`
 
 class Person extends Component {
 
@@ -106,26 +111,26 @@ class Person extends Component {
     render() {
 
         return(
-            <div className="person">
-                <Grid container className="person-grid">
-                    <Grid item xs={1} className="person-grid-icon"> 
+            <StyledPerson>
+                <Grid container >
+                    <Grid item xs={1}> 
                         <PersonIcon /> 
                     </Grid>
-                    <Grid item xs={4} className="person-grid-name"> 
+                    <Grid item xs={4} > 
                         {this.props.name} 
                     </Grid>
-                    <Grid item xs={1} className="person-grid-delete"> 
+                    <Grid item xs={1} > 
                         <IconButton onClick={this.removePerson} >
                             <RemoveIcon />
                         </IconButton>
                     </Grid>
-                    <Grid item xs={1} className="person-grid-update"> 
+                    <Grid item xs={1} > 
                         <IconButton>
                             <UpdateIcon />
                         </IconButton>
                     </Grid>
                 </Grid>
-            </div>
+            </StyledPerson>
         )
     }
 

@@ -36,7 +36,7 @@ class App extends Component {
  
   getToken = () => {
     const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
+    const userToken = JSON.parse(tokenString); 
     return userToken; 
   }
 

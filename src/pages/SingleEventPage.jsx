@@ -25,11 +25,13 @@ const ParticipantDetails = styled.section`
     height: 100%;
 `
 
-const StyledButton = styled(Button)`
+const StyledButton = styled.button`
     width: 100px; 
     height: 60px;
-    background-color: #ffffff;
-    color: #8f92a1;  
+    background-color: #1c1a1a;
+    color: #ffffff;  
+    border-radius: 25px;
+    margin: 1em; 
 `
 
 const Header = styled.h1`
@@ -42,6 +44,11 @@ const Description = styled.p`
     word-wrap: break-word; 
     //max-width: 635px; 
     color: #8f92a1
+`
+
+const StyledList = styled.section`
+    background-color: white; 
+    border-radius: 25px;
 `
 
 
@@ -219,6 +226,9 @@ class SingleEventPage extends Component {
                 <Grid container spacing={2}>
                     <Grid item xs>
                         <div className="single-event-page">
+                            <br /> 
+                            <br /> 
+                            <br /> 
                             <Image 
                                 name="event-image" 
                                 width="635" 
@@ -237,23 +247,26 @@ class SingleEventPage extends Component {
                         <ParticipantDetails>
                             <h2>Address</h2>
 
-                            <Image className="participant-details-element" width='340' height='240'/> 
-
+                            <Image width='340' height='240'/> 
 
                             <h2>Participants</h2>
 
-                            {singleEventParticipants.map((id) => 
-                                <Person name={id.personName} personId={'1'} eventid={'1'} /> 
-                            )}
+                            <StyledList> 
 
-                            <form onSubmit={this.addParticipant}>
-                                <label>
-                                    <input type="text" name="name" onChange={this.handleChange}/>
-                                </label>
-                                <StyledButton type="submit">
-                                    Add Participant
-                                </StyledButton>
-                            </form>
+                                {singleEventParticipants.map((id) => 
+                                    <Person name={id.personName} personId={'1'} eventid={'1'} /> 
+                                )}
+
+                                <form onSubmit={this.addParticipant}>
+                                    <label>
+                                        <input type="text" name="name" onChange={this.handleChange}/>
+                                    </label>
+                                    <StyledButton type="submit">
+                                        Add Participant
+                                    </StyledButton>
+                                </form>
+
+                            </StyledList>
 
                         </ParticipantDetails>
                     </Grid>
