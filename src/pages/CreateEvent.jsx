@@ -1,5 +1,46 @@
 import React, { Component } from 'react';
 import { data } from '../config';  
+import styled from 'styled-components'; 
+import { Button, Grid } from '@material-ui/core'; 
+
+const StyledHeadline = styled.h2`
+    color: #1c1a1a;
+`;
+
+const Wrapper = styled.section`
+    //height: 100%;
+    width: 100%;
+    //position: fixed;
+    margin: 0px -30px 0px 0px;
+    padding: 50px 0px 0px 0px;  
+    text-align: center; 
+    background-color: #ffffff;
+    border-radius: 25px; 
+`;
+
+const FormWrapper = styled.section`
+    text-align: left; 
+    background-color: #f7f7f7;
+    border-radius: 25px; 
+    margin-left: 50px; 
+    padding: 2em; 
+`;
+
+
+const DarkButton = styled.button`
+    padding: 2em; 
+    color: #f7f7f7; 
+    background-color: #1c1a1a; 
+    border-radius: 25px;
+    border-color: #1c1a1a; 
+
+    &:hover {
+        color: #1c1a1a; 
+        background-color: #f7f7f7; 
+        border-color: #f7f7f7 ; 
+         
+    }
+`
 
 
 class CreateEvent extends Component {
@@ -99,169 +140,241 @@ class CreateEvent extends Component {
 
         return(
 
-            <div className="standard">
-                <p>Create a new event here.  </p>
-                <span />
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Event Name:
-                        <input
-                            name="eventName"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+            <Wrapper>
+                <StyledHeadline>Create Event</StyledHeadline>
+                <FormWrapper>
+                    <form onSubmit={this.handleSubmit}>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Event Name:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="eventName"
+                                    type="text"
+                                    onChange={this.handleChange} 
+                                />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <label>
-                        Subject:
-                        <input
-                            name="subject"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Subject:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="subject"
+                                    type="text"
+                                    onChange={this.handleChange} 
+                                />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Event Type:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="type"
+                                    type="text"
+                                    onChange={this.handleChange} 
+                                />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <label>
-                        Event Type:
-                        <input
-                            name="type"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Presenter:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="presenter"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Venue Information:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="venueInformation"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <label>
-                        Presenter:
-                        <input
-                            name="presenter"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Event Address:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="address"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Event URL:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="url"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <label>
-                        Venue Information:
-                        <input
-                            name="venueInformation"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Organiser Institution:
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="organiserInstitution"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Contact Person Name: 
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="contactPersonName"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <label>
-                        Event Address:
-                        <input
-                            name="address"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Contact Person Email: 
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="contactPersonEmail"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Submission Deadline: 
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="submissionDeadline"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <label>
-                        Event URL:
-                        <input
-                            name="url"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Registration Deadline: 
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="registrationDeadline"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
 
-                    <br />
+                        <Grid container spacing={2}>
+                            <Grid item xs={3}>
+                                <label>
+                                    Date: 
+                                </label>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <input
+                                    name="date"
+                                    type="text"
+                                    onChange={this.handleChange} />
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
+                        </Grid>
+                            
 
-                    <label>
-                        Organiser Institution:
-                        <input
-                            name="organiserInstitution"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        <Grid container spacing={2}>
 
-                    <br />
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}>
+                                <DarkButton type="submit">Submit</DarkButton>
+                            </Grid>
+                            <Grid item xs={3}></Grid>
+                            <Grid item xs={3}></Grid>
 
-                    <label>
-                        Contact Person Name:
-                        <input
-                            name="contactPersonName"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                        </Grid>
+                        
 
-                    <br />
+                    </form>
 
-                    <label>
-                        Contact Person Email:
-                        <input
-                            name="contactPersonEmail"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
+                </FormWrapper>
 
-                    <br />
-
-                    <label>
-                        Submission Deadline:
-                        <input
-                            name="submissionDeadline"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
-
-                    <br />
-
-                    <label>
-                        Registration Deadline:
-                        <input
-                            name="registrationDeadline"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
-
-                    <br />
-
-                    <label>
-                        Date:
-                        <input
-                            name="date"
-                            type="text"
-                            onChange={this.handleChange} />
-                    </label>
-
-
-                    <input type="submit" value="Submit" />
-
-                </form>
-
-                <br />
-
-                Here is the state information:
-
-                Event Name: {this.state.eventName}
-                <br />
-                Event Type: {this.state.eventType}
-                <br />
-                Venue Information: {this.state.venueInformation}
-                <br />
-                Event Address: {this.state.address}
-                <br />
-                Event URL: {this.state.url}
-                <br />
-                Organiser Institution: {this.state.organiserInstitution}
-                <br />
-                Contact Person Name: {this.state.contactPersonName}
-                <br />
-                Contact Person Email: {this.state.contactPersonEmail}
-                <br />
-                Submission Deadline: {this.state.submissionDeadline}
-                <br />
-                Registration Deadline: {this.state.registrationDeadline}
-                <br />
-                Date: {this.state.date}
-            </div>
+                
+            </Wrapper>
 
         )
     }
