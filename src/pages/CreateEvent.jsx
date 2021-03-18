@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { data } from '../config';  
-import styled from 'styled-components'; 
-import { Button, Grid } from '@material-ui/core'; 
+import { data } from '../config';
+import styled from 'styled-components';
+import { Button, Grid } from '@material-ui/core';
 
 const StyledHeadline = styled.h2`
     color: #1c1a1a;
@@ -46,7 +46,7 @@ const DarkButton = styled.button`
 class CreateEvent extends Component {
 
     constructor(props) {
-        super(props); 
+        super(props);
 
         this.state = {
             token: '',
@@ -67,10 +67,72 @@ class CreateEvent extends Component {
             message: ''
         }
 
+        this.loadData = this.loadData.bind(this); 
+        this.getToken = this.getToken.bind(this); 
         this.handleSubmit = this.handleSubmit.bind(this); 
         this.handleChange = this.handleChange.bind(this); 
         this.sendEventData = this.sendEventData.bind(this); 
         this.makeJson = this.makeJson.bind(this); 
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData = async () => {
+        await this.getToken();
+    }
+
+    getToken = async () => {
+        this.setState({
+            token: JSON.parse(localStorage.getItem('token')),
+        })
+    }    
+
+    checkInput = (json) => {
+        let flag = true;
+        Object.keys(json).forEach(function (property) {
+            if (json[property] === "") {
+                if (property !== "organiser user id") flag = false;
+            }
+        });
+        return flag;
+    }
+
+
+    sendEventData = async() => {
+
+        const eventDict = this.makeJson(); 
+        if(this.checkInput(eventDict)) {
+        try {
+ 
+            await fetch(data.host + ':' + data.port + data.path + '/add_event', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: JSON.parse(localStorage.getItem('token')),
+                    eventdict: eventDict,
+                })
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                    .then((response) => {
+                        return response.json()
+                    })
+                    .then((json) => {
+                        return console.log(json);
+                    });
+
+            } catch (error) {
+                console.log(error);
+            }
+            this.setState({ message: 'Event submitted' })
+        } else {
+            this.setState({ message: 'Please fill in empty fields' })
+        }
     }
 
     makeJson = () => {
@@ -91,56 +153,27 @@ class CreateEvent extends Component {
             "date": this.state.date,
             "organiser user id": this.state.organiserUserId
          })
-    }    
-
-    sendEventData = async() => {
-
-        const eventDict = this.makeJson(); 
-
-        try {
- 
-            await fetch(data.host + ':' + data.port + data.path + '/add_event', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    token: JSON.parse(localStorage.getItem('token')),
-                    eventdict: eventDict,
-                })
-            })
-                .then((response) => {
-                    return response.json()
-                })
-                .then((json) => {
-                    return console.log(json);
-                });
- 
-        } catch (error) {
-            console.log(error);
-        }
-        this.setState({message: 'Event submitted'})
     }
 
     handleChange(event) {
-        const target = event.target; 
-        const value = target.value; 
-        const name = target.name; 
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
         this.setState({
-            [name]: value, 
-        }); 
-        this.setState({message: ''})
+            [name]: value,
+        });
+        this.setState({ message: '' })
     }
 
     handleSubmit(event) {
-        event.preventDefault(); 
-        this.sendEventData(); 
+        event.preventDefault();
+        this.sendEventData();
     }
 
-    render(){
+    render() {
 
-        return(
+        return (
 
             <Wrapper>
                 <StyledHeadline>Create Event</StyledHeadline>
@@ -157,7 +190,7 @@ class CreateEvent extends Component {
                                 <input
                                     name="eventName"
                                     type="text"
-                                    onChange={this.handleChange} 
+                                    onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item xs={3}></Grid>
@@ -174,7 +207,7 @@ class CreateEvent extends Component {
                                 <input
                                     name="subject"
                                     type="text"
-                                    onChange={this.handleChange} 
+                                    onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item xs={3}></Grid>
@@ -191,7 +224,7 @@ class CreateEvent extends Component {
                                 <input
                                     name="type"
                                     type="text"
-                                    onChange={this.handleChange} 
+                                    onChange={this.handleChange}
                                 />
                             </Grid>
                             <Grid item xs={3}></Grid>
@@ -281,7 +314,7 @@ class CreateEvent extends Component {
                         <Grid container spacing={2}>
                             <Grid item xs={3}>
                                 <label>
-                                    Contact Person Name: 
+                                    Contact Person Name:
                                 </label>
                             </Grid>
                             <Grid item xs={3}>
@@ -297,7 +330,7 @@ class CreateEvent extends Component {
                         <Grid container spacing={2}>
                             <Grid item xs={3}>
                                 <label>
-                                    Contact Person Email: 
+                                    Contact Person Email:
                                 </label>
                             </Grid>
                             <Grid item xs={3}>
@@ -313,7 +346,7 @@ class CreateEvent extends Component {
                         <Grid container spacing={2}>
                             <Grid item xs={3}>
                                 <label>
-                                    Submission Deadline: 
+                                    Submission Deadline:
                                 </label>
                             </Grid>
                             <Grid item xs={3}>
@@ -329,7 +362,7 @@ class CreateEvent extends Component {
                         <Grid container spacing={2}>
                             <Grid item xs={3}>
                                 <label>
-                                    Registration Deadline: 
+                                    Registration Deadline:
                                 </label>
                             </Grid>
                             <Grid item xs={3}>
@@ -345,7 +378,7 @@ class CreateEvent extends Component {
                         <Grid container spacing={2}>
                             <Grid item xs={3}>
                                 <label>
-                                    Date: 
+                                    Date:
                                 </label>
                             </Grid>
                             <Grid item xs={3}>
@@ -357,7 +390,7 @@ class CreateEvent extends Component {
                             <Grid item xs={3}></Grid>
                             <Grid item xs={3}></Grid>
                         </Grid>
-                            
+
 
                         <Grid container spacing={2}>
 
@@ -369,16 +402,16 @@ class CreateEvent extends Component {
                             <Grid item xs={3}></Grid>
 
                         </Grid>
-                        
+
 
                     </form>
-                {this.state.message}
+                    {this.state.message}
                 </FormWrapper>
-                
+
             </Wrapper>
 
         )
     }
-}    
+}
 
-export default CreateEvent; 
+export default CreateEvent;
