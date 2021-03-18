@@ -15,6 +15,24 @@ const StyledGrid = styled(Grid)`
 
 class SearchBar extends Component {
 
+    constructor(props) {
+        super(props); 
+
+        this.state = {
+            inputValue: ''
+        }
+
+    }
+
+    handleChange = (e) => {
+        this.setState({inputValue: e.target.value});
+      }
+
+      buttonClick = () => {
+        console.log(this.state.inputValue)
+        this.props.filter(this.state.inputValue);
+      }
+
     render() {
 
         return(
@@ -24,8 +42,9 @@ class SearchBar extends Component {
                         <SearchIcon /> 
                     </Grid>
                     <Grid item>
-                        <TextField id="event-search" label="Search by name..." /> 
+                        <TextField id="event-search" label="Search by name..." onChange={this.handleChange}/>
                     </Grid>
+                    <button onClick={this.buttonClick}>search</button>
                 </StyledGrid>
             </Wrapper>
         )
