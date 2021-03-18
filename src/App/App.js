@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 
 import { Calendar, Home, Login, Admin, SingleEventPage, MyEvents, CreateEvent } from '../pages/index'; 
-import { NewComponent, SideNavbar } from '../component/index'
+import { SideNavbar } from '../component/index'
 
 import '../media/styles/Style.scss'
 
@@ -15,7 +15,7 @@ class App extends Component {
 
     this.state = {
       isLoggedIn: false, 
-      token: '', 
+      token: '',
     }
 
     this.init = this.init.bind(this); 
@@ -63,7 +63,7 @@ class App extends Component {
     } else {
       return (
         <div className="app">
-          <Router>
+          <Router basename="/condidi">
             <SideNavbar 
               isLoggedIn={this.state.isLoggedIn} 
               token={this.state.token}
@@ -93,7 +93,7 @@ class App extends Component {
               />
               <Route 
                 exact 
-                path="/event/:id" 
+                path="/calendar/event/:id" 
                 location={this.props.location}
                 key={this.props.key}
                 render={(props) => 
@@ -117,13 +117,6 @@ class App extends Component {
                   />
                 }
               />
-              <Route exact path="/playground" 
-                render={() => 
-                  <NewComponent 
-                    token={this.state.token}
-                  />
-                }
-              /> 
             </Switch>
           </Router>
         </div>
