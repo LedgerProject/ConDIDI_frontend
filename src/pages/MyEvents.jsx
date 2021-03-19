@@ -147,7 +147,6 @@ class MyEvents extends Component {
                         conditionalCellStyles={conditionalRowStyles}
                         Clicked
                         pagination
-                        Selected={this.handleChange}
                     /> 
 
                 </TableWrapper>

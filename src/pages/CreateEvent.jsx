@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { data } from '../config';
 import styled from 'styled-components';
-import { Button, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const StyledHeadline = styled.h2`
     color: #1c1a1a;
@@ -86,6 +86,7 @@ class CreateEvent extends Component {
     getToken = async () => {
         this.setState({
             token: JSON.parse(localStorage.getItem('token')),
+            //id: this.props.match.params.id,
         })
     }    
 

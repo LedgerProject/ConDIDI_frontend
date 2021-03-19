@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { data } from '../config';
 import styled from 'styled-components';
-import { Button, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 const StyledHeadline = styled.h2`
     margin-left: 100px; 
@@ -15,22 +15,6 @@ const FormWrapper = styled.section`
     padding: 2em; 
     color: #1c1a1a; 
 `;
-
-
-const DarkButton = styled.button`
-    padding: 2em; 
-    color: #f7f7f7; 
-    background-color: #1c1a1a; 
-    border-radius: 25px;
-    border-color: #1c1a1a; 
-
-    &:hover {
-        color: #1c1a1a; 
-        background-color: #f7f7f7; 
-        border-color: #f7f7f7 ; 
-         
-    }
-`
 
 class CreateParticipant extends Component {
 

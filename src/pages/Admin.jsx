@@ -1,8 +1,5 @@
 import React, { Component } from 'react'; 
 
-import { AdminEvents, AdminParticipants} from '../component/index'; 
-import { Button, ButtonGroup } from '@material-ui/core'; 
-
 
 class Admin extends Component {
 
