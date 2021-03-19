@@ -89,7 +89,7 @@ class SingleEventPage extends Component {
     getToken = async () => {
         this.setState({
             token: JSON.parse(localStorage.getItem('token')),
-            pageid: window.location.pathname.slice(16),
+            pageid: window.location.pathname.slice(24),
         })
     }
 
@@ -125,10 +125,10 @@ class SingleEventPage extends Component {
         try {
             this.setState({
                 eventdict: await json.eventdict,
-                name: json.eventdict.name, 
-                eventid: json.eventdict.eventid, 
-                eventtype: json.eventdict.type, 
-                date: json.eventdict.date, 
+                name: await json.eventdict.name, 
+                eventid: await json.eventdict.eventid, 
+                eventtype: await json.eventdict.type, 
+                date: await json.eventdict.date, 
             })
         } catch (error) {
             console.log(error)
