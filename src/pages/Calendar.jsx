@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GridList, GridListTile } from '@material-ui/core';
-import { SearchBar, LinkList, Event }  from '../component/index'; 
+import { SearchBar, LinkList, EventCard }  from '../component/index'; 
 import Code from '../media/images/code.jpg'; 
 import styled from 'styled-components'; 
 import { data } from '../config'; 
@@ -104,7 +104,7 @@ class Calendar extends Component {
                         {this.state.eventlist.map((event) => {
                             return (
                                 <GridListTile>
-                                    <Event
+                                    <EventCard
                                         key={event.eventid}
                                         id={event.eventid}
                                         date={event.date}

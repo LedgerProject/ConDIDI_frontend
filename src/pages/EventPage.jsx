@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { data } from '../config';
 import { Grid } from "@material-ui/core"
-import { CreateParticipant, Person } from '../component/index';
+import { CreateParticipant, Person, Event, EventDetails } from '../component/index';
 import Image from '../component/Image';
 import styled from 'styled-components';
 
-const EventPage = styled.section`
+const StyledEventPage = styled.section`
     width: 100%; 
     background-color: #ffffff; 
     color: #1c1a1a; 
@@ -24,15 +24,6 @@ const ParticipantDetails = styled.section`
     height: 100%;
 `
 
-const StyledButton = styled.button`
-    width: 100px; 
-    height: 60px;
-    background-color: #1c1a1a;
-    color: #ffffff;  
-    border-radius: 25px;
-    margin: 1em; 
-`
-
 const Header = styled.h1`
     font-size: 16px; 
     font-weight: bold;
@@ -45,14 +36,9 @@ const Description = styled.p`
     color: #8f92a1
 `
 
-const StyledList = styled.section`
-    background-color: white; 
-    border-radius: 25px;
-`
 
 
-
-class SingleEventPage extends Component {
+class EventPage extends Component {
 
     constructor(props) {
         super(props);
@@ -111,6 +97,7 @@ class SingleEventPage extends Component {
                     return response.json()
                 })
                 .then((json) => {
+                    console.log('this werked')
                     this.setStateDataEvent(json);
                     return console.log(json);
                 });
@@ -168,8 +155,6 @@ class SingleEventPage extends Component {
         this.setState({
             participantslist: await json.participants
         })
-        console.log('participantslist: ')
-        console.log(this.state.participantslist)
         
     }
 
@@ -209,54 +194,30 @@ class SingleEventPage extends Component {
     render() {
         return (
 
-            <EventPage>
+            <StyledEventPage>
                 <Grid container spacing={2}>
                     <Grid item xs>
-                        <div className="single-event-page">
-                            <br />
-                            <br />
-                            <br />
-                            <Image
-                                name="event-image"
-                                width="635"
-                                height="330"
-                            />
-
-                            <h2>{this.state.name}</h2>
-
-                            <Header>Event Description</Header>
-
-                            <Description>{this.state.type}</Description>
-                            <p>{this.state.date}</p>
-                        </div>
+                        <Event 
+                            name={this.state.name} 
+                            type={this.state.type}
+                            date={this.state.date}
+                        /> 
                     </Grid>
                     <Grid item xs>
-                        <ParticipantDetails>
-                            <h2>Address</h2>
-
-                            <Image width='340' height='240'/> 
-
-                            <h2>Participants</h2>
-
-                            <div> 
-
-                                {this.state.participantslist.map((id) => 
-                                    <Person name={id.name} personId={id.participantid} eventid={this.state.pageid} /> 
-                                )}
-
-                                <CreateParticipant eventid={this.state.pageid}/> 
-
-                            </div>
-                            
-
-                        </ParticipantDetails>
+                       {/* 
+                        <EventDetails 
+                            participantlist={this.state.participantslist}
+                            pageid={this.state.pageid}
+                        />
+                        */}
+                       
                     </Grid>
 
                 </Grid>
-            </EventPage>
+            </StyledEventPage>
         )
     }
 
 }
 
-export default SingleEventPage;
+export default EventPage;

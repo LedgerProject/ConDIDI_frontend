@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'; 
 import { Button } from '@material-ui/core'; 
 import { data } from '../config'; 
+import { QrDialogue } from '../component/index'; 
 
 const Title = styled.h1`
     color: $black;
@@ -46,9 +47,11 @@ class LogIn extends Component {
             token: '', 
             e: '', 
             pw: '', 
+            interactionId: '', 
         }
 
         this.handleLogin = this.handleLogin.bind(this); 
+        this.handleLoginWallet = this.handleLoginWallet.bind(this);
         this.handleToken = this.handleToken.bind(this); 
     }
 
@@ -77,6 +80,37 @@ class LogIn extends Component {
         } catch (error) {
             console.log(error); 
         }
+
+
+        window.location.reload();
+
+    }
+
+    handleLoginWallet = async() => {
+
+        try {
+
+            await fetch(data.host+':'+data.port+data.path+'/login_wallet', {
+                method: 'POST', 
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id: this.state.interactionId, 
+                })
+            })
+            .then((response) => { 
+                return response.json() 
+            }) 
+            .then((json) => { 
+                console.log('werked')
+                return console.log(json); 
+            });
+
+        } catch (error) {
+            console.log(error); 
+        }
+
 
         window.location.reload();
 
@@ -133,6 +167,12 @@ class LogIn extends Component {
                 <GreenButton onClick={this.handleLogin}> 
                     Log In here
                 </GreenButton>
+
+                <br/>
+
+                <Button onClick={this.handleLoginWallet}>
+                    Log in with Wallet
+                </Button>
             </div>
         )
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 
-import { Calendar, Home, Login, Admin, SingleEventPage, MyEvents, CreateEvent } from '../pages/index'; 
+import { Calendar, Home, Login, Admin, EventPage, MyEvents, CreateEvent } from '../pages/index'; 
 import { SideNavbar } from '../component/index'
 
 import '../media/styles/Style.scss'
@@ -35,9 +35,14 @@ class App extends Component {
   }
  
   getToken = () => {
-    const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString); 
-    return userToken; 
+    try {
+      const tokenString = localStorage.getItem('token');
+      const userToken = JSON.parse(tokenString); 
+      return userToken; 
+    } catch (e) {
+      console.log(e); 
+    }
+    
   }
 
   setToken(userToken) {
@@ -97,7 +102,7 @@ class App extends Component {
                 location={this.props.location}
                 key={this.props.key}
                 render={(props) => 
-                  <SingleEventPage 
+                  <EventPage 
                     {...props}
                     token={this.state.token}
                   />

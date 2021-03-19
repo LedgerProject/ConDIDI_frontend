@@ -1,20 +1,21 @@
 import SideNavbar from './SideNavbar';
-import Event from './Event'; 
+import EventCard from './EventCard'; 
 import Image from './Image'; 
 import SearchBar from './SearchBar'; 
 import LinkList from './LinkList'; 
 import AdminEvents from './AdminEvents'; 
 import AdminParticipants from './AdminParticipants'
-import SingleEventDetails from './SingleEventDetails'
+import EventDetails from './EventDetails'
 import Person from './Person'; 
-import SingleEvent from './SingleEvent';
+import Event from './Event';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 import Logout from './Logout'; 
-import ParticipantList from './ParticipantList'
-import CreateParticipant from './CreateParticipant'
+import ParticipantList from './ParticipantList'; 
+import CreateParticipant from './CreateParticipant'; 
+import QrDialogue from './QrDialogue'; 
 
 
-export { SideNavbar, Event, Image, SearchBar, LinkList, AdminEvents, 
-    AdminParticipants, SingleEventDetails, Person, SingleEvent, 
-    SignUp, LogIn, Logout, ParticipantList, CreateParticipant}
+export { SideNavbar, EventCard, Image, SearchBar, LinkList, AdminEvents, 
+    AdminParticipants, EventDetails, Person, Event, 
+    SignUp, LogIn, Logout, ParticipantList, CreateParticipant, QrDialogue}
