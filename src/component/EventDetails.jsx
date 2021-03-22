@@ -76,14 +76,10 @@ class SingleEventDetails extends Component {
     }
 
     setStateDataParticipant = (json) =>  {
-        console.log('setStateDataParticipant')
-        console.log(json)
-
         this.setState({
             participantslist: json.participants, 
             loaded: true, 
         })
-        
     }
 
     render() {
@@ -96,8 +92,6 @@ class SingleEventDetails extends Component {
                 <Image width='340' height='240'/> 
 
                 <h2>Participants</h2>
-                {console.log('Event details participant state')}
-                {console.log(this.state.participantslist)}
 
                 <div> 
                     {this.state.participantslist.map((id) => 

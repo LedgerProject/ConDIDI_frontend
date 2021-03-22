@@ -3,6 +3,7 @@ import {PersonOutlineOutlined, HighlightOffOutlined, AddOutlined } from "@materi
 import { Grid, IconButton } from '@material-ui/core';
 import { data } from '../config'; 
 import styled from 'styled-components'; 
+import { QrDialogue } from '../component/index'; 
  
 const RemoveIcon = styled(HighlightOffOutlined)`
     color: red;  
@@ -34,24 +35,31 @@ class Person extends Component {
         this.state = {
             personId: '', 
             eventId: '', 
-            token: JSON.parse(localStorage.getItem('token')), 
-            participantdict: '', 
+            token: '', 
+            qr: '', 
+            showDialogue: false, 
         }
  
         this.removePerson = this.removePerson.bind(this); 
-        this.updatePerson = this.updatePerson.bind(this); 
+        this.checkInPerson = this.checkInPerson.bind(this); 
     }
  
     componentDidMount = () => {
-        try {
-            this.setState({
-                personId: this.props.personId, 
-                eventId: this.props.eventid, 
-            })
-            console.log("pid; "+this.state.personId)
-        } catch (e) {
-            console.log(e)
-        }
+        this.loadData(); 
+    }
+
+    loadData = async () => {
+        await this.getToken(); 
+    }
+
+    getToken = async () => {
+        this.setState({
+            token: JSON.parse(localStorage.getItem('token')),
+            eventId: window.location.pathname.slice(24),
+            personId: await this.props.personId, 
+        })
+        console.log('inside getTOken')
+        console.log(this.state.eventId)
     }
  
     removePerson = async () => {
@@ -80,32 +88,51 @@ class Person extends Component {
         }
         window.location.reload();
     }
- 
-    updatePerson = async () => {
- 
+
+    checkInPerson = async () => {
+
         try {
- 
-            await fetch(data.host+':'+data.port+data.path+'/update_participant', {
-                method: 'POST', 
+
+            await fetch(data.host + ':' + data.port + data.path + '/get_checkin_token', {
+                method: 'POST',
                 headers: {
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({
-                    token: this.state.token, 
-                    participantid: this.state.participantid, 
-                    participantdict: this.state.participantdict, 
+                    token: this.state.token,
+                    eventid: this.state.eventId, 
+                    participantid: this.state.personId, 
                 })
             })
-            .then((response) => { 
-                return response.json() 
-            })
-            .then((json) => { 
-                return console.log(json); 
-            });
+                .then((response) => {
+                    return response.json()
+                })
+                .then((json) => {
+                    console.log('inside checkin person')
+                    console.log(json)
+                    this.showQR(json); 
+                    return console.log(json);
+                });
         } catch (error) {
-            console.log(error); 
+            console.log(error);
         }
- 
+
+    }
+
+    showQR = (json) => {
+
+        this.setState({
+            qr: JSON.stringify(json.interactionToken)
+        })
+
+        this.toggleShowDialogue();
+
+    }
+
+    toggleShowDialogue = () =>  {
+        this.setState({
+            showDialogue: !this.showDialogue,
+        })
     }
  
     render() {
@@ -125,11 +152,12 @@ class Person extends Component {
                         </IconButton>
                     </Grid>
                     <Grid item xs={1} > 
-                        <IconButton>
+                        <IconButton onClick={this.checkInPerson}>
                             <UpdateIcon />
                         </IconButton>
                     </Grid>
                 </Grid>
+                {this.state.showDialogue && <QrDialogue qr={this.state.qr} closeQr={this.toggleShowDialogue}/>}
             </StyledPerson>
         )
     }
