@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 
-import { Calendar, Home, Login, Admin, EventPage, MyEvents, CreateEvent } from '../pages/index'; 
+import { Calendar, Home, Login, Admin, EventPage, MyEvents, CreateEvent, Impressum } from '../pages/index'; 
 import { SideNavbar } from '../component/index'
 
 import '../media/styles/Style.scss'
@@ -89,6 +89,7 @@ class App extends Component {
                   />
                 }
               />
+              {/** 
               <Route exact path="/admin" 
                 render={() => 
                   <Admin 
@@ -96,6 +97,7 @@ class App extends Component {
                   />
                 }
               />
+              */}
               <Route 
                 exact 
                 path="/calendar/event/:id" 
@@ -121,6 +123,10 @@ class App extends Component {
                     token={this.state.token}
                   />
                 }
+              />
+              <Route exact path="/impressum"
+                render={() => 
+                <Impressum />}
               />
             </Switch>
           </Router>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { data } from '../config';
 import { QrDialogue } from './index';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 
 class SignUp extends Component {
 
@@ -112,54 +112,85 @@ class SignUp extends Component {
 
             <div>
                 <h2>Sign up</h2>
-                <label>
-                    Email
-                    <input
-                        type="text"
-                        name="e"
-                        onChange={this.handleInputChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Password
-                    <input
-                        type="password"
-                        name="pw"
-                        onChange={this.handleInputChange}
-                    />
-                </label>
-                <br />
+                <Grid container spacing={2}> 
+                    <Grid item xs={2}>
+                        <label>
+                            Email
+                        </label>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <input
+                            type="text"
+                            name="e"
+                            onChange={this.handleInputChange}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2}> 
+                    <Grid item xs={2}>
+                        <label>
+                            Password
+                        </label>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <input
+                            type="password"
+                            name="pw"
+                            onChange={this.handleInputChange}
+                        />
+                    </Grid>
+                </Grid>
 
-                <Button onClick={this.handleSignup}>
-                    SignUp
-                </Button>
-
+                <Grid container spacing={2}> 
+                    <Grid item xs={2}>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Button onClick={this.handleSignup}>
+                            SignUp
+                        </Button>
+                    </Grid>
+                </Grid>
                 <br />
                 <br />
                 <h2>Create Wallet</h2>
-                <label>
-                    Name
-                    <input
-                        type="text"
-                        name="n"
-                        onChange={this.handleInputChange}
-                    />
-                </label>
-                <br />
-                <label>
-                    Email
-                    <input
-                        type="text"
-                        name="e"
-                        onChange={this.handleInputChange}
-                    />
-                </label>
-                <br />
-                <Button onClick={this.handleCreateWallet}>
-                    Create Wallet
-                </Button>
+                <Grid container spacing={2}> 
+                    <Grid item xs={2}>
+                        <label>
+                            Name
+                        </label>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <input
+                            type="text"
+                            name="n"
+                            onChange={this.handleInputChange}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2}> 
+                    <Grid item xs={2}>
+                        <label>
+                            Email
+                        </label>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <input
+                            type="text"
+                            name="e"
+                            onChange={this.handleInputChange}
+                        />
+                    </Grid>
+                </Grid>
 
+                <Grid container spacing={2}> 
+                    <Grid item xs={2}>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Button onClick={this.handleCreateWallet}>
+                            Create Wallet
+                        </Button>
+                    </Grid>
+                </Grid>
 
                 {this.state.showDialogue && <QrDialogue qr={this.state.qr} closeQr={this.toggleShowDialogue}/>}
             </div>

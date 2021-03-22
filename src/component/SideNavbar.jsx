@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; 
 import { Link } from 'react-router-dom'; 
 import { ProSidebar, SidebarHeader, SidebarContent, Menu, MenuItem, SubMenu, SidebarFooter } from 'react-pro-sidebar';
-import { Home, DateRangeOutlined, Settings } from '@material-ui/icons'
+import { Home, DateRangeOutlined, Settings, ViewHeadline, AddCircleOutline } from '@material-ui/icons'
 import { Logout } from './index'; 
 
 
@@ -72,20 +72,25 @@ class SideNavbar extends Component {
                   <MenuItem icon={<DateRangeOutlined />}>
                     <Link to="/calendar" /> 
                   </MenuItem>
+                  <MenuItem icon={<ViewHeadline/>}>
+                      <Link to="/admin/my_events" /> 
+                    </MenuItem>
+                    <MenuItem icon={<AddCircleOutline />}>
+                      <Link to="/admin/create_event" /> 
+                    </MenuItem>
+                    {/** 
                   <SubMenu icon={<Settings />}>
+                    
                     <MenuItem >
                       Admin Area
                       <Link to="/admin" /> 
                     </MenuItem>
-                    <MenuItem>
-                      My Events
-                      <Link to="/admin/my_events" /> 
-                    </MenuItem>
-                    <MenuItem>
-                      Create Event
-                      <Link to="/admin/create_event" /> 
-                    </MenuItem>
+                    
                   </SubMenu>
+                  */}
+                  <MenuItem icon={<Settings />}>
+                    <Link to="/impressum" /> 
+                  </MenuItem>
                   
                 </Menu>
               </div>

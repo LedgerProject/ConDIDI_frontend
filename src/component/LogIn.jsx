@@ -2,26 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'; 
 import { Button, Grid } from '@material-ui/core'; 
 import { data } from '../config'; 
-
-const Title = styled.h1`
-    color: $black;
-    font-size: 50px; 
-`;
-
-const Headline = styled.p`
-    font-size: 22px;
-    font-weight: bold;
-    color: #1e1f20;
-    height: 30px;
-    margin: 0 0 10px;
-`;
-
-const Text = styled.p`
-    font-size: 14px; 
-    font-weight: 500; 
-    color: #494747;  
-    height: 20px;    
-`;
+import { QrDialogue } from './index';
 
 const GreenButton = styled(Button)`
     border-radius: 12px;
@@ -45,11 +26,15 @@ class LogIn extends Component {
             e: '', 
             pw: '', 
             interactionId: '', 
+            qr: '', 
+            showDialogue: false, 
         }
 
         this.handleLogin = this.handleLogin.bind(this); 
         this.handleLoginWallet = this.handleLoginWallet.bind(this);
         this.handleToken = this.handleToken.bind(this); 
+        this.showQR = this.showQR.bind(this); 
+        this.handleQR = this.handleQR.bind(this); 
     }
 
     handleLogin = async() => {
@@ -78,50 +63,51 @@ class LogIn extends Component {
             console.log(error); 
         }
 
-
         window.location.reload();
 
     }
 
-    handleLoginWallet = async() => {
-
-        try {
-
-            await fetch(data.host+':'+data.port+data.path+'/login_wallet', {
-                method: 'POST', 
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: this.state.interactionId, 
-                })
-            })
-            .then((response) => { 
-                return response.json() 
-            }) 
-            .then((json) => { 
-                return console.log(json); 
-            });
-
-        } catch (error) {
-            console.log(error); 
-        }
-
-
-        window.location.reload();
-
-    }
-
-    handleToken(userToken) {
-
+    handleToken = (userToken) => {
         this.setState({
             token: userToken.token, 
         })
         this.props.setToken(this.state.token); 
     }
 
+    handleLoginWallet = async() => {
+
+        try {
+            await fetch(data.host+':'+data.port+data.path+'/login_wallet', {
+                method: 'POST', 
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: this.state.e, 
+                    password: this.state.pw, 
+                })
+            })
+            .then((response) => { 
+                return response.json() 
+            }) 
+            .then((json) => { 
+                this.handleQR(json); 
+                return console.log(json); 
+            });
+        } catch (error) {
+            console.log(error); 
+        }
+    }
+
+    handleQR = (json) => {
+        this.setState({
+            qr: JSON.stringify(json.interactionToken), 
+            token: JSON.stringify(json.token), 
+        })
+        this.toggleShowDialogue(); 
+    }
+
     handleInputChange = (event) => {
- 
         const target = event.target; 
         const name = target.name; 
         const value = target.value; 
@@ -131,16 +117,23 @@ class LogIn extends Component {
         }); 
     } 
 
+    showQR = (j) => {
+        this.setState({
+            qr: j
+        })
+        this.toggleShowDialogue();
+    }
+
+    toggleShowDialogue = () =>  {
+        this.setState({
+            showDialogue: !this.showDialogue,
+        })
+    }
+
     render(){
         return(
 
             <div>
-                <Title>CNDD </Title>
-                <Headline> Welcome Back! </Headline>
-                <Text>
-                    Sign in to continue or
-                </Text>
-
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
                         <label>
@@ -175,7 +168,7 @@ class LogIn extends Component {
                     <Grid item xs={2}></Grid>
                     <Grid item xs={3}>
                         <GreenButton onClick={this.handleLogin}> 
-                            Log In here
+                            Log In
                         </GreenButton>
                     </Grid>
                 </Grid>
@@ -187,6 +180,7 @@ class LogIn extends Component {
                         </Button>
                     </Grid>
                 </Grid>
+                {this.state.showDialogue && <QrDialogue qr={this.state.qr} closeQr={this.toggleShowDialogue}/>}
             </div>
         )
     }

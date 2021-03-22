@@ -12,7 +12,6 @@ const Wrapper = styled.section`
     background-color: #ffffff;
     border-radius: 25px; 
     padding: 2em; 
-    text-align: center; 
 `;
 
 const FormWrapper = styled.section`
@@ -20,7 +19,6 @@ const FormWrapper = styled.section`
     background-color: #f7f7f7;
     border-radius: 25px; 
     padding: 2em; 
-    text-align: center; 
 `;
 
 
@@ -179,7 +177,6 @@ class CreateEvent extends Component {
                     <form onSubmit={this.handleSubmit}>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event Name:
@@ -196,7 +193,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Subject:
@@ -213,7 +209,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event Type:
@@ -230,7 +225,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Presenter:
@@ -246,7 +240,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Venue Information:
@@ -262,7 +255,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event Address:
@@ -278,7 +270,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event URL:
@@ -294,7 +285,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Organiser Institution:
@@ -310,7 +300,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Contact Person Name:
@@ -326,7 +315,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Contact Person Email:
@@ -342,7 +330,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Submission Deadline:
@@ -358,7 +345,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Registration Deadline:
@@ -374,7 +360,6 @@ class CreateEvent extends Component {
                         </Grid>
 
                         <Grid container spacing={2}>
-                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Date:
@@ -391,7 +376,6 @@ class CreateEvent extends Component {
 
 
                         <Grid container spacing={2}>
-                            <Grid item xs={3}></Grid>
                             <Grid item xs={6}>
                                 <DarkButton type="submit">Submit</DarkButton>
                             </Grid>

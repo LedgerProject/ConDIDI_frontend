@@ -5,5 +5,6 @@ import Admin from './Admin';
 import EventPage from './EventPage'; 
 import CreateEvent from './CreateEvent'; 
 import MyEvents from './MyEvents'; 
+import Impressum from './Impressum'; 
 
-export { Calendar, Home, Login, Admin, EventPage, CreateEvent, MyEvents}
+export { Calendar, Home, Login, Admin, EventPage, CreateEvent, MyEvents, Impressum}

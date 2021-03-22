@@ -51,7 +51,6 @@ class SingleEventDetails extends Component {
     loadParticipants = async () => {
 
         try {
-
             await fetch(data.host + ':' + data.port + data.path + '/list_participants', {
                 method: 'POST',
                 headers: {

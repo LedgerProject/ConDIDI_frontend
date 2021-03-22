@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import {PersonOutlineOutlined, HighlightOffOutlined, AddOutlined } from "@material-ui/icons"; 
+import {PersonOutlineOutlined, HighlightOffOutlined, CheckOutlined, SubtitlesOutlined } from "@material-ui/icons"; 
 import { Grid, IconButton } from '@material-ui/core';
 import { data } from '../config'; 
 import styled from 'styled-components'; 
@@ -7,24 +7,24 @@ import { QrDialogue } from '../component/index';
  
 const RemoveIcon = styled(HighlightOffOutlined)`
     color: red;  
-    height: 28px; 
 `
  
-const UpdateIcon = styled(AddOutlined)`
+const UpdateIcon = styled(CheckOutlined)`
     color: #ffffff; 
-    height: 28px;  
 `
- 
  
 const PersonIcon = styled(PersonOutlineOutlined)`
     color: #ffffff; 
-    height: 28px; 
 `
  
 const StyledPerson = styled.section`
     color: #ffffff; 
     margin: 0px -30px 0px 10px; 
  
+`
+
+const TicketIcon = styled(SubtitlesOutlined)`
+    color: #ffffff; 
 `
  
 class Person extends Component {
@@ -42,6 +42,7 @@ class Person extends Component {
  
         this.removePerson = this.removePerson.bind(this); 
         this.checkInPerson = this.checkInPerson.bind(this); 
+        this.sendTicket = this.sendTicket.bind(this); 
     }
  
     componentDidMount = () => {
@@ -58,8 +59,6 @@ class Person extends Component {
             eventId: window.location.pathname.slice(24),
             personId: await this.props.personId, 
         })
-        console.log('inside getTOken')
-        console.log(this.state.eventId)
     }
  
     removePerson = async () => {
@@ -110,7 +109,7 @@ class Person extends Component {
                 .then((json) => {
                     console.log('inside checkin person')
                     console.log(json)
-                    this.showQR(json); 
+                    this.showQR(JSON.stringify(json.interactionToken)); 
                     return console.log(json);
                 });
         } catch (error) {
@@ -119,10 +118,48 @@ class Person extends Component {
 
     }
 
-    showQR = (json) => {
+    sendTicket = async () => {
+
+        console.log('inside send ticket')
+        console.log(this.state.token)
+        console.log(this.state.eventId)
+        console.log(this.state.personId)
+
+        try {
+
+            await fetch(data.host + ':' + data.port + data.path + '/issue_ticket', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: this.state.token,
+                    eventid: this.state.eventId, 
+                    participantid: this.state.personId, 
+                })
+            })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((json) => {
+                    console.log('inside issue ticket')
+                    console.log(json)
+                    this.showQR(JSON.stringify(json.interactionToken)); 
+                    return console.log(json);
+                });
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
+    showQR = (j) => {
+
+        console.log('inside ShowQR')
+        console.log(j)
 
         this.setState({
-            qr: JSON.stringify(json.interactionToken)
+            qr: j
         })
 
         this.toggleShowDialogue();
@@ -134,6 +171,7 @@ class Person extends Component {
             showDialogue: !this.showDialogue,
         })
     }
+
  
     render() {
  
@@ -143,12 +181,17 @@ class Person extends Component {
                     <Grid item xs={1}> 
                         <PersonIcon /> 
                     </Grid>
-                    <Grid item xs={4} > 
+                    <Grid item xs={3} > 
                         {this.props.name} 
                     </Grid>
                     <Grid item xs={1} > 
                         <IconButton onClick={this.removePerson} >
                             <RemoveIcon />
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={1} > 
+                        <IconButton onClick={this.sendTicket}>
+                            <TicketIcon />
                         </IconButton>
                     </Grid>
                     <Grid item xs={1} > 
