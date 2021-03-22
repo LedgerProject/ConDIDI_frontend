@@ -8,8 +8,7 @@ import { CreateParticipant } from './index';
 const StyledTable = styled(DataTable)`
     height: 60%;
     margin: 0px 60px 0px 30px;
-    padding: 10px 10px 10px 10px;
-    
+    padding: 10px 10px 10px 10px; 
 `
 
 const Wrapper = styled.section`
@@ -29,31 +28,6 @@ const TableWrapper = styled.section`
     border-radius: 25px; 
     padding: 2em; 
 `;
-
-const conditionalRowStyles = [
-    {
-        when: row => row.type = 'Meetup', 
-        style: {
-            backgroundColor: 'green', 
-            color: 'white', 
-            '&:hover': {
-                cursor: 'pointer'
-            }, 
-        }, 
-    }, 
-    {
-        when: row => row.type = 'Festival', 
-        style: {
-            backgroundColor: 'yellow', 
-            color: 'white', 
-        }, 
-    }, 
-]; 
-
-const handleChange  = (state) => {
-    console.log('Selected rows: ', state.selectedRows)
-}
-
 
 class ParticipantList extends Component {
 
@@ -132,9 +106,6 @@ class ParticipantList extends Component {
             rows: arr
         })
     }
-
-    
-
 
     render(){
         return(

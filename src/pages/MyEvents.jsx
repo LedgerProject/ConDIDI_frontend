@@ -18,7 +18,7 @@ const Wrapper = styled.section`
     background-color: #f7f7f7;
     border-radius: 25px; 
     margin: 0px -30px 0px 0px;
-    padding-left: 2em; 
+    padding-left: 2em;  
 `;
 
 const TableWrapper = styled.section`
@@ -48,10 +48,6 @@ const conditionalRowStyles = [
         }, 
     }, 
 ]; 
-
-const handleChange  = (state) => {
-    console.log('Selected rows: ', state.selectedRows)
-}
 
 
 class MyEvents extends Component {

@@ -8,22 +8,19 @@ const StyledHeadline = styled.h2`
 `;
 
 const Wrapper = styled.section`
-    //height: 100%;
-    width: 100%;
-    //position: fixed;
-    margin: 0px -30px 0px 0px;
-    padding: 50px 0px 0px 0px;  
-    text-align: center; 
+    width: 100%; 
     background-color: #ffffff;
     border-radius: 25px; 
+    padding: 2em; 
+    text-align: center; 
 `;
 
 const FormWrapper = styled.section`
     text-align: left; 
     background-color: #f7f7f7;
     border-radius: 25px; 
-    margin-left: 50px; 
     padding: 2em; 
+    text-align: center; 
 `;
 
 
@@ -32,12 +29,12 @@ const DarkButton = styled.button`
     color: #f7f7f7; 
     background-color: #1c1a1a; 
     border-radius: 25px;
-    border-color: #1c1a1a; 
+    border: none; 
 
     &:hover {
         color: #1c1a1a; 
         background-color: #f7f7f7; 
-        border-color: #f7f7f7 ; 
+        border: 2px solid 31c1a1a; 
          
     }
 `
@@ -182,6 +179,7 @@ class CreateEvent extends Component {
                     <form onSubmit={this.handleSubmit}>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event Name:
@@ -195,10 +193,10 @@ class CreateEvent extends Component {
                                 />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Subject:
@@ -212,10 +210,10 @@ class CreateEvent extends Component {
                                 />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event Type:
@@ -229,10 +227,10 @@ class CreateEvent extends Component {
                                 />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Presenter:
@@ -245,10 +243,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Venue Information:
@@ -261,10 +259,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event Address:
@@ -277,10 +275,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Event URL:
@@ -293,10 +291,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Organiser Institution:
@@ -309,10 +307,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Contact Person Name:
@@ -325,10 +323,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Contact Person Email:
@@ -341,10 +339,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Submission Deadline:
@@ -357,10 +355,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Registration Deadline:
@@ -373,10 +371,10 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
                         <Grid container spacing={2}>
+                        <Grid item xs={3}></Grid>
                             <Grid item xs={3}>
                                 <label>
                                     Date:
@@ -389,19 +387,14 @@ class CreateEvent extends Component {
                                     onChange={this.handleChange} />
                             </Grid>
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
                         </Grid>
 
 
                         <Grid container spacing={2}>
-
                             <Grid item xs={3}></Grid>
-                            <Grid item xs={3}>
+                            <Grid item xs={6}>
                                 <DarkButton type="submit">Submit</DarkButton>
                             </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-
                         </Grid>
 
 

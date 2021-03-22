@@ -18,6 +18,7 @@ const Wrapper = styled.section`
     padding: 4em; 
     background-color: #f7f7f7;
     border-radius: 25px; 
+    overflow-x: scroll; 
 `
 
 class Calendar extends Component {
@@ -84,7 +85,8 @@ class Calendar extends Component {
 
     }
 
-    filter = (keyword) => {
+    filter = async (keyword) => {
+        await this.getEvents();
         const result = this.state.eventlist.filter(event => event.name.includes(keyword));
         this.setState({eventlist: result})
     }

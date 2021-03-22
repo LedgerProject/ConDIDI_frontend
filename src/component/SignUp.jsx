@@ -26,7 +26,6 @@ class SignUp extends Component {
     handleSignup = async () => {
 
         try {
-
             await fetch(data.host + ':' + data.port + data.path + '/create_user', {
                 method: 'POST',
                 headers: {
@@ -49,7 +48,6 @@ class SignUp extends Component {
         } catch (error) {
             console.log(error);
         }
-
     }
 
     handleCreateWallet = async () => {

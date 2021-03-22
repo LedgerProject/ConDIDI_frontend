@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import QRCode from 'qrcode.react'; 
-import { Dialog, DialogActions, DialogContent, DialogTitle, DialogContentText} from '@material-ui/core'; 
+import { Dialog, DialogContent, DialogTitle, DialogContentText} from '@material-ui/core'; 
 
 class QrDialogue extends Component {
 

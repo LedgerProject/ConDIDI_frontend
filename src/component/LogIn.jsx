@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'; 
-import { Button } from '@material-ui/core'; 
+import { Button, Grid } from '@material-ui/core'; 
 import { data } from '../config'; 
-import { QrDialogue } from '../component/index'; 
 
 const Title = styled.h1`
     color: $black;
@@ -25,8 +24,6 @@ const Text = styled.p`
 `;
 
 const GreenButton = styled(Button)`
-    width: 350px;
-    height: 58px;
     border-radius: 12px;
     background-color: #82c43c;
     color: #f7f7f7; 
@@ -103,7 +100,6 @@ class LogIn extends Component {
                 return response.json() 
             }) 
             .then((json) => { 
-                console.log('werked')
                 return console.log(json); 
             });
 
@@ -145,34 +141,52 @@ class LogIn extends Component {
                     Sign in to continue or
                 </Text>
 
-                <label>
-                    Email
-                    <input 
-                        type="text"
-                        name="e"
-                        onChange={this.handleInputChange}
-                    /> 
-                </label>
-                <br /> 
-                <label>
-                    Password
-                    <input 
-                        type="password"
-                        name="pw"
-                        onChange={this.handleInputChange}
-                    /> 
-                </label>
-                <br />
-                    
-                <GreenButton onClick={this.handleLogin}> 
-                    Log In here
-                </GreenButton>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}>
+                        <label>
+                            Email
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input 
+                            type="text"
+                            name="e"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </Grid>
+                </Grid>
 
-                <br/>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}>
+                        <label>
+                            Password
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input 
+                            type="password"
+                            name="pw"
+                            onChange={this.handleInputChange}
+                        /> 
+                    </Grid>
+                </Grid>
 
-                <Button onClick={this.handleLoginWallet}>
-                    Log in with Wallet
-                </Button>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={3}>
+                        <GreenButton onClick={this.handleLogin}> 
+                            Log In here
+                        </GreenButton>
+                    </Grid>
+                </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={3}>
+                        <Button onClick={this.handleLoginWallet}>
+                            Log in with Wallet
+                        </Button>
+                    </Grid>
+                </Grid>
             </div>
         )
     }

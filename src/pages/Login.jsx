@@ -15,6 +15,8 @@ const StyledImage = styled.img`
     position: absolute; 
     margin: 0em; 
     padding: 0em; 
+    width: 1800px; 
+    height: 1600px: 
 
 `
 

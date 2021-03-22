@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { Grid } from '@material-ui/core';
 
 const StyledHeadline = styled.h2`
-    margin-left: 100px; 
     color: #1c1a1a;
 `;
 
@@ -105,173 +104,169 @@ class CreateParticipant extends Component {
         return (
             <FormWrapper>
                 <StyledHeadline>Add Participant</StyledHeadline>
-                    <form onSubmit={this.handleSubmit}>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Participant Name:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="name"
+                            type="text"
+                            onChange={this.handleChange} 
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Participant Name:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="name"
-                                    type="text"
-                                    onChange={this.handleChange} 
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Email:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="email"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Email:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="email"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            DiD
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="did"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    DiD
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="did"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Payment Status:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="paymentStatus"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Payment Status:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="paymentStatus"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Attendence Status:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="attendenceStatus"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Attendence Status:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="attendenceStatus"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Signup Date:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="signupDate"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Signup Date:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="signupDate"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Ticket ID:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="ticketId"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Ticket ID:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="ticketId"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Credential ID:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="credentialId"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Credential ID:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="credentialId"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
+                    <Grid item xs={3}>
+                        <label>
+                            Ticket Issued:
+                        </label>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <input
+                            name="ticketIssued"
+                            type="text"
+                            onChange={this.handleChange}
+                        />
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
+                </Grid>
 
-                        <Grid container spacing={2}>
-                            <Grid item xs={3}>
-                                <label>
-                                    Ticket Issued:
-                                </label>
-                            </Grid>
-                            <Grid item xs={3}>
-                                <input
-                                    name="ticketIssued"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                />
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-                        </Grid>
+                <Grid container spacing={2}>
 
-                        <Grid container spacing={2}>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}>
+                        <button onClick={this.handleSubmit}>Submit</button>
+                    </Grid>
+                    <Grid item xs={3}></Grid>
+                    <Grid item xs={3}></Grid>
 
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}>
-                                <button type="submit">Submit</button>
-                            </Grid>
-                            <Grid item xs={3}></Grid>
-                            <Grid item xs={3}></Grid>
-
-                        </Grid>
-
-                    </form>
+                </Grid>
             </FormWrapper>
         )
     }

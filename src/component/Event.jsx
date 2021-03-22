@@ -17,11 +17,6 @@ const Description = styled.p`
 
 class Event extends Component {
 
-    constructor(props) {
-        super(props); 
-    }
-
-
     render() {
 
         return(
