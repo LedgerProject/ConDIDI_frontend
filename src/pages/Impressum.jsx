@@ -17,7 +17,6 @@ class Impressum extends Component {
             <Wrapper>
                 <h2>Impressum</h2>
                 <a href='https://labs.tib.eu/info/projekt/condidi/'> Projekt Webseite </a>
-
             </Wrapper>
         )
     }

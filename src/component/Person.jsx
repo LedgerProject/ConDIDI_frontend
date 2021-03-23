@@ -9,8 +9,12 @@ const RemoveIcon = styled(HighlightOffOutlined)`
     color: red;  
 `
  
-const UpdateIcon = styled(CheckOutlined)`
+const CheckInNeutral = styled(CheckOutlined)`
     color: #ffffff; 
+`
+
+const CheckInGreen = styled(CheckOutlined)`
+    color: #82c43c; 
 `
  
 const PersonIcon = styled(PersonOutlineOutlined)`
@@ -38,6 +42,7 @@ class Person extends Component {
             token: '', 
             qr: '', 
             showDialogue: false, 
+            isCheckedIn: false, 
         }
  
         this.removePerson = this.removePerson.bind(this); 
@@ -107,9 +112,10 @@ class Person extends Component {
                     return response.json()
                 })
                 .then((json) => {
-                    console.log('inside checkin person')
-                    console.log(json)
                     this.showQR(JSON.stringify(json.interactionToken)); 
+                    this.setState({
+                        isCheckedIn: true, 
+                    })
                     return console.log(json);
                 });
         } catch (error) {
@@ -119,11 +125,6 @@ class Person extends Component {
     }
 
     sendTicket = async () => {
-
-        console.log('inside send ticket')
-        console.log(this.state.token)
-        console.log(this.state.eventId)
-        console.log(this.state.personId)
 
         try {
 
@@ -142,8 +143,6 @@ class Person extends Component {
                     return response.json()
                 })
                 .then((json) => {
-                    console.log('inside issue ticket')
-                    console.log(json)
                     this.showQR(JSON.stringify(json.interactionToken)); 
                     return console.log(json);
                 });
@@ -154,10 +153,6 @@ class Person extends Component {
     }
 
     showQR = (j) => {
-
-        console.log('inside ShowQR')
-        console.log(j)
-
         this.setState({
             qr: j
         })
@@ -195,9 +190,12 @@ class Person extends Component {
                         </IconButton>
                     </Grid>
                     <Grid item xs={1} > 
+                    {!this.state.isCheckedIn && 
                         <IconButton onClick={this.checkInPerson}>
-                            <UpdateIcon />
+                            <CheckInNeutral />
                         </IconButton>
+                    } 
+                    {this.state.isCheckedIn && <CheckInGreen /> }
                     </Grid>
                 </Grid>
                 {this.state.showDialogue && <QrDialogue qr={this.state.qr} closeQr={this.toggleShowDialogue}/>}
