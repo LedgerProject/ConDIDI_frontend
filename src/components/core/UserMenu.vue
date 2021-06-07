@@ -1,14 +1,17 @@
 <template>
   <v-menu offset-y z-index="9999">
     <template v-slot:activator="{ on, attrs }">
-      <v-list-item two-line v-bind="attrs" v-on="on">
+      <v-list-item v-if="loading">
+        <v-skeleton-loader type="list-item"> </v-skeleton-loader>
+      </v-list-item>
+      <v-list-item v-else two-line v-bind="attrs" v-on="on">
         <v-list-item-avatar color="grey lighten-3" tile>
-          <span class="font-weight-bold">TM</span>
+          <span class="font-weight-bold">{{ initials }}</span>
         </v-list-item-avatar>
         <v-list-item-title>
-          <span class="font-weight-bold">Tim Moehring</span>
+          <span class="font-weight-bold">{{ getUser.name }}</span>
           <br />
-          <span class="font-weight-light">tim.moehring@prime-force.com</span>
+          <span class="font-weight-light">{{ getUser.email }}</span>
         </v-list-item-title>
         <v-list-item-action>
           <v-icon> mdi-chevron-down </v-icon>
@@ -38,7 +41,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "UserMenu",
@@ -51,7 +54,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions("user", ["signOut"]),
+    ...mapActions("users", ["signOut"]),
+  },
+  computed: {
+    ...mapGetters({
+      getUser: "users/getUser",
+      loading: "users/getLoading",
+    }),
+    initials() {
+      return this.getUser ? this.getUser.name.charAt(0) : "";
+    },
   },
 };
 </script>

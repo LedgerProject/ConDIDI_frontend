@@ -35,13 +35,13 @@ export default {
     },
   },
   methods: {
-    ...mapActions("user", ["fetchUser"]),
+    ...mapActions("users", ["signInWithToken"]),
     openDrawer() {
       this.drawer = !this.drawer;
     },
   },
   async mounted() {
-    await this.fetchUser();
+    await this.signInWithToken();
   },
   created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {

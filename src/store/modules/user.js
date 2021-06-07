@@ -5,12 +5,14 @@ const state = {
   user: null,
   token: "",
   status: "",
+  loading: true,
 };
 
 const getters = {
   getUser: () => state.user,
   isSignedIn: (state) => !!state.token,
   getStatus: () => state.status,
+  getLoading: () => state.loading,
 };
 
 const mutations = {
@@ -20,20 +22,41 @@ const mutations = {
   setStatus(state, status) {
     state.token = status;
   },
+  setUser(state, user) {
+    state.user = user;
+  },
   signOut(state) {
     state.user = "";
     state.token = "";
   },
+  setLoading(state, loading) {
+    state.loading = loading;
+  },
 };
 
 const actions = {
-  fetchUser: ({ commit }) => {
+  fetchUser: async ({ commit }) => {
+    commit("setLoading", true);
+
+    const { data } = await axios.post("get_user_profile");
+    const user = data.userdata ? data.userdata : null;
+    commit("setUser", user);
+
+    commit("setLoading", false);
+  },
+  signInWithToken: async ({ commit, dispatch }) => {
+    commit("setLoading", true);
+
     const token = localStorage.getItem("token");
     commit("setToken", token);
     axios.defaults.headers.common["Authorization"] = token;
+    await dispatch("fetchUser");
+
+    commit("setLoading", false);
   },
   // eslint-disable-next-line no-empty-pattern
   signIn: async ({ commit }, payload) => {
+    commit("setLoading", true);
     const { data } = await axios.post("login_password", payload);
 
     // Sign in was successful
@@ -46,6 +69,7 @@ const actions = {
     } else {
       commit("setStatus", "Error");
     }
+    commit("setLoading", false);
   },
   // eslint-disable-next-line no-empty-pattern
   signUp: async ({ commit, dispatch }, payload) => {
@@ -59,7 +83,7 @@ const actions = {
   },
   // eslint-disable-next-line no-empty-pattern
   signOut: async ({ commit }) => {
-    axios.post("logout");
+    await axios.post("logout");
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
     commit("signOut");
@@ -68,7 +92,7 @@ const actions = {
 };
 
 export default {
-  name: "user",
+  name: "users",
   namespaced: true,
   state,
   getters,
