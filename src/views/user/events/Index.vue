@@ -163,7 +163,7 @@ export default {
     // call again the method if the route changes
     $route: "fetchData",
   },
-  created() {
+  mounted() {
     this.fetchData();
   },
   methods: {
