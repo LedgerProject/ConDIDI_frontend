@@ -153,10 +153,6 @@ export default {
     },
   },
 
-  created() {
-    this.initialize();
-  },
-
   methods: {
     editItem(item) {
       this.editedIndex = this.participants.indexOf(item);
