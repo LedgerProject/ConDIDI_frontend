@@ -82,19 +82,19 @@ export default {
     reset() {
       this.loading = false;
       this.login = { ...this.defaultLogin };
-      this.placce = { ...this.defaultPlace };
+      this.place = { ...this.defaultPlace };
     },
     onNextStep() {
       this.$emit("next", {
         ...this.editedItem,
-        address: this.place,
+        venue: { address: this.place },
         login: this.login,
       });
     },
     onPreviousStep() {
       this.$emit("previous", {
         ...this.editedItem,
-        address: this.place,
+        venue: { address: this.place },
         login: this.login,
       });
     },

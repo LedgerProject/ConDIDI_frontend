@@ -46,19 +46,13 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col v-if="item.address" cols="12" md="6">
+            <v-col v-if="item.venue && item.venue.address" cols="12" md="6">
               <v-row>
-                <v-col v-if="item.address" cols="12" class="map-content">
-                  <Map :fore-rerender="loading" :place="item.address"></Map>
-                </v-col>
-                <v-col v-else cols="12" class="pa-0 ma-0 align-start">
-                  <v-card>
-                    <v-card-actions
-                      class="gradient"
-                      :style="{ background: createBackgroundString }"
-                    >
-                    </v-card-actions>
-                  </v-card>
+                <v-col cols="12" class="map-content">
+                  <Map
+                    :fore-rerender="loading"
+                    :place="item.venue.address"
+                  ></Map>
                 </v-col>
               </v-row>
             </v-col>

@@ -19,7 +19,7 @@
                 label="Event type")
             v-col(cols="6")
               v-select(
-                v-model="locationType"
+                v-model="location_type"
                 :items="locationTypeItems"
                 outlined
                 label="Location type")
@@ -156,7 +156,7 @@ export default {
       time: null,
       modal2: false,
       dialog: false,
-      locationType: "On site",
+      location_type: "On site",
       locationTypeItems: ["Online", "On site"],
     };
   },
@@ -205,7 +205,7 @@ export default {
         schedule: this.schedule,
         date: this.date,
         time: this.time,
-        locationType: this.locationType,
+        location_type: this.location_type,
       });
 
       this.loading = false;
@@ -219,7 +219,7 @@ export default {
         schedule: this.schedule,
         date: this.date,
         time: this.time,
-        locationType: this.locationType,
+        location_type: this.location_type,
       });
     },
     reset() {
