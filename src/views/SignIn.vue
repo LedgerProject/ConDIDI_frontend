@@ -4,14 +4,6 @@
       <v-col md="4" class="d-none d-md-block text-center banner" dark>
         <v-row justify="center" align="end" class="fill-height">
           <v-col cols="12" class="text-start pl-12 pr-12 ml-12 pt-0 mt-0">
-            <v-btn text @click="$router.push('/')" class="pb-6 ml-0 pl-0">
-              <h3
-                class="text-h5 font-weight-bold text-lowercase"
-                :style="{ opacity: '0.6' }"
-              >
-                ConDIDI
-              </h3>
-            </v-btn>
             <h2 class="text-h4 font-weight-bold" :style="{ opacity: '0.6' }">
               Discover the world’s top Events.
             </h2>
@@ -104,7 +96,9 @@ export default {
       "<p>Signing in with your accoutn means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
   }),
   methods: {
-    ...mapActions("user", ["signIn"]),
+    ...mapActions({
+      signIn: "users/signIn",
+    }),
     async onSignIn() {
       this.loading = true;
       await this.signIn({ email: this.email, password: this.password });

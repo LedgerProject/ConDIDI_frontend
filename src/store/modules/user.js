@@ -55,7 +55,7 @@ const actions = {
     commit("setLoading", false);
   },
   // eslint-disable-next-line no-empty-pattern
-  signIn: async ({ commit }, payload) => {
+  signIn: async ({ commit, dispatch }, payload) => {
     commit("setLoading", true);
     const { data } = await axios.post("login_password", payload);
 
@@ -65,6 +65,7 @@ const actions = {
       axios.defaults.headers.common["Authorization"] = data.token;
       commit("setToken", data.token);
       commit("setStatus", "");
+      await dispatch("fetchUser");
       await router.push("/user");
     } else {
       commit("setStatus", "Error");
