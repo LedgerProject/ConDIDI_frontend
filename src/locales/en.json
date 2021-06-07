@@ -1,0 +1,66 @@
+{
+  "dialog": {
+    "close": "Close"
+  },
+  "event": {
+    "btnCreate": "Create Event",
+    "btnSkip": "Skip",
+    "btnNext": "Next",
+    "btnBack": "Back",
+    "creation": {
+      "step1": {
+        "stepperName": "Creation",
+        "title": "Create a new event",
+        "subtitle": "After the creation of the event you can invite participants via email.",
+        "create": "Create event",
+        "attributes": {
+          "name": "Name"
+        }
+      },
+      "step2": {
+        "stepperName": "Details",
+        "title": "Event Details",
+        "subtitle": "Add some event details, so that your participants stay up to date.",
+        "create": "Next",
+        "attributes": {
+          "subject": "Event description",
+          "schedule": "Event schedule",
+          "date": "Date the event will take place",
+          "registrationDeadline": "Registration deadline for the participants"
+        }
+      },
+      "step3": {
+        "stepperName": "Contact",
+        "title": "Contact Details",
+        "subtitle": "Let the participants get to know you. Link you website and social media. Let the participants learn more about the event and increase your engagement.",
+        "create": "Next",
+        "attributes": {
+          "url": "URL"
+        }
+      },
+      "step4": {
+        "stepperName": "Venue",
+        "title": "Where does the event take place?",
+        "subtitle": "Let the people now where the event will take place. This prevents your participants getting lost on the way.",
+        "subtitleOnline": "Let the people now where the event will take place. This prevents your participants joining last minute.",
+        "create": "Next",
+        "attributes": {
+          "place": "Venue location"
+        }
+      },
+      "step5": {
+        "stepperName": "Participation",
+        "title": "What are the participation requirements?",
+        "subtitle": "You can change these settings always in the configuration menu of the event.",
+        "create": "Create event",
+        "attributes": {
+          "email": "Email",
+          "attendanceConfirmation": "Request that the participants confirm their attendance to the event",
+          "registrationDeadline": "Registration deadline for the participants",
+          "timeRegistrationDeadline": "Registration deadline for the participants"
+        }
+      }
+    }
+  },
+  "test": "English"
+}

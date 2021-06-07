@@ -1,0 +1,57 @@
+<template>
+  <v-container fluid id="container" class="fill-height">
+    <v-row class="fill-height" justify="start" align="center">
+      <v-col cols="6">
+        <v-row>
+          <v-col cols="12">
+            <h1 class="text-h1 font-weight-black">
+              The future of event organization
+            </h1>
+          </v-col>
+          <v-col cols="12">
+            <h2 class="text-body-1 hero-subtitle">
+              Host your events and keep track of the participants. You data was
+              never this secure. Our blockchain technology guarantees the
+              validity of your data.
+            </h2>
+          </v-col>
+          <v-col cols="6" class="text-start">
+            <v-btn block color="secondary" x-large
+              ><strong>Let`s get started</strong></v-btn
+            >
+          </v-col>
+          <v-col cols="6" class="text-start">
+            <v-btn color="primary lighten-5" block x-large
+              ><strong>Watch video</strong></v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="6" class="text-left justify-start">
+        <v-img
+          src="/img/clip-1004.png"
+          layzy-src="/img/clip-1004.png"
+          alt="Man who flies into the sky with a jetpack"
+          contain
+        ></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
+<script>
+export default {
+  name: "HeroSection",
+};
+</script>
+
+<style scoped lang="scss">
+#container {
+  height: 100vh;
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+.hero-subtitle {
+  font-weight: 600;
+}
+</style>
