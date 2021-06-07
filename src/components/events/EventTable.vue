@@ -10,6 +10,7 @@
     :loading="loading"
     :loading-text="$t('event.list.loading')"
     :no-data-text="$t('event.list.noData')"
+    item-key="eventid"
     checkbox-color="primary"
     class="elevation-2"
   >

@@ -7,13 +7,14 @@
       :search="search"
       :sort-by="sortBy.toLowerCase()"
       :sort-desc="sortDesc"
+      item-key="eventid"
       hide-default-footer
     >
       <template v-slot:default="props">
         <v-row>
           <v-col
             v-for="item in props.items"
-            :key="item.name"
+            :key="item.eventid"
             cols="12"
             sm="6"
             md="4"
@@ -44,7 +45,7 @@
             <v-list>
               <v-list-item
                 v-for="(number, index) in itemsPerPageArray"
-                :key="index"
+                :key="`pagination-${index}`"
                 @click="updateItemsPerPage(number)"
               >
                 <v-list-item-title>{{ number }}</v-list-item-title>

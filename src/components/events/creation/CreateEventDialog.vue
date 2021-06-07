@@ -117,8 +117,6 @@ export default {
 
       this.editedItem = item;
 
-      console.log(this.editedItem)
-
       // Team creation is completed
       if (this.step > this.numSteps) {
         this.createEvent(this.editedItem);

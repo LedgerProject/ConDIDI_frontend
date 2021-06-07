@@ -1,6 +1,6 @@
 <template>
   <v-card
-    :to="`/user/events/${item.id}`"
+    :to="`/user/events/${item.eventid}`"
     height="100%"
     rounded
     min-height="400px"
@@ -55,7 +55,7 @@ export default {
     },
     gradient() {
       const item = this.getGradients.find((item) => {
-        return item.id == this.item.gradient;
+        return item.eventid == this.item.gradient;
       });
       return item ? item : this.getGradients[0];
     },
@@ -70,7 +70,6 @@ export default {
         : "No time specified";
     },
     computedDateFormattedDatefns() {
-      console.log(this.item.date)
       return this.item.date
         ? format(parseISO(this.item.date), "MMMM do yyyy")
         : "No date specified";

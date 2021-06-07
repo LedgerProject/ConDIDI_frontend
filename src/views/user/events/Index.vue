@@ -170,7 +170,6 @@ export default {
     ...mapActions("events", ["addEvent", "deleteEvent", "fetchEvents"]),
 
     fetchData() {
-      console.log('fetching data...')
       this.fetchEvents();
     },
 

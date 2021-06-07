@@ -143,7 +143,7 @@ export default {
   },
   mounted() {
     const item = this.getEvents.find((item) => {
-      return item.id.toString() === this.$router.currentRoute.params.id;
+      return item.eventid.toString() === this.$router.currentRoute.params.id;
     });
     this.item = item ? item : this.defaultItem;
     this.loading = true;

@@ -32,7 +32,12 @@ import EventDetailsMembers from "../../../components/events/details/EventDetails
 
 export default {
   name: "EventDetails",
-  components: { EventDetailsMembers, EventDetailsSettings, EventDetailsOverview, EventDetailsHeader },
+  components: {
+    EventDetailsMembers,
+    EventDetailsSettings,
+    EventDetailsOverview,
+    EventDetailsHeader,
+  },
   data() {
     return {
       tab: 0,
@@ -51,7 +56,7 @@ export default {
   },
   mounted() {
     const item = this.getEvents.find((item) => {
-      return item.id.toString() === this.$router.currentRoute.params.id;
+      return item.eventid.toString() === this.$router.currentRoute.params.id;
     });
     this.item = item ? item : this.defaultItem;
     this.loading = true;
