@@ -11,11 +11,20 @@
     @click="this.$scrollToTop"
   >
     <v-img
+      v-if="dark"
       alt="conDIDI Logo"
       class="shrink mt-1 hidden-sm-and-down"
       contain
       min-width="100"
-      src="/img/Logo.png"
+      src="/img/logo_white.png"
+    />
+    <v-img
+      v-else
+      alt="conDIDI Logo"
+      class="shrink mt-1 hidden-sm-and-down"
+      contain
+      min-width="100"
+      src="/img/logo_black.png"
     />
   </v-btn>
 </template>
@@ -23,6 +32,13 @@
 <script>
 export default {
   name: "Logo",
+  props: {
+    dark: {
+      required: false,
+      default: true,
+      type: Boolean,
+    },
+  },
 };
 </script>
 

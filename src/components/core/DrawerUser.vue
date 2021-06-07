@@ -2,11 +2,19 @@
   <v-navigation-drawer
     app
     :mini-variant="mini && !$vuetify.breakpoint.xs"
-    mini-variant-width="124"
+    mini-variant-width="156"
     class="text-end"
     floating
     v-model="drawer"
   >
+    <v-list>
+      <v-list-item>
+        <v-list-item-content>
+          <Logo :dark="false"></Logo>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+
     <v-list v-if="!$vuetify.breakpoint.xs">
       <v-list-item class="text-end justify-end">
         <v-list-item-icon @click="mini = !mini">
@@ -46,8 +54,10 @@
 </template>
 
 <script>
+import Logo from "./Logo";
 export default {
   name: "DrawerUser",
+  components: { Logo },
   data() {
     return {
       drawer: true,
