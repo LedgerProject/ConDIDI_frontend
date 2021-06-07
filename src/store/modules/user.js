@@ -48,7 +48,18 @@ const actions = {
     }
   },
   // eslint-disable-next-line no-empty-pattern
+  signUp: async ({ commit, dispatch }, payload) => {
+    const { data } = await axios.post("create_user", payload);
+
+    if (data.error) {
+      commit("setStatus", "Error");
+    } else {
+      dispatch("signIn", { email: payload.email, password: payload.password });
+    }
+  },
+  // eslint-disable-next-line no-empty-pattern
   signOut: async ({ commit }) => {
+    axios.post("logout");
     localStorage.removeItem("token");
     delete axios.defaults.headers.common["Authorization"];
     commit("signOut");

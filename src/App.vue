@@ -41,7 +41,7 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchUser;
+    await this.fetchUser();
   },
   created: function () {
     this.$http.interceptors.response.use(undefined, function (err) {

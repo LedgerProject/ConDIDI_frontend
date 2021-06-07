@@ -155,9 +155,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log('auth', store.getters.isSignedIn)
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (store.getters.isSignedIn) {
+    if (store.getters.isSignedIn || localStorage.getItem("token")) {
       next();
       return;
     }
