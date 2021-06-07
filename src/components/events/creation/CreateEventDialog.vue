@@ -95,7 +95,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["addEvent"]),
+    ...mapActions({
+      addEvent: "events/addEvent",
+    }),
     reset() {
       this.step = 1;
       this.name = "";

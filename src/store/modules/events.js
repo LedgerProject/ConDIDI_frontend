@@ -1,4 +1,4 @@
-import router from "../../router";
+// import router from "../../router";
 import { axios } from "../../plugins/axios";
 const state = {
   events: [],
@@ -62,19 +62,13 @@ const actions = {
     commit('setEvents', events);
     commit("setLoading", false);
   },
-  addEvent: async ({ state }, payload) => {
-    // TODO axios request
-    const event = {
-      ...payload,
-      id: state.nextId,
-      gradient: "gradient_01",
-    };
-    state.events.push(event);
+  // eslint-disable-next-line no-empty-pattern
+  addEvent: async ({}, payload) => {
+    const { data } = await axios.post("add_event", { eventdict: payload});
+    console.log('event', data);
+    // state.events.push(event);
 
-    // TODO remove this workaround when using axios
-    state.nextId = state.nextId + 1;
-
-    await router.push(`/user/events/${event.id}`);
+    // await router.push(`/user/events/${event.id}`);
   },
   deleteEvent: ({ state }, payload) => {
     const index = state.events.indexOf(payload);
