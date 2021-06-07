@@ -104,7 +104,7 @@ export default {
       "<p>Signing in with your accoutn means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
   }),
   methods: {
-    ...mapActions(["signIn"]),
+    ...mapActions("user", ["signIn"]),
     async onSignIn() {
       this.loading = true;
       await this.signIn({ email: this.email, password: this.password });

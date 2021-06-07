@@ -42,7 +42,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getEvents", "getEventTypes",]),
+    ...mapGetters("events", ["getEvents", "getEventTypes"]),
     eventType() {
       return this.getEventTypes.find((item) => {
         return item.name === this.item.type;

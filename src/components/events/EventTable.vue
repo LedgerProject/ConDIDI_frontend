@@ -7,6 +7,9 @@
     :sort-by="sortBy.toLowerCase()"
     :sort-desc="sortDesc"
     :page.sync="page"
+    :loading="loading"
+    :loading-text="$t('event.list.loading')"
+    :no-data-text="$t('event.list.noData')"
     checkbox-color="primary"
     class="elevation-2"
   >
@@ -99,6 +102,11 @@ export default {
       type: Number,
       required: true,
       default: 4,
+    },
+    loading: {
+      type: Boolean,
+      required: true,
+      default: true,
     },
   },
   computed: {

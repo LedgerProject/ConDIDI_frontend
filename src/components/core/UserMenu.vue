@@ -51,7 +51,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["signOut"]),
+    ...mapActions("user", ["signOut"]),
   },
 };
 </script>

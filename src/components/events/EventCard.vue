@@ -48,7 +48,8 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getGradients", "getEventTypes"]),
+    ...mapGetters("events", ["getEventTypes"]),
+    ...mapGetters("gradients", ["getGradients"]),
     createBackgroundString() {
       return `linear-gradient(${this.gradient.deg}, ${this.gradient.color1} ${this.gradient.percentage1}, ${this.gradient.color2} ${this.gradient.percentage2}, ${this.gradient.color3} ${this.gradient.percentage3})`;
     },

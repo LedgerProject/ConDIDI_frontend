@@ -1,4 +1,5 @@
 import router from "../../router";
+import { axios } from "../../plugins/axios";
 const state = {
   events: [
     {
@@ -111,6 +112,7 @@ const state = {
       color: "#632A50",
     },
   ],
+  loading: true,
   nextId: 1000,
 };
 
@@ -121,11 +123,24 @@ const getters = {
   getEventTypes: () => {
     return state.types;
   },
+  getLoading: () => {
+    return state.loading;
+  },
 };
 
-const mutations = {};
+const mutations = {
+  setLoading(state, payload) {
+    state.loading = payload;
+  },
+};
 
 const actions = {
+  fetchEvents: async ({ commit }) => {
+    commit("setLoading", true);
+    const { data } = await axios.post("list_my_events");
+    console.log('events', data)
+    commit("setLoading", false);
+  },
   addEvent: async ({ state }, payload) => {
     // TODO axios request
     const event = {
@@ -148,6 +163,8 @@ const actions = {
 };
 
 export default {
+  name: "events",
+  namespaced: true,
   state,
   getters,
   actions,

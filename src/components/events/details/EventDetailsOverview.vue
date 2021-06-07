@@ -97,7 +97,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getEvents", "getEventTypes", "getGradients"]),
+    ...mapGetters("events", ["getEvents", "getEventTypes"]),
+    ...mapGetters("gradients", ["getGradients"]),
     createBackgroundString() {
       return "orange";
       // return `linear-gradient(${this.gradient.deg}, ${this.gradient.color1} ${this.gradient.percentage1}, ${this.gradient.color2} ${this.gradient.percentage2}, ${this.gradient.color3} ${this.gradient.percentage3})`;

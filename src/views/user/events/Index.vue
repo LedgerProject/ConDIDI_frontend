@@ -87,6 +87,7 @@
           :sort-desc="sortDesc"
           :items-per-page-array="itemsPerPageArray"
           :keys="keys"
+          :loading="getLoading"
           @edit-item="editItem"
           @delete-item="deleteItem"
         ></EventTable>
@@ -159,9 +160,20 @@ export default {
     dialogDelete(val) {
       val || this.closeDelete();
     },
+    // call again the method if the route changes
+    $route: "fetchData",
+  },
+  created() {
+    this.fetchData();
   },
   methods: {
-    ...mapActions(["addEvent", "deleteEvent"]),
+    ...mapActions("events", ["addEvent", "deleteEvent", "fetchEvents"]),
+
+    fetchData() {
+      console.log('fetching data...')
+      this.fetchEvents();
+    },
+
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     },
@@ -199,7 +211,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getEvents"]),
+    ...mapGetters("events", ["getEvents", "getLoading"]),
     contentArea() {
       return this.$vuetify.breakpoint.mdAndUp ? "contentArea" : "";
     },

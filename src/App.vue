@@ -35,7 +35,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["fetchUser"]),
+    ...mapActions("user", ["fetchUser"]),
     openDrawer() {
       this.drawer = !this.drawer;
     },

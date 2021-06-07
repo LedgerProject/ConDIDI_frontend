@@ -68,6 +68,8 @@ const actions = {
 };
 
 export default {
+  name: "user",
+  namespaced: true,
   state,
   getters,
   actions,

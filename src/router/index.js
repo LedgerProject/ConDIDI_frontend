@@ -156,13 +156,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (store.getters.isSignedIn || localStorage.getItem("token")) {
+    if (store.getters["user/isSignedIn"] || localStorage.getItem("token")) {
       next();
       return;
     }
     next("/signIn");
   } else if (to.matched.some((record) => record.meta.guest)) {
-    if (store.getters.isSignedIn) {
+    if (store.getters["user/isSignedIn"]) {
       next("/user");
       return;
     }

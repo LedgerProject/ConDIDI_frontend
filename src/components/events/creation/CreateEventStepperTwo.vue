@@ -161,7 +161,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["getEventTypes"]),
+    ...mapGetters("events", ["getEventTypes"]),
     subjectErrors() {
       const errors = [];
       if (!this.$v.subject.$dirty) return errors;

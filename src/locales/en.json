@@ -60,6 +60,10 @@
           "timeRegistrationDeadline": "Registration deadline for the participants"
         }
       }
+    },
+    "list": {
+      "loading": "Loading your events ...",
+      "noData": "No events created yet"
     }
   },
   "test": "English"

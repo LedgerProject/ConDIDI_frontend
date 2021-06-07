@@ -40,6 +40,8 @@ const getters = {
 };
 
 export default {
+  name: "gradients",
+  namespaced: true,
   state,
   getters,
 };
