@@ -4,8 +4,14 @@
     :style="{ background: $vuetify.theme.themes[theme].background }"
   >
     <AppBarPublic v-if="$router.currentRoute.meta.guest"></AppBarPublic>
-    <AppBarUser v-if="!$router.currentRoute.meta.guest" @open-drawer="openDrawer"></AppBarUser>
-    <DrawerUser v-if="!$router.currentRoute.meta.guest" :force-open="drawer"></DrawerUser>
+    <AppBarUser
+      v-if="!$router.currentRoute.meta.guest"
+      @open-drawer="openDrawer"
+    ></AppBarUser>
+    <DrawerUser
+      v-if="!$router.currentRoute.meta.guest"
+      :force-open="drawer"
+    ></DrawerUser>
     <v-main transition="scroll-y-transition">
       <router-view></router-view>
     </v-main>
@@ -16,6 +22,7 @@
 import AppBarPublic from "./components/core/AppBarPublic";
 import AppBarUser from "./components/core/AppBarUser";
 import DrawerUser from "./components/core/DrawerUser";
+import { mapActions } from "vuex";
 export default {
   name: "App",
   components: { DrawerUser, AppBarUser, AppBarPublic },
@@ -28,9 +35,23 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["fetchUser"]),
     openDrawer() {
       this.drawer = !this.drawer;
     },
+  },
+  async mounted() {
+    await this.fetchUser;
+  },
+  created: function () {
+    this.$http.interceptors.response.use(undefined, function (err) {
+      return new Promise(() => {
+        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
+          this.$store.dispatch("logout");
+        }
+        throw err;
+      });
+    });
   },
 };
 </script>

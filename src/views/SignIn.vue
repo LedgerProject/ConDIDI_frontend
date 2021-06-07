@@ -43,7 +43,7 @@
               <p>You do not have an account? <a href="/signUp">Sign Up</a></p>
             </v-col>
             <v-col cols="12">
-              <v-form @submit="signIn">
+              <v-form @submit.prevent="onSignIn">
                 <v-container>
                   <v-row align="start" justify="center">
                     <v-col cols="12" class="test-start pb-12">
@@ -70,9 +70,6 @@
                         @click:append="showPassword = !showPassword"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" class="pt-0">
-                      <p v-html="termsAndConditionsLabel"></p>
-                    </v-col>
                     <v-col cols="12" class="text-start justify-start">
                       <v-btn
                         width="50%"
@@ -80,8 +77,7 @@
                         color="accent"
                         :block="$vuetify.breakpoint.mobile"
                         type="submit"
-                      >Create account</v-btn
-                      >
+                      >Sign in</v-btn>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -95,38 +91,24 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data: () => ({
+    loading: false,
     email: "",
     password: "",
     showPassword: false,
     termsAndConditionsAccepted: false,
     termsAndConditionsLabel:
-      "<p>Creating an account means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
+      "<p>Signing in with your accoutn means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
   }),
   methods: {
-    handleSubmit() {
-      this.$axios.post("/").then((response) => {
-        let is_admin = response.data.user.is_admin;
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("jwt", response.data.token);
-
-        if (localStorage.getItem("jwt") != null) {
-          this.$emit("loggedIn");
-          if (this.$route.params.nextUrl != null) {
-            this.$router.push(this.$route.params.nextUrl);
-          } else {
-            if (is_admin == 1) {
-              this.$router.push("admin");
-            } else {
-              this.$router.push("dashboard");
-            }
-          }
-        }
-      });
-    },
-    signIn() {
-      this.$router.push("/user");
+    ...mapActions(["signIn"]),
+    async onSignIn() {
+      this.loading = true;
+      await this.signIn({ email: this.email, password: this.password });
+      this.loading = false;
     },
   },
 };

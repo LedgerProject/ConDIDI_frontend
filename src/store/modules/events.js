@@ -123,6 +123,8 @@ const getters = {
   },
 };
 
+const mutations = {};
+
 const actions = {
   addEvent: async ({ state }, payload) => {
     // TODO axios request
@@ -144,8 +146,6 @@ const actions = {
     // TODO API call
   },
 };
-
-const mutations = {};
 
 export default {
   state,

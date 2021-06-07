@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import events from "./modules/events";
+import user from "./modules/user";
 import participants from "./modules/participants";
 import gradients from "./modules/gradients";
 
@@ -11,5 +12,5 @@ export default new Vuex.Store({
   state: {},
   mutations: {},
   actions: {},
-  modules: { events, gradients, participants },
+  modules: { user, events, gradients, participants },
 });

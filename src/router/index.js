@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store/index";
 
 import User from "../views/user/Index";
 import Events from "../views/user/events/Index";
@@ -109,26 +110,41 @@ const routes = [
     path: "/user",
     name: "Dashboard",
     component: User,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/user/events",
     name: "Events",
     component: Events,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/user/events/:id",
     name: "Events",
     component: EventDetails,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/user/settings",
     name: "Settings",
     component: Settings,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/user/profile",
     name: "Profile",
     component: Profile,
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 
@@ -139,30 +155,19 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  console.log('auth', store.getters.isSignedIn)
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (localStorage.getItem("jwt") == null) {
-      next({
-        path: "/login",
-        params: { nextUrl: to.fullPath },
-      });
-    } else {
-      let user = JSON.parse(localStorage.getItem("user"));
-      if (to.matched.some((record) => record.meta.is_admin)) {
-        if (user.is_admin == 1) {
-          next();
-        } else {
-          next({ name: "userboard" });
-        }
-      } else {
-        next();
-      }
-    }
-  } else if (to.matched.some((record) => record.meta.guest)) {
-    if (localStorage.getItem("jwt") == null) {
+    if (store.getters.isSignedIn) {
       next();
-    } else {
-      next({ name: "userboard" });
+      return;
     }
+    next("/signIn");
+  } else if (to.matched.some((record) => record.meta.guest)) {
+    if (store.getters.isSignedIn) {
+      next("/user");
+      return;
+    }
+    next();
   } else {
     next();
   }

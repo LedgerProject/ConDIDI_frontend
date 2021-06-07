@@ -4,7 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import i18n from "./plugins/i18n";
-import axios from "axios";
+import { axios } from "./plugins/axios";
 import { getDateFormatted } from "./plugins/dateHelper";
 
 Vue.config.productionTip = false;
@@ -21,7 +21,7 @@ if ("serviceWorker" in navigator) {
 Vue.prototype.$scrollToTop = () =>
   window.scrollTo({ top: 0, right: 0, behavior: "smooth" });
 
-Vue.prototype.$axios = axios;
+Vue.prototype.$http = axios;
 
 Vue.mixin({
   methods: {
@@ -34,5 +34,6 @@ new Vue({
   store,
   vuetify,
   i18n,
+  axios,
   render: (h) => h(App),
 }).$mount("#app");
