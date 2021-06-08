@@ -8,7 +8,7 @@
               h4(class="text-h5 text-center") {{ this.$t("event.creation.step2.title") }}
             v-col(cols="12" class="pt-0 pb-0")
               p {{ this.$t("event.creation.step2.subtitle") }}
-            v-col(cols="6")
+            v-col(cols="12" md="6")
               v-select(
                 v-model="type"
                 :items="getEventTypes"
@@ -17,13 +17,13 @@
                 return-object
                 outlined
                 label="Event type")
-            v-col(cols="6")
+            v-col(cols="12" md="6")
               v-select(
                 v-model="location_type"
                 :items="locationTypeItems"
                 outlined
                 label="Location type")
-            v-col(cols="6")
+            v-col(cols="12" md="6")
               v-dialog(
                 v-model="menuDate"
                 max-width="290"
@@ -45,7 +45,7 @@
                   v-model="date"
                   :locale="$i18n.locale"
                   @change="menuDate = false")
-            v-col(cols="6")
+            v-col(cols="12" md="6")
               v-dialog(
                 ref="dialog"
                 v-model="modal2"

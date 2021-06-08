@@ -8,21 +8,21 @@
               h4(class="text-h5 text-center") {{ this.$t("event.creation.step3.title") }}
             v-col(cols="12" class="pt-0 pb-0 text-center")
               p {{ this.$t("event.creation.step3.subtitle") }}
-            v-col(cols="3" class="text-start mb-0")
+            v-col(cols="12" md="3" class="text-start mb-0 pb-0")
               p(class="font-weight-bold subtitle-1") Website
-            v-col(cols="9" class="text-start")
+            v-col(cols="12" md="9" class="text-start pt-0 mt-0")
               v-text-field(v-model="socialMedia.website" :label="$t('event.creation.step3.attributes.url')" outlined class="pb-0")
-            v-col(cols="3" class="text-start mb-0")
+            v-col(cols="12" md="3" class="text-start mb-0 pb-0")
               p(class="font-weight-bold subtitle-1") Twitter
-            v-col(cols="9" class="text-start")
+            v-col(cols="12" md="9" class="text-start pt-0 mt-0")
               v-text-field(v-model="socialMedia.twitter" :label="$t('event.creation.step3.attributes.url')" outlined class="pb-0")
-            v-col(cols="3" class="text-start mb-0")
+            v-col(cols="12" md="3" class="text-start mb-0 pb-0")
               p(class="font-weight-bold subtitle-1") LinkedIn
-            v-col(cols="9" class="text-start")
+            v-col(cols="12" md="9" class="text-start pt-0 mt-0")
               v-text-field(v-model="socialMedia.linkedIn" :label="$t('event.creation.step3.attributes.url')" outlined class="pb-0")
-            v-col(cols="3" class="text-start mb-0")
+            v-col(cols="12" md="3" class="text-start mb-0 pb-0")
               p(class="font-weight-bold subtitle-1") Xing
-            v-col(cols="9" class="text-start")
+            v-col(cols="12" md="9" class="text-start pt-0 mt-0")
               v-text-field(v-model="socialMedia.xing" :label="$t('event.creation.step3.attributes.url')" outlined class="pb-0")
             v-col(cols="6" class="pt-0 mt-0 text-start")
               v-btn(@click="onPreviousStep" text color="primary") {{ this.$t('event.btnBack') }}

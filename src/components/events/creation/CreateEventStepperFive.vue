@@ -8,7 +8,7 @@
               h4(class="text-h5 text-center") {{ this.$t("event.creation.step5.title") }}
             v-col(cols="12" class="pt-0 pb-0 text-center")
               p {{ this.$t("event.creation.step5.subtitle") }}
-            v-col(cols="6" class="pb-0")
+            v-col(cols="12" md="6" class="pb-0")
               v-dialog(
                 v-model="menuRegistrationDeadline"
                 max-width="290"
@@ -30,7 +30,7 @@
                   v-model="registration_deadline"
                   :locale="$i18n.locale"
                   @change="menuRegistrationDeadline = false")
-            v-col(cols="6" class="pb-0")
+            v-col(cols="12" md="6" class="pb-0")
               v-dialog(
                 ref="dialog"
                 v-model="modal2"
