@@ -1,10 +1,10 @@
 <template>
-  <v-container fluid id="container" class="fill-height">
+  <v-container fluid :id="$vuetify.breakpoint.smAndDown ? 'container-mobile' : 'container'">
     <v-row class="fill-height" justify="start" align="center">
-      <v-col cols="6">
+      <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12">
-            <h1 class="text-h1 font-weight-black">
+            <h1 class="text-h3 text-md-h2 text-lg-h1 font-weight-black">
               The future of event organization
             </h1>
           </v-col>
@@ -15,19 +15,19 @@
               validity of your data.
             </h2>
           </v-col>
-          <v-col cols="6" class="text-start">
+          <v-col cols="12" md="6" class="text-start">
             <v-btn block color="secondary" x-large
               ><strong>Let`s get started</strong></v-btn
             >
           </v-col>
-          <v-col cols="6" class="text-start">
+          <v-col cols="12" md="6" class="text-start">
             <v-btn color="primary lighten-5" block x-large
               ><strong>Watch video</strong></v-btn
             >
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="6" class="text-left justify-start">
+      <v-col cols="12" md="6" class="d-none d-md-block text-left justify-start">
         <v-img
           src="/img/clip-1004.png"
           layzy-src="/img/clip-1004.png"
@@ -51,6 +51,12 @@ export default {
   padding-left: 8rem;
   padding-right: 8rem;
 }
+#container-mobile {
+  height: 100vh;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .hero-subtitle {
   font-weight: 600;
 }
