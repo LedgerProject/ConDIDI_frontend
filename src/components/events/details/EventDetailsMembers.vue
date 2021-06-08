@@ -70,11 +70,17 @@
                   </v-card-actions>
                 </v-card>
               </v-dialog>
-              <v-dialog v-model="dialogDelete" max-width="500px">
+              <v-dialog v-model="dialogDelete" max-width="800px">
                 <v-card>
                   <v-card-title class="text-h5"
-                    >Are you sure you want to delete this item?</v-card-title
+                    >Remove participant from event?</v-card-title
                   >
+                  <v-card-text>
+                    Participant has the following email: <strong> {{ editedItem.email }}</strong>
+                    <br>
+                    This action can not be undone.
+                    <br>
+                  </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="blue darken-1" text @click="closeDelete"
@@ -90,10 +96,19 @@
             </v-toolbar>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
-            <v-icon small class="mr-2" @click="editItem(item)">
-              mdi-pencil
-            </v-icon>
-            <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon
+                  v-bind="attrs"
+                  v-on="on"
+                  small
+                  @click="deleteItem(item)"
+                >
+                  mdi-delete
+                </v-icon>
+              </template>
+              <span>Remove participant from event</span>
+            </v-tooltip>
           </template>
           <!--          <template v-slot:no-data>-->
           <!--            <v-btn color="primary" @click="initialize"> Reset </v-btn>-->
@@ -122,7 +137,7 @@ export default {
       { text: "First name", value: "firstName" },
       { text: "Last name", value: "lastName" },
       { text: "Accepted", value: "accepted" },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: "Actions", value: "actions", sortable: false, align: "center" },
     ],
     editedIndex: -1,
     editedItem: {
@@ -183,7 +198,10 @@ export default {
     },
 
     async deleteItemConfirm() {
-      await this.removeParticipant({ participant: this.editedItem, eventid: this.id });
+      await this.removeParticipant({
+        participant: this.editedItem,
+        eventid: this.id,
+      });
       this.closeDelete();
     },
 
