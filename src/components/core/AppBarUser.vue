@@ -1,12 +1,17 @@
 <template>
-  <v-app-bar app :color="$vuetify.breakpoint.mobile ? 'white' : 'transparent'" flat :hide-on-scroll="!$vuetify.breakpoint.mobile">
+  <v-app-bar
+    app
+    :color="$vuetify.breakpoint.mobile ? 'white' : 'transparent'"
+    flat
+    :hide-on-scroll="!$vuetify.breakpoint.mobile"
+  >
     <v-app-bar-nav-icon
       v-if="$vuetify.breakpoint.mobile"
       @click="$emit('open-drawer')"
     ></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
     <v-list color="transparent">
-      <v-list-item v-if="!$vuetify.breakpoint.xs"  color="transparent">
+      <v-list-item v-if="!$vuetify.breakpoint.xs" color="transparent">
         <UserMenu></UserMenu>
       </v-list-item>
       <v-list-item v-else two-line to="/user/settings">
