@@ -13,6 +13,9 @@ const getters = {
   isSignedIn: (state) => !!state.token,
   getStatus: () => state.status,
   getLoading: () => state.loading,
+  getInitials: (state) => {
+    return state.user ? state.user.name.charAt(0) : "";
+  },
 };
 
 const mutations = {
