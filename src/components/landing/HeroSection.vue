@@ -29,7 +29,7 @@
       </v-col>
       <v-col cols="12" md="6" class="d-none d-md-block text-left justify-start">
         <v-img
-          src="/img/clip-1004.png"
+          src="img/clip-1004.png"
           layzy-src="/img/clip-1004.png"
           alt="Man who flies into the sky with a jetpack"
           contain

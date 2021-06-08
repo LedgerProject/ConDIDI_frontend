@@ -16,7 +16,7 @@
       class="shrink mt-1"
       contain
       min-width="100"
-      src="/img/logo_white.png"
+      src="img/logo_white.png"
     />
     <v-img
       v-else
@@ -24,7 +24,7 @@
       class="shrink mt-1"
       contain
       min-width="100"
-      src="/img/logo_black.png"
+      src="img/logo_black.png"
     />
   </v-btn>
 </template>
