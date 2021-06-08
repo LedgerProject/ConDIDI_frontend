@@ -1,4 +1,4 @@
-// import router from "../../router";
+import router from "../../router";
 import { axios } from "../../plugins/axios";
 const state = {
   events: [],
@@ -30,6 +30,7 @@ const state = {
     },
   ],
   loading: true,
+  status: "",
   nextId: 1000,
 };
 
@@ -52,6 +53,12 @@ const mutations = {
   setEvents(state, payload) {
     state.events = payload;
   },
+  pushEvent(state, event) {
+    state.events.push(event);
+  },
+  setStatus(state, payload) {
+    state.status = payload;
+  },
 };
 
 const actions = {
@@ -59,16 +66,23 @@ const actions = {
     commit("setLoading", true);
     const { data } = await axios.post("list_my_events");
     const events = data.eventlist ? data.eventlist : [];
-    commit('setEvents', events);
+    commit("setEvents", events);
     commit("setLoading", false);
   },
   // eslint-disable-next-line no-empty-pattern
-  addEvent: async ({}, payload) => {
-    const { data } = await axios.post("add_event", { eventdict: payload});
-    console.log('event', data);
-    // state.events.push(event);
+  addEvent: async ({ commit }, payload) => {
+    const { data } = await axios.post("add_event", { eventdict: payload });
 
-    // await router.push(`/user/events/${event.id}`);
+    // Error, failed request
+    if (data.error) {
+      commit("setStatus", data.error);
+      return;
+    }
+
+    // Success
+    const event = data.eventdict;
+    await commit("pushEvent", event);
+    await router.push(`/user/events/${event.eventid}`);
   },
   deleteEvent: ({ state }, payload) => {
     const index = state.events.indexOf(payload);

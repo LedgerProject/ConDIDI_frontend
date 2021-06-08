@@ -1,79 +1,62 @@
+import { axios } from "../../plugins/axios";
+
 const state = {
-  participants: [
-    {
-      id: "p01",
-      email: "test@test.de",
-      firstName: "Emanuel",
-      lastName: "Günther",
-      accepted: false,
-    },
-    {
-      id: "p02",
-      email: "coffee@coffee.de",
-      firstName: "Espresso",
-      lastName: "Mountain",
-      accepted: false,
-    },
-    {
-      id: "p03",
-      email: "condidi@condidi.de",
-      firstName: "Con",
-      lastName: "DIDi",
-      accepted: true,
-    },
-    {
-      id: "p04",
-      email: "tea@tea.de",
-      firstName: "Green",
-      lastName: "Grey",
-      accepted: false,
-    },
-    {
-      id: "p05",
-      email: "water@water.de",
-      firstName: "Water",
-      lastName: "Flow",
-      accepted: true,
-    },
-    {
-      id: "p06",
-      email: "sun@sun.de",
-      firstName: "Sun",
-      lastName: "Bright",
-      accepted: false,
-    },
-  ],
+  participants: [],
   nextId: 1000,
+  loading: true,
 };
 
 const getters = {
   getParticipants: () => {
     return state.participants;
   },
+  getLoading: () => state.loading,
+};
+
+const mutations = {
+  setLoading(state, payload) {
+    state.loading = payload;
+  },
+  setParticipants(state, payload) {
+    state.participants = payload;
+  },
+  pushParticipant(state, participant) {
+    state.participants.push(participant);
+  },
 };
 
 const actions = {
-  addEvent: async ({ state }, payload) => {
-    // TODO axios request
-    const participant = {
-      ...payload,
-      id: state.nextId,
-    };
-    state.participants.push(participant);
-
-    // TODO remove this workaround when using axios
-    state.nextId = state.nextId + 1;
+  fetch: async ({ commit }, id) => {
+    commit("setLoading", true);
+    const { data } = await axios.post("list_participants", { eventid: id });
+    const participants = data.participants ? data.participants : [];
+    commit("setParticipants", participants);
+    commit("setLoading", false);
   },
-  deleteEvent: ({ state }, payload) => {
+  // eslint-disable-next-line no-empty-pattern
+  addParticipant: async ({ commit }, payload) => {
+    const { data } = await axios.post("add_participant", { participantdict: payload.participant, eventid: payload.eventid });
+
+    // Error, failed request
+    if (data.error) {
+      commit("setStatus", data.error);
+      return;
+    }
+
+    // Success
+    const participant = data.participantdict;
+    await commit("pushParticipant", participant);
+  },
+  deleteParticipant: ({ state }, payload) => {
     const index = state.events.indexOf(payload);
     state.participants.splice(index, 1);
     // TODO API call
   },
 };
 
-const mutations = {};
-
 export default {
+  name: "participants",
+  namespaced: true,
   state,
   getters,
   actions,

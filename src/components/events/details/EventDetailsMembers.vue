@@ -7,9 +7,11 @@
       <v-col cols="12">
         <v-data-table
           :headers="headers"
-          :items="getParticipants"
+          :items="participants"
           sort-by="calories"
           class="elevation-1"
+          loading-text="Loading participants"
+          :loading="loading"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -77,10 +79,7 @@
                     <v-btn color="blue darken-1" text @click="closeDelete"
                       >Cancel</v-btn
                     >
-                    <v-btn
-                      color="blue darken-1"
-                      text
-                      @click="deleteItemConfirm"
+                    <v-btn color="blue darken-1" text @click="deleteItemConfirm"
                       >OK</v-btn
                     >
                     <v-spacer></v-spacer>
@@ -95,9 +94,9 @@
             </v-icon>
             <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
           </template>
-          <template v-slot:no-data>
-            <v-btn color="primary" @click="initialize"> Reset </v-btn>
-          </template>
+          <!--          <template v-slot:no-data>-->
+          <!--            <v-btn color="primary" @click="initialize"> Reset </v-btn>-->
+          <!--          </template>-->
         </v-data-table>
       </v-col>
     </v-row>
@@ -105,13 +104,14 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "EventDetailsMembers",
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    id: "",
     headers: [
       {
         text: "Email",
@@ -138,7 +138,10 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["getParticipants"]),
+    ...mapGetters({
+      participants: "participants/getParticipants",
+      loading: "participants/getLoading",
+    }),
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
     },
@@ -151,9 +154,19 @@ export default {
     dialogDelete(val) {
       val || this.closeDelete();
     },
+    $route: "fetchData",
+  },
+
+  mounted() {
+    this.id = this.$router.currentRoute.params.id;
+    this.fetchData(this.id);
   },
 
   methods: {
+    ...mapActions({
+      fetchData: "participants/fetch",
+      addParticipant: "participants/addParticipant",
+    }),
     editItem(item) {
       this.editedIndex = this.participants.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -189,9 +202,12 @@ export default {
 
     save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.participants[this.editedIndex], this.editedItem);
+        // Object.assign(this.participants[this.editedIndex], this.editedItem);
+        console.log("edit");
       } else {
-        this.participants.push(this.editedItem);
+        // this.participants.push(this.editedItem);
+        console.log("add");
+        this.addParticipant({ eventid: this.id, participant: this.editedItem });
       }
       this.close();
     },
