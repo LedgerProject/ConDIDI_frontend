@@ -23,6 +23,10 @@ const mutations = {
   pushParticipant(state, participant) {
     state.participants.push(participant);
   },
+  removeParticipant(state, participant) {
+    const index = state.participants.indexOf(participant);
+    state.participants.splice(index, 1);
+  },
 };
 
 const actions = {
@@ -47,10 +51,17 @@ const actions = {
     const participant = data.participantdict;
     await commit("pushParticipant", participant);
   },
-  deleteParticipant: ({ state }, payload) => {
-    const index = state.events.indexOf(payload);
-    state.participants.splice(index, 1);
-    // TODO API call
+  deleteParticipant: async ({ commit }, payload) => {
+    const { data } = await axios.post("remove_participant", { participantid: payload.participant.participantid, eventid: payload.eventid });
+
+
+    // Error, failed request
+    if (data.error) {
+      commit("setStatus", data.error);
+      return;
+    }
+
+    commit("removeParticipant", payload.participant);
   },
 };
 

@@ -12,6 +12,7 @@
           class="elevation-1"
           loading-text="Loading participants"
           :loading="loading"
+          item-key="participantid"
         >
           <template v-slot:top>
             <v-toolbar flat>
@@ -121,6 +122,7 @@ export default {
       { text: "First name", value: "firstName" },
       { text: "Last name", value: "lastName" },
       { text: "Accepted", value: "accepted" },
+      { text: 'Actions', value: 'actions', sortable: false },
     ],
     editedIndex: -1,
     editedItem: {
@@ -166,6 +168,7 @@ export default {
     ...mapActions({
       fetchData: "participants/fetch",
       addParticipant: "participants/addParticipant",
+      removeParticipant: "participants/deleteParticipant",
     }),
     editItem(item) {
       this.editedIndex = this.participants.indexOf(item);
@@ -179,8 +182,8 @@ export default {
       this.dialogDelete = true;
     },
 
-    deleteItemConfirm() {
-      this.participants.splice(this.editedIndex, 1);
+    async deleteItemConfirm() {
+      await this.removeParticipant({ participant: this.editedItem, eventid: this.id });
       this.closeDelete();
     },
 
