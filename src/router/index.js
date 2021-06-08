@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: () => import("../views/Home.vue"),
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     meta: {
       guest: true,
     },
@@ -23,7 +23,7 @@ const routes = [
     path: "/signIn",
     name: "Sign In",
     component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/SignIn.vue"),
+      import(/* webpackChunkName: "signIn" */ "../views/SignIn.vue"),
     meta: {
       guest: true,
     },
@@ -32,7 +32,7 @@ const routes = [
     path: "/signUp",
     name: "Sign Up",
     component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/SignUp.vue"),
+      import(/* webpackChunkName: "signUp" */ "../views/SignUp.vue"),
     meta: {
       guest: true,
     },
@@ -58,8 +58,7 @@ const routes = [
   {
     path: "/help",
     name: "Help",
-    component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/Help.vue"),
+    component: () => import(/* webpackChunkName: "help" */ "../views/Help.vue"),
     meta: {
       guest: true,
     },
