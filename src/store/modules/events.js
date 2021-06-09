@@ -29,6 +29,15 @@ const state = {
       color: "#632A50",
     },
   ],
+  colors: [
+    "blue",
+    "indigo",
+    "deep-purple",
+    "cyan",
+    "green",
+    "orange",
+    "grey darken-1",
+  ],
   loading: true,
   status: "",
   nextId: 1000,
@@ -74,7 +83,11 @@ const actions = {
     commit("setLoading", false);
   },
   // eslint-disable-next-line no-empty-pattern
-  addEvent: async ({ commit }, payload) => {
+  addEvent: async ({ commit, state }, payload) => {
+    // TODO extract this to helper and create color attribute instead of using img field
+    const randomNumber = Math.floor(Math.random() * state.colors.length);
+    payload.url = state.colors[randomNumber];
+
     const { data } = await axios.post("add_event", { eventdict: payload });
 
     // Error, failed request
