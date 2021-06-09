@@ -8,13 +8,13 @@
     hover
   >
     <v-card-actions v-if="eventType">
-      <v-chip color="orange" pill> {{ eventType.name }}</v-chip>
+      <v-chip color="blue darken-2" pill dark> {{ eventType.name }}</v-chip>
     </v-card-actions>
     <v-card-title class="text-h5 font-weight-bold">
       {{ item.name }}
     </v-card-title>
     <v-card-text class="align-start text-start">
-      {{ item.subject }}
+      {{ subjectSpliced }}
     </v-card-text>
     <v-card-text>
       <v-row>
@@ -26,10 +26,21 @@
           <v-icon>mdi-clock</v-icon>
           {{ timeFormatted }}
         </v-col>
+
+        <v-col v-if="onlineEvent" cols="6">
+          <v-icon>mdi-web</v-icon>
+          {{ loginUrlFormatted }}
+        </v-col>
+        <v-col v-if="onlineEvent" cols="6">
+          <v-icon>mdi-lock</v-icon>
+          {{ loginPasswordFormatted }}
+        </v-col>
       </v-row>
     </v-card-text>
     <v-card-actions class="card-actions">
-      <v-btn text>Learn more <v-icon color="accent">mdi-chevron-right</v-icon></v-btn>
+      <v-btn text
+        >Learn more <v-icon color="accent">mdi-chevron-right</v-icon></v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
@@ -74,10 +85,49 @@ export default {
         ? format(parseISO(this.item.date), "MMMM do yyyy")
         : "No date specified";
     },
+    subjectSpliced() {
+      let subject = this.item.subject;
+      const maxSpliceLength = 200;
+      return subject
+        ? subject.substring(0, Math.min(maxSpliceLength, subject.length))
+        : "";
+    },
+    onlineEvent() {
+      return (
+        this.item.venue &&
+        this.item.venue.location_type &&
+        this.item.venue.location_type.toLowerCase() === "online"
+      );
+    },
+    loginUrlFormatted() {
+      if (
+        this.item.venue &&
+        this.item.venue.login &&
+        this.item.venue.login.url
+      ) {
+        return this.item.venue.login.url;
+      }
+
+      return "No URL specified";
+    },
+    loginPasswordFormatted() {
+      if (
+        this.item.venue &&
+        this.item.venue.login &&
+        this.item.venue.login.password
+      ) {
+        return this.item.venue.login.password;
+      }
+
+      if (this.item.venue.login && this.item.venue.login.url) {
+        return "Not required";
+      }
+
+      return "No password specified";
+    },
   },
 };
 </script>
-
 
 <style scoped>
 .card-outter {
