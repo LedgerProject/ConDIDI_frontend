@@ -122,7 +122,7 @@ export default {
       events: [],
       search: "",
       sortBy: "Name",
-      keys: ["Name", "Subject", "Type", "Registration_Deadline", "Date"],
+      keys: ["Name", "Type", "Registration_Deadline", "Date"],
       sortDesc: false,
       itemsPerPageArray: [4, 8, 12],
       itemsPerPage: 8,

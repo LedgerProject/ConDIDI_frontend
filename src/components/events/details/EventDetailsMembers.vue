@@ -43,14 +43,14 @@
                       <v-row>
                         <v-col cols="12">
                           <v-text-field
-                            v-model="editedItem.firstName"
+                            v-model="editedItem.first_name"
                             label="First name"
                             autofocus
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
                           <v-text-field
-                            v-model="editedItem.lastName"
+                            v-model="editedItem.last_name"
                             label="Last name"
                           ></v-text-field>
                         </v-col>
@@ -204,21 +204,24 @@ export default {
         align: "start",
         value: "email",
       },
-      { text: "First name", value: "firstName" },
-      { text: "Last name", value: "lastName" },
-      { text: "Accepted", value: "accepted" },
+      { text: "First name", value: "first_name" },
+      { text: "Last name", value: "last_name" },
+      { text: "Ticket issued", value: "ticket_issued" },
+      { text: "Payment status", value: "payment_status" },
+      { text: "Participation", value: "participation" },
+      { text: "Attendance status", value: "attendence_status" },
       { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
     editedItem: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       verified: false,
     },
     defaultItem: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       verified: false,
     },
