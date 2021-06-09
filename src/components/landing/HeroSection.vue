@@ -16,13 +16,13 @@
             </h2>
           </v-col>
           <v-col cols="12" md="6" class="text-start">
-            <v-btn block color="secondary" x-large
+            <v-btn block color="secondary" x-large to="signUp"
               ><strong>Let`s get started</strong></v-btn
             >
           </v-col>
           <v-col cols="12" md="6" class="text-start">
-            <v-btn color="primary lighten-5" block x-large
-              ><strong>Watch video</strong></v-btn
+            <v-btn color="primary lighten-5" block x-large to="about"
+              ><strong>Learn more</strong></v-btn
             >
           </v-col>
         </v-row>
