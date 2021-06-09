@@ -70,27 +70,34 @@
                   </v-card-actions>
                 </v-card>
               </v-dialog>
-              <v-dialog v-model="dialogDelete" max-width="800px">
+              <v-dialog v-model="dialogConfirmParticipation" max-width="800px">
                 <v-card>
                   <v-card-title class="text-h5"
-                    >Remove participant from event?</v-card-title
-                  >
+                    >Confirm participation?
+                    <v-spacer></v-spacer>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          v-bind="attrs"
+                          v-on="on"
+                          icon
+                          @click="closeParticipationConfirmation"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </template>
+                      <span>Close</span>
+                    </v-tooltip>
+                  </v-card-title>
                   <v-card-text>
-                    Participant has the following email: <strong> {{ editedItem.email }}</strong>
-                    <br>
+                    Participant has the following email:
+                    <strong> {{ editedItem.email }}</strong>
+                    <br />
                     This action can not be undone.
-                    <br>
+                    <br />
                   </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closeDelete"
-                      >Cancel</v-btn
-                    >
-                    <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                      >OK</v-btn
-                    >
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
+                  <v-card-text>
+                    <QRCode :data="editedItem.email"></QRCode>
+                  </v-card-text>
                 </v-card>
               </v-dialog>
             </v-toolbar>
@@ -109,6 +116,20 @@
               </template>
               <span>Remove participant from event</span>
             </v-tooltip>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-icon
+                  v-bind="attrs"
+                  v-on="on"
+                  small
+                  @click="confirmParticipation(item)"
+                  class="ml-4"
+                >
+                  mdi-pencil
+                </v-icon>
+              </template>
+              <span>Confirm the attendance of the participant</span>
+            </v-tooltip>
           </template>
           <!--          <template v-slot:no-data>-->
           <!--            <v-btn color="primary" @click="initialize"> Reset </v-btn>-->
@@ -121,12 +142,15 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import QRCode from "../../qrcode/QRCode";
 
 export default {
   name: "EventDetailsMembers",
+  components: { QRCode },
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    dialogConfirmParticipation: false,
     id: "",
     headers: [
       {
@@ -137,7 +161,7 @@ export default {
       { text: "First name", value: "firstName" },
       { text: "Last name", value: "lastName" },
       { text: "Accepted", value: "accepted" },
-      { text: "Actions", value: "actions", sortable: false, align: "center" },
+      { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
     editedItem: {
@@ -152,6 +176,7 @@ export default {
       email: "",
       verified: false,
     },
+    qrCodeData: "",
   }),
 
   computed: {
@@ -184,6 +209,7 @@ export default {
       fetchData: "participants/fetch",
       addParticipant: "participants/addParticipant",
       removeParticipant: "participants/deleteParticipant",
+      createQRCodeForParticipant: "participants/createQRCodeForParticipant",
     }),
     editItem(item) {
       this.editedIndex = this.participants.indexOf(item);
@@ -195,6 +221,15 @@ export default {
       this.editedIndex = this.participants.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
+    },
+
+    async confirmParticipation(item) {
+      this.editedItem = Object.assign({}, item);
+      this.qrCodeData = await this.createQRCodeForParticipant({
+        participant: this.editedItem,
+        eventid: this.id,
+      });
+      this.dialogConfirmParticipation = true;
     },
 
     async deleteItemConfirm() {
@@ -215,6 +250,14 @@ export default {
 
     closeDelete() {
       this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
+    },
+
+    closeParticipationConfirmation() {
+      this.dialogConfirmParticipation = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;

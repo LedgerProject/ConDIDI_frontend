@@ -23,7 +23,8 @@
     "date-fns": "^2.22.1",
     "places.js": "^1.19.0",
     "leaflet": "^1.7.1",
-    "vue2-leaflet": "^2.7.0"
+    "vue2-leaflet": "^2.7.0",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.13",

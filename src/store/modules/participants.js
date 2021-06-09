@@ -54,7 +54,6 @@ const actions = {
   deleteParticipant: async ({ commit }, payload) => {
     const { data } = await axios.post("remove_participant", { participantid: payload.participant.participantid, eventid: payload.eventid });
 
-
     // Error, failed request
     if (data.error) {
       commit("setStatus", data.error);
@@ -62,6 +61,17 @@ const actions = {
     }
 
     commit("removeParticipant", payload.participant);
+  },
+  createQRCodeForParticipant: async ({ commit }, payload) => {
+    const { data } = await axios.post("remove_participant", { participantid: payload.participant.participantid, eventid: payload.eventid });
+
+    // Error, failed request
+    if (data.error) {
+      commit("setStatus", data.error);
+      return;
+    }
+
+    console.log(data);
   },
 };
 
