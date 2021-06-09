@@ -39,7 +39,7 @@
                   </v-card>
                 </v-col>
                 <v-col cols="12">
-                  <h3 class="text-h4 pb-0">What you'll learn</h3>
+                  <h3 class="text-h4 pb-0">Event description</h3>
                 </v-col>
                 <v-col cols="12" class="pt-0">
                   <p class="subtitle-1 font-weight-light">{{ item.subject }}</p>
