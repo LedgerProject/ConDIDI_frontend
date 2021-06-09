@@ -7,7 +7,7 @@
     class="text-left justify-left linkAsText"
     mb-0
     pb-0
-    to="/"
+    :to="signedIn ? '/user' : '/'"
     @click="this.$scrollToTop"
   >
     <v-img
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "Logo",
   props: {
@@ -38,6 +40,11 @@ export default {
       default: true,
       type: Boolean,
     },
+  },
+  computed: {
+    ...mapGetters({
+      signedIn: "users/isSignedIn",
+    }),
   },
 };
 </script>

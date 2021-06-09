@@ -9,7 +9,7 @@
           Heres what`s happend in your events today.
         </p>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12" md="6">
         <v-card flat color="transparent" class="mt-4">
           <v-card-title>Today's events</v-card-title>
           <v-card-actions v-if="eventsOfToday && eventsOfToday.length >= 1">
@@ -19,7 +19,12 @@
                 v-for="event in eventsOfToday"
                 :key="event.eventid"
               >
-                <v-card width="100%" color="primary" dark :to="`user/events/${event.eventid}`">
+                <v-card
+                  width="100%"
+                  color="primary"
+                  dark
+                  :to="`user/events/${event.eventid}`"
+                >
                   <v-card-title>
                     {{ event.name }}
                     <v-spacer></v-spacer>
@@ -33,13 +38,15 @@
           <v-card-actions v-else>
             <v-row>
               <v-col cols="12">
-                <p class="text-subtitle-1 pl-3">You have no events for today ...</p>
+                <p class="text-subtitle-1 pl-3">
+                  You have no events for today ...
+                </p>
               </v-col>
             </v-row>
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col cols="6">
+      <v-col md="6" class="d-none d-md-block">
         <v-card flat color="transparent">
           <v-card-actions>
             <v-img
@@ -57,10 +64,13 @@
 
 <script>
 import { format, parseISO } from "date-fns";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Events",
+  watch: {
+    $route: "fetchData",
+  },
   computed: {
     ...mapGetters({
       getUser: "users/getUser",
@@ -103,9 +113,18 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      fetchEvents: "events/fetchEvents",
+    }),
+    fetchData() {
+      this.fetchEvents();
+    },
     formatDate(date) {
       return date ? format(parseISO(date), "EEEE, MMMM do yyyy") : "";
     },
+  },
+  async mounted() {
+    await this.fetchData();
   },
 };
 </script>

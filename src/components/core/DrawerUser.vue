@@ -69,7 +69,6 @@ export default {
       itemsMobile: [
         { title: "Home", icon: "mdi-view-dashboard", to: "/user" },
         { title: "Events", icon: "mdi-calendar", to: "/user/events" },
-        { title: "Profile", icon: "mdi-account", to: "/user/profile" },
         { title: "Settings", icon: "mdi-settings", to: "/user/settings" },
       ],
       right: null,

@@ -19,7 +19,7 @@
           <span class="font-weight-bold">{{ initials }}</span>
         </v-list-item-avatar>
         <v-list-item-title>
-          <span class="font-weight-bold">{{ user && user.name ? user.name : "" }}</span>
+          <span class="font-weight-bold">{{ user && user.first_name ? user.first_name : "" }}</span>
         </v-list-item-title>
       </v-list-item>
     </v-list>
