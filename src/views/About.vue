@@ -1,5 +1,5 @@
 <template>
-  <v-container class="fill-height pl-12 pr-12 ml-12 mr-12" fluid>
+  <v-container class="fill-height pl-md-12 pr-md-12 ml-md-12 mr-md-12" fluid>
     <v-row justify="center" align="center">
       <v-col cols="12" md="6">
         <v-row>
