@@ -8,9 +8,6 @@
     <v-btn v-if="!$vuetify.breakpoint.mobile" to="/contact" text large>
       <strong>Contact</strong>
     </v-btn>
-    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/stories" text large>
-      <strong>Privacy</strong>
-    </v-btn>
 
     <v-spacer></v-spacer>
 

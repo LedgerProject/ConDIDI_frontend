@@ -56,42 +56,19 @@ const routes = [
     },
   },
   {
-    path: "/help",
-    name: "Help",
-    component: () => import(/* webpackChunkName: "help" */ "../views/Help.vue"),
-    meta: {
-      guest: true,
-    },
-  },
-  {
-    path: "/notificationNotice",
-    name: "Notification Notice",
-    component: () =>
-      import(
-        /* webpackChunkName: "notificationNotice" */ "../views/legal/NotificationNotice.vue"
-      ),
-    meta: {
-      guest: true,
-    },
-  },
-  {
-    path: "/privacyPolicy",
-    name: "Privacy Policy",
-    component: () =>
-      import(
-        /* webpackChunkName: "privacyPolicy" */ "../views/legal/PrivacyPolicy.vue"
-      ),
-    meta: {
-      guest: true,
-    },
-  },
-  {
     path: "/data-protection",
-    name: "Privacy Policy",
+    name: "Data protection",
     component: () =>
       import(
         /* webpackChunkName: "data-protection" */ "../views/legal/DataProtection.vue"
       ),
+  },
+  {
+    path: "/impressum",
+    name: "Impressum",
+    component: () =>
+      import(
+        /* webpackChunkName: "impressum" */ "../views/legal/Impressum.vue")
   },
   {
     path: "/termsOfService",
@@ -100,15 +77,6 @@ const routes = [
       import(
         /* webpackChunkName: "termsOfService" */ "../views/legal/TermsOfService.vue"
       ),
-    meta: {
-      guest: true,
-    },
-  },
-  {
-    path: "/stories",
-    name: "Stories",
-    component: () =>
-      import(/* webpackChunkName: "contact" */ "../views/Stories.vue"),
     meta: {
       guest: true,
     },
