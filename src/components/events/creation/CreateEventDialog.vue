@@ -79,6 +79,11 @@ export default {
           this.$i18n.locale
         ),
         date: this.getDateFormatted(new Date(), this.$i18n.locale),
+        venue: {
+          login: { url: "", password: "" },
+          location_type: "On site",
+          place: {},
+        },
       },
       defaultItem: {
         name: "",
@@ -91,6 +96,11 @@ export default {
           this.$i18n.locale
         ),
         date: this.getDateFormatted(new Date(), this.$i18n.locale),
+        venue: {
+          login: { url: "", password: "" },
+          location_type: "On site",
+          place: {},
+        },
       },
     };
   },
@@ -104,12 +114,9 @@ export default {
       this.members = ["", "", ""];
       this.dialog = false;
     },
-    closeDialog(create = true) {
+    closeDialog() {
       // Create the event with the data we currently have
       // The user can create an event with only the name present, everything else is optional
-      if (this.step > 1 && create) {
-        this.createEvent();
-      }
       this.reset();
     },
     openDialog() {},

@@ -204,7 +204,7 @@ export default {
         schedule: this.schedule,
         date: this.date,
         time: this.time,
-        location_type: this.location_type,
+        venue: { location_type: this.location_type },
       });
 
       this.loading = false;
@@ -218,7 +218,7 @@ export default {
         schedule: this.schedule,
         date: this.date,
         time: this.time,
-        location_type: this.location_type,
+        venue: { location_type: this.location_type },
       });
     },
     reset() {

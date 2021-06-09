@@ -109,15 +109,23 @@ export default {
       });
     },
     loginUrlFormatted() {
-      if (this.item.login && this.item.login.url) {
-        return this.item.login.url;
+      if (
+        this.item.venue &&
+        this.item.venue.login &&
+        this.item.venue.login.url
+      ) {
+        return this.item.venue.login.url;
       }
 
       return "No URL specified";
     },
     loginPasswordFormatted() {
-      if (this.item.login && this.item.login.password) {
-        return this.item.login.password;
+      if (
+        this.item.venue &&
+        this.item.venue.login &&
+        this.item.venue.login.password
+      ) {
+        return this.item.venue.login.password;
       }
 
       if (this.item.login && this.item.login.url) {
