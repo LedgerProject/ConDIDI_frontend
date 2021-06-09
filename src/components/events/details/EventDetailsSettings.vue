@@ -68,7 +68,32 @@
       v-col(cols="12")
         p The button will open you mail client, to write to our support. We will quickly get back to you and delete your user data.
       v-col(cols="12")
-        v-btn(:large="$vuetify.breakpoint.mobile" color="primary" dark @click="deleteItem") Delete event
+        v-dialog(
+          v-model="dialogDelete"
+          max-width="800px"
+          :fullscreen="$vuetify.breakpoint.mobile")
+          v-card
+            v-card-title(class="text-h5") Delete event {{ item.name }}
+              v-spacer
+              v-tooltip(bottom)
+                template(v-slot:activator="{ on, attrs }")
+                  v-btn(
+                    v-bind="attrs"
+                    v-on="on"
+                    icon
+                    @click="dialogDelete = false")
+                      v-icon mdi-close
+                span Close
+            v-card-text
+              | Enter the name of the event to confirm the action.
+              br
+              | The deletion can not be undone.
+            v-card-actions
+              v-text-field(v-model="deleteConfirmation" outlined label="Event name" )
+            v-card-actions(class="pb-6")
+              v-btn(@click="deleteItem" color="primary" :disabled="item.name !== deleteConfirmation") Delete event
+      v-col(cols="12")
+        v-btn(@click="dialogDelete = true" color="primary") Delete event
 </template>
 
 <script>
@@ -79,6 +104,8 @@ export default {
   name: "EventDetailsSettings",
   data() {
     return {
+      dialogDelete: false,
+      deleteConfirmation: "",
       menuRegistrationDeadline: false,
       menuRegistrationDeadlineTime: false,
       attendanceConfirmation: false,
