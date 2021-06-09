@@ -34,7 +34,9 @@
         >
           <v-row class="align-start">
             <v-col cols="12" class="text-end">
-              <p>Already have an account? <a href="/signIn">Sign In</a></p>
+              <router-link to="signIn"
+                >Already have an account? Sign in</router-link
+              >
             </v-col>
             <v-col cols="12" class="pt-12">
               <v-form @submit.prevent="signUp">

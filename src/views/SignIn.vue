@@ -32,7 +32,7 @@
         >
           <v-row>
             <v-col cols="12" class="text-end">
-              <p>You do not have an account? <a href="/signUp">Sign Up</a></p>
+              <router-link to="signUp">You do not have an account?</router-link>
             </v-col>
             <v-col cols="12">
               <v-form @submit.prevent="onSignIn">
