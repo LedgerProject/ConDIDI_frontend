@@ -14,7 +14,9 @@ const getters = {
   getStatus: () => state.status,
   getLoading: () => state.loading,
   getInitials: (state) => {
-    return state.user && state.user.name ? state.user.name.charAt(0) : "";
+    return state.user && state.user.name && state.user.name.length >= 1
+      ? state.user.name.charAt(0)
+      : "";
   },
 };
 

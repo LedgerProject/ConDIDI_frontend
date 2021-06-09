@@ -9,9 +9,11 @@
           <span class="font-weight-bold">{{ initials }}</span>
         </v-list-item-avatar>
         <v-list-item-title>
-          <span class="font-weight-bold">{{ getUser.name }}</span>
+          <span class="font-weight-bold">{{ fullName }}</span>
           <br />
-          <span class="font-weight-light">{{ getUser.email }}</span>
+          <span class="font-weight-light">{{
+            getUser && getUser.email ? getUser.email : ""
+          }}</span>
         </v-list-item-title>
         <v-list-item-action>
           <v-icon> mdi-chevron-down </v-icon>
@@ -62,7 +64,29 @@ export default {
       loading: "users/getLoading",
     }),
     initials() {
-      return this.getUser ? this.getUser.name.charAt(0) : "";
+      let text = "";
+
+      if (this.getUser) {
+        if (this.getUser.first_name) {
+          text = this.getUser.first_name.charAt(0);
+        }
+        if (this.getUser.last_name) {
+          text += this.getUser.last_name.charAt(0);
+        }
+      }
+
+      return text;
+    },
+    fullName() {
+      let text = "";
+
+      if (this.getUser) {
+        if (this.getUser.first_name) {
+          text = `${this.getUser.first_name} ${this.getUser.last_name}`;
+        }
+      }
+
+      return text;
     },
   },
 };
