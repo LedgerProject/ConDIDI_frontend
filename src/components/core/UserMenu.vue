@@ -50,7 +50,6 @@ export default {
   data() {
     return {
       items: [
-        { title: "Profile", icon: "mdi-view-dashboard", to: "/user/profile" },
         { title: "Settings", icon: "mdi-calendar", to: "/user/settings" },
       ],
     };
