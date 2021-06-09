@@ -37,7 +37,7 @@
               <p>Already have an account? <a href="/signIn">Sign In</a></p>
             </v-col>
             <v-col cols="12" class="pt-12">
-              <v-form @submit="signUp">
+              <v-form @submit.prevent="signUp">
                 <v-container>
                   <v-row align="start" justify="center">
                     <v-col cols="12" class="test-start pb-12">
@@ -92,7 +92,7 @@
                         color="accent"
                         :block="$vuetify.breakpoint.mobile"
                         type="submit"
-                      >Create account</v-btn
+                        >Create account</v-btn
                       >
                     </v-col>
                   </v-row>
@@ -107,6 +107,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     firstName: "",
@@ -119,8 +121,17 @@ export default {
       "<p>Creating an account means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
   }),
   methods: {
+    ...mapActions({
+      register: "users/signUp",
+    }),
     signUp() {
-      this.$router.push("/user");
+      // TODO validation
+      this.register({
+        first_name: this.firstName,
+        last_name: this.lastName,
+        email: this.email,
+        password: this.password,
+      });
     },
   },
 };

@@ -77,6 +77,7 @@ const actions = {
   },
   // eslint-disable-next-line no-empty-pattern
   signUp: async ({ commit, dispatch }, payload) => {
+    commit("setLoading", true);
     const { data } = await axios.post("create_user", payload);
 
     if (data.error) {
@@ -84,6 +85,7 @@ const actions = {
     } else {
       dispatch("signIn", { email: payload.email, password: payload.password });
     }
+    commit("setLoading", false);
   },
   // eslint-disable-next-line no-empty-pattern
   signOut: async ({ commit }) => {
