@@ -3,13 +3,13 @@
     id="app"
     :style="{ background: $vuetify.theme.themes[theme].background }"
   >
-    <AppBarPublic v-if="$router.currentRoute.meta.guest"></AppBarPublic>
+    <AppBarPublic v-if="!$router.currentRoute.meta.requiresAuth"></AppBarPublic>
     <AppBarUser
-      v-if="!$router.currentRoute.meta.guest"
+      v-if="$router.currentRoute.meta.requiresAuth"
       @open-drawer="openDrawer"
     ></AppBarUser>
     <DrawerUser
-      v-if="!$router.currentRoute.meta.guest"
+      v-if="$router.currentRoute.meta.requiresAuth"
       :force-open="drawer"
     ></DrawerUser>
     <v-main transition="scroll-y-transition">

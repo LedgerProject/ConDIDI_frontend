@@ -86,6 +86,14 @@ const routes = [
     },
   },
   {
+    path: "/data-protection",
+    name: "Privacy Policy",
+    component: () =>
+      import(
+        /* webpackChunkName: "data-protection" */ "../views/legal/DataProtection.vue"
+      ),
+  },
+  {
     path: "/termsOfService",
     name: "Terms of Service",
     component: () =>
@@ -144,6 +152,11 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
+  },
+  {
+    path: "/*",
+    name: "404",
+    component: () => import(/* webpackChunkName: "404" */ "../views/404.vue"),
   },
 ];
 
