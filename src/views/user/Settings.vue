@@ -2,7 +2,7 @@
   <v-container class="contentArea">
     <v-row justify="center" align="start">
       <v-col cols="12" class="text-start pb-0">
-        <h1 class="text-h3">User settings</h1>
+        <h1 class="text-h3">Account settings</h1>
       </v-col>
       <v-col cols="12" class="pt-0">
         <p class="text-h6 pl-1 font-weight-light">
