@@ -17,7 +17,6 @@ export default {
     const canvas = document.getElementById("qrCanvas");
     QRCode.toCanvas(canvas, this.data, function (error) {
       if (error) console.error(error);
-      console.log("success!");
     });
   },
 };

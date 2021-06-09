@@ -17,7 +17,11 @@
           <template v-slot:top>
             <v-toolbar flat>
               <v-spacer></v-spacer>
-              <v-dialog v-model="dialog" max-width="500px">
+              <v-dialog
+                v-model="dialog"
+                max-width="500px"
+                :fullscreen="$vuetify.breakpoint.mobile"
+              >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
                     color="primary"
@@ -41,6 +45,7 @@
                           <v-text-field
                             v-model="editedItem.firstName"
                             label="First name"
+                            autofocus
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
@@ -70,7 +75,11 @@
                   </v-card-actions>
                 </v-card>
               </v-dialog>
-              <v-dialog v-model="dialogConfirmParticipation" max-width="800px">
+              <v-dialog
+                v-model="dialogConfirmParticipation"
+                max-width="800px"
+                :fullscreen="$vuetify.breakpoint.mobile"
+              >
                 <v-card>
                   <v-card-title class="text-h5"
                     >Confirm participation?
@@ -98,6 +107,43 @@
                   <v-card-text class="text-center justify-center align-center">
                     <QRCode :data="qrCodeData"></QRCode>
                   </v-card-text>
+                </v-card>
+              </v-dialog>
+              <v-dialog
+                v-model="dialogDelete"
+                max-width="800px"
+                :fullscreen="$vuetify.breakpoint.mobile"
+              >
+                <v-card>
+                  <v-card-title class="text-h5"
+                    >Remove participant from event?
+                    <v-spacer></v-spacer>
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-btn
+                          v-bind="attrs"
+                          v-on="on"
+                          icon
+                          @click="closeDelete"
+                          ><v-icon>mdi-close</v-icon></v-btn
+                        >
+                      </template>
+                      <span>Close</span>
+                    </v-tooltip>
+                  </v-card-title>
+                  <v-card-text>
+                    Participant has the following email:
+                    <strong> {{ editedItem.email }}</strong>
+                    <br />
+                    This action can not be undone.
+                    <br />
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn @click="deleteItemConfirm" color="primary"
+                      >Confirm</v-btn
+                    >
+                  </v-card-actions>
                 </v-card>
               </v-dialog>
             </v-toolbar>
@@ -267,10 +313,8 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         // Object.assign(this.participants[this.editedIndex], this.editedItem);
-        console.log("edit");
       } else {
         // this.participants.push(this.editedItem);
-        console.log("add");
         this.addParticipant({ eventid: this.id, participant: this.editedItem });
       }
       this.close();
