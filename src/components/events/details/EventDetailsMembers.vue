@@ -95,8 +95,8 @@
                     This action can not be undone.
                     <br />
                   </v-card-text>
-                  <v-card-text>
-                    <QRCode :data="editedItem.email"></QRCode>
+                  <v-card-text class="text-center justify-center align-center">
+                    <QRCode :data="qrCodeData"></QRCode>
                   </v-card-text>
                 </v-card>
               </v-dialog>
