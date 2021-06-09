@@ -1,6 +1,6 @@
 <template>
   <v-container class="fill-height pa-0" fluid>
-    <v-row justify="center" align="start" class="fill-height pa-0">
+    <v-row justify="center" align="center" class="fill-height pa-0">
       <v-col md="4" class="d-none d-md-block text-center banner" dark>
         <v-row justify="center" align="end" class="fill-height">
           <v-col cols="12" class="text-start pl-12 pr-12 ml-12 pt-0 mt-0">
@@ -33,11 +33,6 @@
           }"
         >
           <v-row class="align-start">
-            <v-col cols="12" class="text-end">
-              <router-link to="signIn"
-                >Already have an account? Sign in</router-link
-              >
-            </v-col>
             <v-col cols="12" class="pt-12">
               <v-form @submit.prevent="signUp">
                 <v-container>
@@ -120,7 +115,7 @@ export default {
     showPassword: false,
     termsAndConditionsAccepted: false,
     termsAndConditionsLabel:
-      "<p>Creating an account means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
+      "<p>Creating an account means you’re okay with our <a href='/termsOfService'>Terms of Service</a> and <a href='data-protection'>Privacy Policy</a>.</p>",
   }),
   methods: {
     ...mapActions({
@@ -141,8 +136,8 @@ export default {
 
 <style scoped>
 .banner {
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: #fcf3a1;
 }
 </style>

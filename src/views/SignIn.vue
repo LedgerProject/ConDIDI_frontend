@@ -1,6 +1,6 @@
 <template>
   <v-container class="fill-height pa-0" fluid>
-    <v-row justify="center" align="start" class="fill-height pa-0">
+    <v-row justify="center" align="center" class="fill-height pa-0">
       <v-col md="4" class="d-none d-md-block text-center banner" dark>
         <v-row justify="center" align="end" class="fill-height">
           <v-col cols="12" class="text-start pl-12 pr-12 ml-12 pt-0 mt-0">
@@ -31,9 +31,6 @@
           :style="{ width: this.$vuetify.breakpoint.mobile ? '100%' : '50%' }"
         >
           <v-row>
-            <v-col cols="12" class="text-end">
-              <router-link to="signUp">You do not have an account?</router-link>
-            </v-col>
             <v-col cols="12">
               <v-form @submit.prevent="onSignIn">
                 <v-container>
@@ -61,6 +58,9 @@
                         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                         @click:append="showPassword = !showPassword"
                       ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" class="text-start">
+                      <router-link to="signUp">You do not have an account? Sign up</router-link>
                     </v-col>
                     <v-col cols="12" class="text-start justify-start">
                       <v-btn
@@ -110,8 +110,8 @@ export default {
 
 <style scoped>
 .banner {
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   background-color: #f78234;
 }
 </style>
