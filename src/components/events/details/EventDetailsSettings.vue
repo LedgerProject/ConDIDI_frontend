@@ -62,10 +62,18 @@
 
       v-col(cols="12" class="text-start pt-0")
         v-switch(v-model="attendanceConfirmation" :label="$t('event.creation.step5.attributes.attendanceConfirmation')" outlined class="pb-0")
+
+      v-col(cols="12")
+        h2(class="text-h5") Danger Zone
+      v-col(cols="12")
+        p The button will open you mail client, to write to our support. We will quickly get back to you and delete your user data.
+      v-col(cols="12")
+        v-btn(:large="$vuetify.breakpoint.mobile" color="primary" dark @click="deleteItem") Delete event
 </template>
 
 <script>
 import { format, parseISO } from "date-fns";
+import { mapActions } from "vuex";
 
 export default {
   name: "EventDetailsSettings",
@@ -89,6 +97,14 @@ export default {
       return this.registration_deadline
         ? format(parseISO(this.registration_deadline), "EEEE, MMMM do yyyy")
         : "";
+    },
+  },
+  methods: {
+    ...mapActions({
+      deleteEvent: "events/deleteEvent",
+    }),
+    deleteItem() {
+      this.deleteEvent(this.item);
     },
   },
   mounted() {

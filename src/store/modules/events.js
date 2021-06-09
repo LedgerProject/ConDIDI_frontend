@@ -56,6 +56,10 @@ const mutations = {
   pushEvent(state, event) {
     state.events.push(event);
   },
+  removeEvent(state, event) {
+    const index = state.participants.indexOf(event);
+    state.events.splice(index, 1);
+  },
   setStatus(state, payload) {
     state.status = payload;
   },
@@ -84,10 +88,17 @@ const actions = {
     await commit("pushEvent", event);
     await router.push(`/user/events/${event.eventid}`);
   },
-  deleteEvent: ({ state }, payload) => {
-    const index = state.events.indexOf(payload);
-    state.events.splice(index, 1);
-    // TODO API call
+  deleteEvent: async ({ commit }, payload) => {
+    const { data } = await axios.post("delete_event", { eventid: payload.id });
+
+    // Error, failed request
+    if (data.error) {
+      commit("setStatus", data.error);
+      return;
+    }
+
+    commit("removeEvent", payload);
+    await router.push("/user/events");
   },
 };
 
