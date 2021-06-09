@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/condidi/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/condidi/" : "/condidi/",
   transpileDependencies: ["vuetify"],
   configureWebpack: {
     optimization: {

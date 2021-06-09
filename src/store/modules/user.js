@@ -51,9 +51,12 @@ const actions = {
     commit("setLoading", true);
 
     const token = localStorage.getItem("token");
-    commit("setToken", token);
-    axios.defaults.headers.common["Authorization"] = token;
-    await dispatch("fetchUser");
+
+    if (token) {
+      commit("setToken", token);
+      axios.defaults.headers.common["Authorization"] = token;
+      await dispatch("fetchUser");
+    }
 
     commit("setLoading", false);
   },
@@ -61,14 +64,13 @@ const actions = {
   signIn: async ({ commit, dispatch }, payload) => {
     commit("setLoading", true);
     const { data } = await axios.post("login_password", payload);
-
-    console.log(data);
+    const token = data.token;
 
     // Sign in was successful
-    if (data.token) {
-      localStorage.setItem("token", data.token);
-      axios.defaults.headers.common["Authorization"] = data.token;
-      commit("setToken", data.token);
+    if (token) {
+      localStorage.setItem("token", token);
+      axios.defaults.headers.common["Authorization"] = token;
+      commit("setToken", token);
       commit("setStatus", "");
       await dispatch("fetchUser");
       await router.push("/user");
