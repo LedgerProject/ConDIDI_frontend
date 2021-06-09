@@ -2,17 +2,14 @@
   <v-app-bar app color="primary" dark>
     <Logo></Logo>
 
-    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/stories" text large>
-      <strong>Stories</strong>
-    </v-btn>
-    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/about" text large>
+    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/about"  class="ml-6" text large>
       <strong>About</strong>
-    </v-btn>
-    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/help" text large>
-      <strong>Help</strong>
     </v-btn>
     <v-btn v-if="!$vuetify.breakpoint.mobile" to="/contact" text large>
       <strong>Contact</strong>
+    </v-btn>
+    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/stories" text large>
+      <strong>Privacy</strong>
     </v-btn>
 
     <v-spacer></v-spacer>

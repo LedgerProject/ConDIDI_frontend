@@ -1,18 +1,30 @@
 <template>
-  <v-container class="fill-height">
+  <v-container class="fill-height pl-12 pr-12 ml-12 mr-12" fluid>
     <v-row justify="center" align="center">
-      <v-col cols="12" class="text-start">
-        <h1 class="text-h2">ConDIDI - Conference Digital Identifier Integration</h1>
-      </v-col>
-      <v-col cols="12">
-        <h2 class="text-h4"> Full lifecycle decentralized conference participant management </h2>
-      </v-col>
-      <v-col>
-        <p class="text-h6 font-weight-light">ConDIDI will allow conference organisers to issue digital credentials of attendance to participants, building on the leading role the Technische Informationsbibliothek (TIB) is playing in Germany in introducing unique researcher, publication and conference IDs, and improving on the state of the art of digital credentials. This will allow the participants have digital proof of participation (participant, presenter, chair) and for the organiser to easily manage participation and credential issuing and revocation.</p>
+      <v-col cols="12" md="6">
+        <v-row>
+          <v-col cols="12" class="text-start">
+            <h1 class="text-h1 font-weight-black">ConDIDI</h1>
+          </v-col>
+          <v-col cols="12">
+            <h2 class="text-h4"> Full lifecycle decentralized conference participant management </h2>
+          </v-col>
+          <v-col>
+            <p class="text-h6 font-weight-light">ConDIDI will allow conference organisers to issue digital credentials of attendance to participants, building on the leading role the Technische Informationsbibliothek (TIB) is playing in Germany in introducing unique researcher, publication and conference IDs, and improving on the state of the art of digital credentials. This will allow the participants have digital proof of participation (participant, presenter, chair) and for the organiser to easily manage participation and credential issuing and revocation.</p>
 
-        <p class="text-h6 font-weight-light">The MVP will be a frontend for managing the participant list and combined with a decentralized identity (DID) and credential issuing wallet backend, based on the pioneering work of Jolocom. Credentials issued will follow international standards like OpenBadges and thus be easily included into existing or future digital CV management systems.</p>
+            <p class="text-h6 font-weight-light">The MVP will be a frontend for managing the participant list and combined with a decentralized identity (DID) and credential issuing wallet backend, based on the pioneering work of Jolocom. Credentials issued will follow international standards like OpenBadges and thus be easily included into existing or future digital CV management systems.</p>
 
-        <p class="text-h6 font-weight-light">Implementation of the full credential lifecycle of issuing and retraction as infrastructure will also benefit other areas and is not restricted to this application.</p>
+            <p class="text-h6 font-weight-light">Implementation of the full credential lifecycle of issuing and retraction as infrastructure will also benefit other areas and is not restricted to this application.</p>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col cols="12" md="6" class="d-none d-md-block text-left justify-start">
+        <v-img
+          src="img/clip-start-up.png"
+          layzy-src="img/clip-start-up.png"
+          alt="Man who flies into the sky with a jetpack"
+          contain
+        ></v-img>
       </v-col>
     </v-row>
   </v-container>
