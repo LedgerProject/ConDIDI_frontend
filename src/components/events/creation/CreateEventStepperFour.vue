@@ -8,8 +8,8 @@
               v-col(cols="12")
                 h4(class="text-h5 text-center") {{ this.$t('event.creation.step4.title') }}
               v-col(cols="12")
-                p {{ editedItem.locationType.toLowerCase() === 'on site'? this.$t("event.creation.step4.subtitle"): this.$t("event.creation.step4.subtitleOnline") }}
-              v-col(cols="12" md="6" v-if="editedItem.locationType.toLowerCase() === 'on site'")
+                p {{ editedItem.location_type.toLowerCase() === 'on site'? this.$t("event.creation.step4.subtitle"): this.$t("event.creation.step4.subtitleOnline") }}
+              v-col(cols="12" md="6" v-if="editedItem.location_type.toLowerCase() === 'on site'")
                 v-row
                   v-col(cols="12")
                     Places(:label="$t('event.creation.step4.attributes.place')" @change="onPlaceSelection")
@@ -19,12 +19,12 @@
                     v-text-field(v-model="place.postcode" outlined readonly label="Post code" )
                   v-col(cols="12")
                     v-text-field(v-model="place.country" outlined readonly label="Country" )
-              v-col(cols="12" md="6" v-show="editedItem.locationType.toLowerCase() === 'on site' && !$vuetify.breakpoint.xs")
+              v-col(cols="12" md="6" v-show="editedItem.location_type.toLowerCase() === 'on site' && !$vuetify.breakpoint.xs")
                 v-lazy
                   Map(:place="place")
-              v-col(cols="12" md="6" v-if="editedItem.locationType.toLowerCase() === 'online'")
+              v-col(cols="12" md="6" v-if="editedItem.location_type.toLowerCase() === 'online'")
                 v-text-field(v-model="login.url" label="URL" outlined)
-              v-col(cols="12" md="6" v-if="editedItem.locationType.toLowerCase() === 'online'")
+              v-col(cols="12" md="6" v-if="editedItem.location_type.toLowerCase() === 'online'")
                 v-text-field(v-model="login.password" label="Password" outlined)
               v-col(cols="12" md="6" class="text-start")
                 v-btn(@click="onPreviousStep" color="primary" text) {{ this.$t('event.btnBack') }}
