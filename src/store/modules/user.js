@@ -44,7 +44,7 @@ const actions = {
     commit("setLoading", true);
 
     const { data } = await axios.post("get_user_profile");
-    const user = data.userdata ? data.userdata : null;
+    const user = data.userdict ? data.userdict : null;
     commit("setUser", user);
 
     commit("setLoading", false);
