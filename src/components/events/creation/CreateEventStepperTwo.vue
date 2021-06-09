@@ -72,8 +72,7 @@
                     text
                     color="primary"
                     @click="modal2 = false"
-                  )
-                    Cancel
+                  ) Cancel
 
                   v-btn(
                     text
