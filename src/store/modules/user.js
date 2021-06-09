@@ -14,7 +14,7 @@ const getters = {
   getStatus: () => state.status,
   getLoading: () => state.loading,
   getInitials: (state) => {
-    return state.user ? state.user.name.charAt(0) : "";
+    return state.user && state.user.name ? state.user.name.charAt(0) : "";
   },
 };
 
@@ -61,6 +61,8 @@ const actions = {
   signIn: async ({ commit, dispatch }, payload) => {
     commit("setLoading", true);
     const { data } = await axios.post("login_password", payload);
+
+    console.log(data);
 
     // Sign in was successful
     if (data.token) {
