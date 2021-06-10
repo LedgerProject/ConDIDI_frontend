@@ -29,7 +29,9 @@
                       <h1 class="text-h4 text-md-h3">Sign up to ConDIDi</h1>
                     </v-col>
                     <v-col cols="12">
-                      <h2 class="text-h5">Create your Jolocom SmartWallet identity</h2>
+                      <h2 class="text-h5">
+                        Create your Jolocom SmartWallet identity
+                      </h2>
                     </v-col>
                     <v-col cols="6">
                       <v-text-field
@@ -61,23 +63,13 @@
                     <v-col cols="12" class="pt-0">
                       <p v-html="termsAndConditionsLabel"></p>
                     </v-col>
-                    <v-col cols="12" class="text-start justify-start">
-                      <v-btn
-                        width="50%"
-                        :large="!$vuetify.breakpoint.mdAndUp"
-                        color="accent"
-                        :block="$vuetify.breakpoint.mobile"
-                        type="submit"
-                        >Create account</v-btn
-                      >
-                    </v-col>
                     <v-col cols="12">
                       <QRCodeDialog
-                        btn-label="Sign up with Jolocom SmartWallet"
+                        btn-label="Create Jolocom Identity"
                         dialog-title="Sign up with your Jolocom SmartWallet"
                         :show="dialogWallet"
                         :data="interactionToken"
-                        @open="oSignUpWithJolocomSmartWallet"
+                        @open="onSignUpWithJolocomSmartWallet"
                         @close="onSignUpWithJolocomSmartWalletCompleted"
                       ></QRCodeDialog>
                     </v-col>
@@ -113,6 +105,7 @@ export default {
   methods: {
     ...mapActions({
       register: "users/signUp",
+      signUpWithJolocomSmartWallet: "users/signUpWithJolocomSmartWallet",
     }),
     signUp() {
       // TODO validation
@@ -123,9 +116,15 @@ export default {
         password: this.password,
       });
     },
-    oSignUpWithJolocomSmartWallet() {
+    async onSignUpWithJolocomSmartWallet() {
+      this.loading = true;
       this.dialogWallet = true;
-      console.log("sign up");
+      this.interactionToken = await this.signUpWithJolocomSmartWallet({
+        first_name: this.firstName,
+        last_name: this.lastName,
+        email: this.email,
+      });
+      this.loading = false;
     },
     onSignUpWithJolocomSmartWalletCompleted() {
       this.dialogWallet = false;

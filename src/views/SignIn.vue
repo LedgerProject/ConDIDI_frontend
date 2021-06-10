@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import QRCodeDialog from "../components/qrcode/QRCodeDialog";
 import router from "../router";
 
@@ -112,6 +112,11 @@ export default {
     termsAndConditionsLabel:
       "<p>Signing in with your accoutn means you’re okay with our <a href='/termsOfService'>Terms of Service</a>, <a href='privacyPolicy'>Privacy Policy</a>, and our default <a href='/notificationNotice'>Notification Settings</a>.</p>",
   }),
+  computed: {
+    ...mapGetters({
+      user: "users/getUser",
+    }),
+  },
   methods: {
     ...mapActions({
       signIn: "users/signIn",
@@ -130,9 +135,18 @@ export default {
       this.loading = false;
     },
     async onSignInWithWalletCompleted() {
+      // If the call to the backend was successful, and we could display an QR code
       if (this.interactionToken) {
+        // Try to use the token from the /login_wallet endpoint
+        // If the token is not yet valid the login will fail, and the user profile will not be fetched
         await this.signInWithToken();
-        await router.push("/user");
+
+
+        // If the user would not be set, something went wrong
+        // So we assume the user just wants to close the dialog
+        if (this.user) {
+          await router.push("/user");
+        }
         this.dialogWallet = false;
       }
     },

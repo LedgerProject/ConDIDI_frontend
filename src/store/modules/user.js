@@ -125,14 +125,17 @@ const actions = {
   // eslint-disable-next-line no-empty-pattern
   signUpWithJolocomSmartWallet: async ({ commit, dispatch }, payload) => {
     commit("setLoading", true);
-    const { data } = await axios.post("create_user", payload);
+    const { data } = await axios.post("create_wallet_user", payload);
+    const interactionToken = data.interactionToken;
 
     if (data.error) {
       commit("setStatus", "Error");
     } else {
-      dispatch("signIn", { email: payload.email, password: payload.password });
+      dispatch("signIn", payload);
     }
     commit("setLoading", false);
+
+    return interactionToken;
   },
   // eslint-disable-next-line no-empty-pattern
   signOut: async ({ commit }) => {
