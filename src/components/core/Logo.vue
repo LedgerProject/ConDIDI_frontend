@@ -13,18 +13,20 @@
     <v-img
       v-if="dark"
       alt="conDIDI Logo"
-      class="shrink mt-1"
+      class="mt-1"
       contain
       min-width="100"
       src="img/logo_white.png"
+      lazy-src="img/logo_white.png"
     />
     <v-img
       v-else
       alt="conDIDI Logo"
-      class="shrink mt-1"
+      class="mt-1"
       contain
       min-width="100"
       src="img/logo_black.png"
+      lazy-src="img/logo_black.png"
     />
   </v-btn>
 </template>
