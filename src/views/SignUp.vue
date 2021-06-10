@@ -92,6 +92,16 @@
                         >Create account</v-btn
                       >
                     </v-col>
+                    <v-col cols="12" class="pl-0">
+                      <QRCodeDialog
+                        btn-label="Create Jolocom Wallet"
+                        dialog-title="Create your Jolocom SmartWallet"
+                        :show="dialogWallet"
+                        :data="interactionToken"
+                        @open="oSignUpWithJolocomSmartWallet"
+                        @close="onSignUpWithJolocomSmartWalletCompleted"
+                      ></QRCodeDialog>
+                    </v-col>
                   </v-row>
                 </v-container>
               </v-form>
@@ -105,9 +115,13 @@
 
 <script>
 import { mapActions } from "vuex";
+import QRCodeDialog from "../components/qrcode/QRCodeDialog";
 
 export default {
+  components: { QRCodeDialog },
   data: () => ({
+    dialogWallet: false,
+    interactionToken: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -129,6 +143,13 @@ export default {
         email: this.email,
         password: this.password,
       });
+    },
+    oSignUpWithJolocomSmartWallet() {
+      this.dialogWallet = true;
+      console.log("sign up");
+    },
+    onSignUpWithJolocomSmartWalletCompleted() {
+      this.dialogWallet = false;
     },
   },
 };

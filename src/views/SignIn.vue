@@ -77,7 +77,7 @@
                     <v-col cols="12" class="pl-0">
                       <QRCodeDialog
                         btn-label="Sign in with Jolocom Wallet"
-                        dialog-title="Sign in with your Jolocom SmatWallet"
+                        dialog-title="Sign in with your Jolocom SmartWallet"
                         :show="dialogWallet"
                         :data="interactionToken"
                         @open="onSignInWithWallet"
