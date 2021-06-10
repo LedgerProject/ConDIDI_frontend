@@ -60,7 +60,9 @@
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" class="text-start">
-                      <router-link to="signUp">You do not have an account? Sign up</router-link>
+                      <router-link to="signUp"
+                        >You do not have an account? Sign up</router-link
+                      >
                     </v-col>
                     <v-col cols="12" class="text-start justify-start">
                       <v-btn
@@ -69,7 +71,18 @@
                         color="accent"
                         :block="$vuetify.breakpoint.mobile"
                         type="submit"
-                      >Sign in</v-btn>
+                        >Sign in</v-btn
+                      >
+                    </v-col>
+                    <v-col cols="12" class="pl-0">
+                      <QRCodeDialog
+                        btn-label="Sign in with Jolocom Wallet"
+                        dialog-title="Sign in with your Jolocom SmatWallet"
+                        :show="dialogWallet"
+                        :data="interactionToken"
+                        @open="onSignInWithWallet"
+                        @close="onSignInWithWalletCompleted"
+                      ></QRCodeDialog>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -84,10 +97,15 @@
 
 <script>
 import { mapActions } from "vuex";
+import QRCodeDialog from "../components/qrcode/QRCodeDialog";
+import router from "../router";
 
 export default {
+  components: { QRCodeDialog },
   data: () => ({
+    dialogWallet: false,
     loading: false,
+    interactionToken: "",
     email: "",
     password: "",
     showPassword: false,
@@ -98,11 +116,26 @@ export default {
   methods: {
     ...mapActions({
       signIn: "users/signIn",
+      signInWithJolocomSmartWallet: "users/signInWithJolocomSmartWallet",
+      signInWithToken: "users/signInWithToken",
     }),
     async onSignIn() {
       this.loading = true;
       await this.signIn({ email: this.email, password: this.password });
       this.loading = false;
+    },
+    async onSignInWithWallet() {
+      this.loading = true;
+      this.dialogWallet = true;
+      this.interactionToken = await this.signInWithJolocomSmartWallet();
+      this.loading = false;
+    },
+    async onSignInWithWalletCompleted() {
+      if (this.interactionToken) {
+        await this.signInWithToken();
+        await router.push("/user");
+        this.dialogWallet = false;
+      }
     },
   },
 };
