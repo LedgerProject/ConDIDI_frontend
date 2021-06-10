@@ -10,9 +10,9 @@
         </p>
       </v-col>
       <v-col cols="12" md="6">
-        <v-card flat color="transparent" class="mt-4">
-          <v-card-title>Today's events</v-card-title>
-          <v-card-actions v-if="eventsOfToday && eventsOfToday.length >= 1">
+        <v-card flat color="transparent" class="mt-4 pa-0">
+          <v-card-title class="pl-0">Today's events</v-card-title>
+          <v-card-actions v-if="eventsOfToday && eventsOfToday.length >= 1" class="pl-0">
             <v-row>
               <v-col
                 cols="12"
@@ -35,9 +35,9 @@
               </v-col>
             </v-row>
           </v-card-actions>
-          <v-card-actions v-else>
+          <v-card-actions v-else class="pl-0">
             <v-row>
-              <v-col cols="12">
+              <v-col cols="12" class="pl-0">
                 <p class="text-subtitle-1 pl-3">
                   You have no events for today ...
                 </p>
