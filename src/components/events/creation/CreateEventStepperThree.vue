@@ -28,10 +28,12 @@
       v-row
         v-col(cols="12" class="text-start")
           h2(class="text-h5") Contact Person
+        v-col(cols="12" class="text-start mt-0 pt-0")
+          v-text-field(v-model="contactPerson.first_name" outlined label="First name")
         v-col(cols="12" class="text-start mt-0 pt-0 mb-0 pb-0")
-          v-text-field(outlined label="Contact person")
+          v-text-field(v-model="contactPerson.last_name" outlined label="Last name")
         v-col(cols="12" class="text-start mb-0 pb-0")
-          v-text-field(outlined label="Contact email")
+          v-text-field(v-model="contactPerson.email" outlined label="Contact email")
     v-col(cols="6" class="pt-0 mt-0 text-start pl-0")
       v-btn(@click="onPreviousStep" text color="primary") {{ this.$t('event.btnBack') }}
     v-col(cols="6" class="pt-0 mt-0 text-end")
@@ -79,10 +81,20 @@ export default {
         linkedIn: "",
         xing: "",
       },
+      contactPerson: {
+        first_name: "",
+        last_name: "",
+        email: "",
+      },
+      defaultContactPerson: {
+        first_name: "",
+        last_name: "",
+        email: "",
+      },
     };
   },
   computed: {
-    ...mapGetters(["getEventTypes"]),
+    ...mapGetters({ user: "users/getUser" }),
     subjectErrors() {
       const errors = [];
       if (!this.$v.subject.$dirty) return errors;
@@ -100,6 +112,13 @@ export default {
         ? format(parseISO(this.registration_deadline), "EEEE, MMMM do yyyy")
         : "";
     },
+  },
+  mounted() {
+    if (this.user) {
+      this.contactPerson.first_name = this.user.first_name;
+      this.contactPerson.last_name = this.user.last_name;
+      this.contactPerson.email = this.user.email;
+    }
   },
   methods: {
     onNextStep() {
