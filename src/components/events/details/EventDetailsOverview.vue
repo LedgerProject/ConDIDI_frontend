@@ -2,7 +2,7 @@
   <v-container class="contentArea" fluid>
     <v-row align="center" justify="center" class="text-center fill-height">
       <v-col cols="12">
-        <v-container>
+        <v-container class="pa-0">
           <v-row justify="start" align="start">
             <v-col cols="12" md="6">
               <v-row class="text-start">
@@ -46,7 +46,7 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col v-if="item.venue && item.venue.address" cols="12" md="6">
+            <v-col v-if="item.venue && item.venue.address && !$vuetify.breakpoint.xs" cols="12" md="6">
               <v-row>
                 <v-col cols="12" class="map-content">
                   <Map
