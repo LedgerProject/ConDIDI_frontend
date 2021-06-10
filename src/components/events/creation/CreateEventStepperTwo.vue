@@ -14,7 +14,6 @@
                 :items="getEventTypes"
                 item-text="name"
                 eager
-                return-object
                 outlined
                 label="Event type")
             v-col(cols="12" md="6")
