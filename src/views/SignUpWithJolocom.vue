@@ -2,26 +2,14 @@
   <v-container class="fill-height pa-0" fluid>
     <v-row justify="center" align="center" class="fill-height pa-0">
       <v-col md="4" class="d-none d-md-block text-center banner" dark>
-        <v-row justify="center" align="end" class="fill-height">
+        <v-row justify="center" align="start" class="fill-height">
           <v-col cols="12" class="text-start pl-12 pr-12 ml-12 pt-0 mt-0">
             <h2 class="text-h4 font-weight-bold" :style="{ opacity: '0.6' }">
               Discover the world’s top Events.
             </h2>
           </v-col>
-          <v-col cols="12">
-            <v-img
-              src="img/clip-dancer.png"
-              class="mx-auto my-auto banner-image"
-            ></v-img>
-          </v-col>
-          <v-col cols="12" class="text-start pl-12 pr-12 ml-12 mr-12">
-            <p :style="{ opacity: '0.6' }">
-              Art by
-              <a
-                href="https://icons8.com/illustrations/illustration/clip-dancer"
-                >icons8</a
-              >
-            </p>
+          <v-col cols="8" class="align-center justify-center text-center">
+            <v-img contain src="img/jolocom-home-white.svg"></v-img>
           </v-col>
         </v-row>
       </v-col>
@@ -37,8 +25,11 @@
               <v-form @submit.prevent="signUp">
                 <v-container>
                   <v-row align="start" justify="center">
-                    <v-col cols="12" class="test-start pb-12">
+                    <v-col cols="12" class="test-start">
                       <h1 class="text-h4 text-md-h3">Sign up to ConDIDi</h1>
+                    </v-col>
+                    <v-col cols="12">
+                      <h2 class="text-h5">Create your Jolocom SmartWallet identity</h2>
                     </v-col>
                     <v-col cols="6">
                       <v-text-field
@@ -67,18 +58,6 @@
                         autofocus
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" class="pb-0">
-                      <v-text-field
-                        v-model="password"
-                        label="Password"
-                        :type="showPassword ? 'text' : 'password'"
-                        hint="At least 8 characters"
-                        outlined
-                        :hide-details="$vuetify.breakpoint.xs"
-                        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                        @click:append="showPassword = !showPassword"
-                      ></v-text-field>
-                    </v-col>
                     <v-col cols="12" class="pt-0">
                       <p v-html="termsAndConditionsLabel"></p>
                     </v-col>
@@ -93,9 +72,14 @@
                       >
                     </v-col>
                     <v-col cols="12">
-                      <v-btn to="signUpWithJolocom" color="black">
-                        <v-img contain max-height="2rem" src="img/jolocom-home-white.svg"></v-img>
-                      </v-btn>
+                      <QRCodeDialog
+                        btn-label="Sign up with Jolocom SmartWallet"
+                        dialog-title="Sign up with your Jolocom SmartWallet"
+                        :show="dialogWallet"
+                        :data="interactionToken"
+                        @open="oSignUpWithJolocomSmartWallet"
+                        @close="onSignUpWithJolocomSmartWalletCompleted"
+                      ></QRCodeDialog>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -110,8 +94,10 @@
 
 <script>
 import { mapActions } from "vuex";
+import QRCodeDialog from "../components/qrcode/QRCodeDialog";
 
 export default {
+  components: { QRCodeDialog },
   data: () => ({
     dialogWallet: false,
     interactionToken: "",
@@ -152,6 +138,6 @@ export default {
 .banner {
   height: 100%;
   width: 100%;
-  background-color: #fcf3a1;
+  background-color: black;
 }
 </style>

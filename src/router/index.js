@@ -38,6 +38,15 @@ const routes = [
     },
   },
   {
+    path: "/signUpWithJolocom",
+    name: "Sign Up With Jolocom SmartWallet",
+    component: () =>
+      import(/* webpackChunkName: "signUpWithJolocom" */ "../views/SignUpWithJolocom"),
+    meta: {
+      guest: true,
+    },
+  },
+  {
     path: "/about",
     name: "About",
     component: () =>

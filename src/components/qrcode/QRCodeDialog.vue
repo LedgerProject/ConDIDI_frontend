@@ -2,13 +2,26 @@
   <v-dialog v-model="dialog" persistent max-width="600px">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
-        color="primary"
-        text
+        v-if="btnLabel"
+        color="accent"
         v-bind="attrs"
         v-on="on"
         @click="$emit('open')"
       >
         {{ btnLabel }}
+      </v-btn>
+      <v-btn
+        v-else
+        color="black"
+        v-bind="attrs"
+        v-on="on"
+        @click="$emit('open')"
+      >
+        <v-img
+          contain
+          max-height="2rem"
+          src="img/jolocom-home-white.svg"
+        ></v-img>
       </v-btn>
     </template>
     <v-card>
@@ -47,7 +60,7 @@ export default {
     btnLabel: {
       type: String,
       required: false,
-      default: "Click",
+      default: "",
     },
     dialogTitle: {
       type: String,
