@@ -128,6 +128,13 @@ export default {
     },
     onSignUpWithJolocomSmartWalletCompleted() {
       this.dialogWallet = false;
+      this.reset();
+      this.$router.push('signIn');
+    },
+    reset() {
+      this.firstName = "";
+      this.lastName = "";
+      this.email = "";
     },
   },
 };
