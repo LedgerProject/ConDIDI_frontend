@@ -135,7 +135,7 @@ export default {
       return "No password specified";
     },
     timeFormatted() {
-      return this.item.time ? `${this.item.time} hours` : "No time specified";
+      return this.item.time ? `${this.item.time} GMT-2:00` : "No time specified";
     },
     computedDateFormattedDatefns() {
       return this.item.date
