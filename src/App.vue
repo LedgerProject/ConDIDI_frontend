@@ -15,7 +15,6 @@
     <v-main transition="scroll-y-transition">
       <router-view></router-view>
     </v-main>
-    <Footer v-if="!$router.currentRoute.meta.requiresAuth"></Footer>
   </v-app>
 </template>
 
@@ -24,10 +23,9 @@ import AppBarPublic from "./components/core/AppBarPublic";
 import AppBarUser from "./components/core/AppBarUser";
 import DrawerUser from "./components/core/DrawerUser";
 import { mapActions } from "vuex";
-import Footer from "./components/core/Footer";
 export default {
   name: "App",
-  components: { Footer, DrawerUser, AppBarUser, AppBarPublic },
+  components: { DrawerUser, AppBarUser, AppBarPublic },
   data: () => ({
     drawer: false,
   }),
@@ -59,6 +57,9 @@ export default {
 </script>
 
 <style>
+html, body {
+  height: 100%;
+}
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

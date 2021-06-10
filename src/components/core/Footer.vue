@@ -1,7 +1,7 @@
 <template>
-  <v-footer dark padless absolute>
+  <v-footer dark padless>
     <v-card class="flex" flat tile>
-      <v-card-title class="teal">
+      <v-card-title class="secondary">
         <strong class="subheading"
           >Get connected with us on social networks!</strong
         >
@@ -16,7 +16,7 @@
       </v-card-title>
 
       <v-card-text class="py-2 white--text text-center">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        {{ new Date().getFullYear() }} — <strong>ConDIDi</strong>
       </v-card-text>
     </v-card>
   </v-footer>
