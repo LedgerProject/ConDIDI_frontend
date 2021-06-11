@@ -126,6 +126,7 @@ export default {
       this.$emit("next", {
         ...this.editedItem,
         socialMedia: this.socialMedia,
+        contact: this.contactPerson,
       });
 
       this.loading = false;
@@ -134,6 +135,7 @@ export default {
       this.$emit("previous", {
         ...this.editedItem,
         socialMedia: this.socialMedia,
+        contact: this.contactPerson,
       });
     },
     reset() {

@@ -34,6 +34,22 @@
                           <v-icon>mdi-lock</v-icon>
                           {{ loginPasswordFormatted }}
                         </v-col>
+
+                        <v-col v-if="item.contact" cols="12" md="6" class="pl-0">
+                          <v-icon>mdi-id-card</v-icon>
+                          {{
+                            `${item.contact.first_name} ${item.contact.last_name}`
+                          }}
+                        </v-col>
+                        <v-col cols="12" md="6" class="pl-0">
+                          <v-icon>mdi-email</v-icon>
+                          <a
+                            v-if="item.contact.email"
+                            class="pl-1"
+                            :href="`mailto:${item.contact.email}`"
+                          >{{ item.contact.email }}</a
+                          >
+                        </v-col>
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -46,7 +62,11 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col v-if="item.venue && item.venue.address && !$vuetify.breakpoint.xs" cols="12" md="6">
+            <v-col
+              v-if="item.venue && item.venue.address && !$vuetify.breakpoint.xs"
+              cols="12"
+              md="6"
+            >
               <v-row>
                 <v-col cols="12" class="map-content">
                   <Map
@@ -135,7 +155,9 @@ export default {
       return "No password specified";
     },
     timeFormatted() {
-      return this.item.time ? `${this.item.time} GMT-2:00` : "No time specified";
+      return this.item.time
+        ? `${this.item.time} GMT-2:00`
+        : "No time specified";
     },
     computedDateFormattedDatefns() {
       return this.item.date
