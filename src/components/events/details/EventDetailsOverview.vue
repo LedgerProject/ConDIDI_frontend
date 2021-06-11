@@ -35,11 +35,22 @@
                           {{ loginPasswordFormatted }}
                         </v-col>
 
-                        <v-col v-if="item.contact" cols="12" md="6" class="pl-0">
+                        <v-col
+                          v-if="item.contact"
+                          cols="12"
+                          md="6"
+                          class="pl-0"
+                        >
                           <v-icon>mdi-id-card</v-icon>
-                          {{
-                            `${item.contact.first_name} ${item.contact.last_name}`
-                          }}
+                          <span
+                            v-if="
+                              item.contact.first_name || item.contact.last_name
+                            "
+                            >{{
+                              `${item.contact.first_name} ${item.contact.last_name}`
+                            }}
+                          </span>
+                          <span v-else>No contact person specified</span>
                         </v-col>
                         <v-col cols="12" md="6" class="pl-0">
                           <v-icon>mdi-email</v-icon>
@@ -47,14 +58,14 @@
                             v-if="item.contact.email"
                             class="pl-1"
                             :href="`mailto:${item.contact.email}`"
-                          >{{ item.contact.email }}</a
+                            >{{ item.contact.email }}</a
                           >
+                          <span v-else>No contact email specified</span>
                         </v-col>
                       </v-row>
                     </v-card-text>
                   </v-card>
-                </v-col>
-                <v-col cols="12">
+
                   <h3 class="text-h4 pb-0">Event description</h3>
                 </v-col>
                 <v-col cols="12" class="pt-0">
