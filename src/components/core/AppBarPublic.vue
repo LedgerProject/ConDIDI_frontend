@@ -8,6 +8,12 @@
     <v-btn v-if="!$vuetify.breakpoint.mobile" to="/contact" text large>
       <strong>Contact</strong>
     </v-btn>
+    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/data-protection" text large>
+      <strong>Privacy</strong>
+    </v-btn>
+    <v-btn v-if="!$vuetify.breakpoint.mobile" to="/impressum" text large>
+      <strong>Imprint</strong>
+    </v-btn>
 
     <v-spacer></v-spacer>
 
