@@ -130,18 +130,17 @@ export default {
     ...mapActions({
       deleteEvent: "events/deleteEvent",
     }),
-    deleteItem() {
-      this.deleteEvent(this.item);
+    async deleteItem() {
+      await this.deleteEvent(this.item);
+      this.dialogDelete = false;
     },
   },
   mounted() {
     this.registration_deadline = this.item.registration_deadline;
     this.time_registration_deadline = this.item.time_registration_deadline;
-    this.attendanceConfirmation = this.item.attendanceConfirmation
+    this.attendanceConfirmation = this.item.attendanceConfirmation;
   },
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

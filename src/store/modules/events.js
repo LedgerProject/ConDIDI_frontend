@@ -67,7 +67,7 @@ const mutations = {
   },
   removeEvent(state, event) {
     const index = state.participants.indexOf(event);
-    state.events.splice(index, 1);
+    state.events = state.events.splice(index, 1);
   },
   setStatus(state, payload) {
     state.status = payload;
@@ -102,16 +102,18 @@ const actions = {
     await router.push(`/user/events/${event.eventid}`);
   },
   deleteEvent: async ({ commit }, payload) => {
-    const { data } = await axios.post("delete_event", { eventid: payload.id });
+    const { data } = await axios.post("delete_event", {
+      eventid: payload.eventid,
+    });
 
     // Error, failed request
-    if (data.error) {
+    if (!data.success || data.success.toLowerCase() !== "yes") {
       commit("setStatus", data.error);
       return;
     }
 
+    await router.push("/user/events/");
     commit("removeEvent", payload);
-    await router.push("/user/events");
   },
 };
 
