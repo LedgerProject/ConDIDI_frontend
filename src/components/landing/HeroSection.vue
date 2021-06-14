@@ -1,6 +1,7 @@
 <template>
   <v-container fluid :id="$vuetify.breakpoint.smAndDown ? 'container-mobile' : 'container'">
     <v-row class="fill-height" justify="start" align="center">
+      <v-row>
       <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12">
@@ -35,6 +36,18 @@
           contain
         ></v-img>
       </v-col>
+    </v-row>
+    <v-col cols="12" md="6">
+    This project has received funding by
+    <a href="https://ledgerproject.eu/">
+    <v-img
+          src="img/logo-ledger.png"
+          layzy-src="img/logo-ledger.png"
+          alt="EU NGI Ledger logo"
+          style="width: 100px"
+          contain
+        ></v-img></a>
+    </v-col>
     </v-row>
   </v-container>
 </template>

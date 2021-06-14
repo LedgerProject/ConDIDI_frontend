@@ -15,6 +15,27 @@
             <p class="text-h6 font-weight-light">The MVP will be a frontend for managing the participant list and combined with a decentralized identity (DID) and credential issuing wallet backend, based on the pioneering work of Jolocom. Credentials issued will follow international standards like OpenBadges and thus be easily included into existing or future digital CV management systems.</p>
 
             <p class="text-h6 font-weight-light">Implementation of the full credential lifecycle of issuing and retraction as infrastructure will also benefit other areas and is not restricted to this application.</p>
+
+            <p class="text-h6 font-weight-light">ConDIDI is developed at TIB in cooperation with Jolocom.</p>
+            <v-row>
+            <v-col cols="6">
+            <a href="https://tib.eu/"><v-img
+          src="img/TIB_Logo_en.png"
+          layzy-src="img/TIB_Logo_en.png"
+          alt="TIB logo"
+          style="width: 200px"
+          contain></v-img></a>
+          </v-col>
+          <v-col cols="6">
+          <a href="https://jolocom.io/"><v-img
+          src="img/jolocomlogob.png"
+          layzy-src="img/jolocomlogob.png"
+          alt="Jolocom logo"
+          style="width: 200px"
+          contain
+        ></v-img></a>
+        </v-col>
+        </v-row>
           </v-col>
         </v-row>
       </v-col>
