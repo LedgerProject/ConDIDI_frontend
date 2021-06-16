@@ -44,7 +44,7 @@
           src="img/logo-ledger.png"
           layzy-src="img/logo-ledger.png"
           alt="EU NGI Ledger logo"
-          style="width: 100px"
+          style="width: 200px"
           contain
         ></v-img></a>
     </v-col>
