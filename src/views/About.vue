@@ -4,7 +4,7 @@
       <v-col cols="12" md="6">
         <v-row>
           <v-col cols="12" class="text-start">
-            <h1 class="text-h1 font-weight-black">ConDIDI</h1>
+            <h1 class="text-h1 font-weight-black">ConDIDi</h1>
           </v-col>
           <v-col cols="12">
             <h2 class="text-h4"> Full lifecycle decentralized conference participant management </h2>
