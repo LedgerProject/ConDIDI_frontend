@@ -3,6 +3,7 @@
     <v-row>
       <v-col cols="12">
         <h2 class="text-h2">Participants</h2>
+        <p>Note: Please use email adresses ending on .invalid for testing, as tickets will be sent to the participants email adresses.</p>
       </v-col>
       <v-col cols="12">
         <v-data-table
