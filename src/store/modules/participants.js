@@ -24,8 +24,9 @@ const mutations = {
     state.participants.push(participant);
   },
   removeParticipant(state, participant) {
-    const index = state.participants.indexOf(participant);
-    state.participants.splice(index, 1);
+    state.participants = state.participants.filter(
+      (item) => item.participantid !== participant.participantid
+    );
   },
 };
 
@@ -39,7 +40,10 @@ const actions = {
   },
   // eslint-disable-next-line no-empty-pattern
   addParticipant: async ({ commit }, payload) => {
-    const { data } = await axios.post("add_participant", { participantdict: payload.participant, eventid: payload.eventid });
+    const { data } = await axios.post("add_participant", {
+      participantdict: payload.participant,
+      eventid: payload.eventid,
+    });
 
     // Error, failed request
     if (data.error) {
@@ -52,7 +56,10 @@ const actions = {
     await commit("pushParticipant", participant);
   },
   deleteParticipant: async ({ commit }, payload) => {
-    const { data } = await axios.post("remove_participant", { participantid: payload.participant.participantid, eventid: payload.eventid });
+    const { data } = await axios.post("remove_participant", {
+      participantid: payload.participant.participantid,
+      eventid: payload.eventid,
+    });
 
     // Error, failed request
     if (data.error) {
@@ -63,7 +70,10 @@ const actions = {
     commit("removeParticipant", payload.participant);
   },
   createQRCodeForParticipant: async ({ commit }, payload) => {
-    const { data } = await axios.post("get_checkin_token", { participantid: payload.participant.participantid, eventid: payload.eventid });
+    const { data } = await axios.post("get_checkin_token", {
+      participantid: payload.participant.participantid,
+      eventid: payload.eventid,
+    });
 
     // Error, failed request
     if (data.error) {
