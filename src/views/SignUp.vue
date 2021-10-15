@@ -122,7 +122,7 @@ export default {
     showPassword: false,
     termsAndConditionsAccepted: false,
     termsAndConditionsLabel:
-      "<p>Creating an account means you’re okay with our <a href='termsOfService'>Terms of Service</a> and <a href='data-protection'>Privacy Policy</a>.</p>",
+      "<p>Creating an account means you’re okay with our <a href='https://www.tib.eu/en/service/terms-of-use'>Terms of Service</a> and <a href='https://www.tib.eu/en/service/data-protection'>Privacy Policy</a>.</p>",
   }),
   methods: {
     ...mapActions({
